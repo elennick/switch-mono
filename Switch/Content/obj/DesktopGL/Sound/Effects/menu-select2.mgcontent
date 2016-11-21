@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SourceFile>D:/Development/switch-mono/Switch/Switch/Content/Sound/Effects/menu-select2.wav</SourceFile>
+  <SourceTime>2016-09-07T17:41:41.3947487-04:00</SourceTime>
+  <DestFile>D:/Development/switch-mono/Switch/Switch/Content/bin/DesktopGL/Sound/Effects/menu-select2.xnb</DestFile>
+  <DestTime>2016-11-20T20:17:19.7602991-05:00</DestTime>
+  <Importer>WavImporter</Importer>
+  <ImporterTime>2016-03-30T02:36:08-04:00</ImporterTime>
+  <Processor>SoundEffectProcessor</Processor>
+  <ProcessorTime>2016-03-30T02:36:08-04:00</ProcessorTime>
+  <Parameters>
+    <Key>Quality</Key>
+    <Value>Best</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput />
+</PipelineBuildEvent>
