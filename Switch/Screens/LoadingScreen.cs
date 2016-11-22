@@ -68,6 +68,7 @@ namespace Switch
                                                             loadingIsSlow,
                                                             screensToLoad);
 
+            screenManager.UnloadAllContent();
             screenManager.AddScreen(loadingScreen, controllingPlayer);
         }
 

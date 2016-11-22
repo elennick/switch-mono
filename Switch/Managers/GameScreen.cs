@@ -182,7 +182,9 @@ namespace Switch
         /// <summary>
         /// Unload content for the screen.
         /// </summary>
-        public virtual void UnloadContent() { }
+        public virtual void UnloadContent() {
+            
+        }
 
 
         #endregion

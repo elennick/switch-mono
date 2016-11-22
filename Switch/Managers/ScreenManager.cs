@@ -30,6 +30,7 @@ namespace Switch
         SpriteFont bigFont;
         Texture2D blankTexture;
         Texture2D selectorImage;
+        ContentManager contentManager;
 
 
         bool isInitialized;
@@ -142,6 +143,11 @@ namespace Switch
             {
                 screen.UnloadContent();
             }
+        }
+
+        public void UnloadAllContent()
+        {
+            UnloadContent();
         }
 
         /// <summary>

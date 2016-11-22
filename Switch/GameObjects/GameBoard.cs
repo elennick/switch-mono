@@ -642,15 +642,15 @@ namespace Switch.GameObjects
             {
                 swapColumns();
             }
-            if (keyboardState.IsKeyDown(Keys.LeftControl) && previousKeyboardState.IsKeyUp(Keys.LeftControl))
+            if (keyboardState.IsKeyDown(Keys.X) && previousKeyboardState.IsKeyUp(Keys.X))
             {
                 engageBulletTime();
             }
-            if (keyboardState.IsKeyDown(Keys.LeftAlt) && previousKeyboardState.IsKeyUp(Keys.LeftAlt))
+            if (keyboardState.IsKeyDown(Keys.Y) && previousKeyboardState.IsKeyUp(Keys.Y))
             {
                 fireDaLasersLawl(rotater.getHorizontalPosition(), rotater.getHorizontalPosition() + 1);
             }
-            if (keyboardState.IsKeyDown(Keys.LeftShift) && previousKeyboardState.IsKeyUp(Keys.LeftShift))
+            if (keyboardState.IsKeyDown(Keys.B) && previousKeyboardState.IsKeyUp(Keys.B))
             {
                 fireNuke();
             }
