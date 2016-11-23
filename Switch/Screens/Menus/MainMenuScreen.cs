@@ -77,7 +77,7 @@ namespace Switch.Menus
 
         void challengeModeSelected(object sender, PlayerIndexEventArgs e)
         {
-            //ScreenManager.AddScreen(new ChallengeModeDifficultySelectionScreen(), null);
+            ScreenManager.AddScreen(new ChallengeModeDifficultySelectionScreen(), null);
         }
 
         void highScoresSelected(object sender, PlayerIndexEventArgs e)

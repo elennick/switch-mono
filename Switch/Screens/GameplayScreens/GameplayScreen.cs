@@ -263,9 +263,8 @@ namespace Switch
 #endif
                         }
 
-                        //** RE-ENABLE ME
-                        //ChallengeCompleteScreen challengeCompleteScreen = new ChallengeCompleteScreen("Challenge Completed!");
-                        //ScreenManager.AddScreen(challengeCompleteScreen, null);
+                        ChallengeCompleteScreen challengeCompleteScreen = new ChallengeCompleteScreen("Challenge Completed!");
+                        ScreenManager.AddScreen(challengeCompleteScreen, null);
                     }
 
                     gameBoard.update(gameTime);

@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using Switch.Menus;
 using Switch.GameObjects.Challenges;
-using Switch.Screens;
-using Microsoft.Xna.Framework.GamerServices;
+//using Switch.Screens;
+//using Microsoft.Xna.Framework.GamerServices;
 
 namespace Switch.Menus
 {
@@ -52,50 +52,22 @@ namespace Switch.Menus
 
         void mediumEntrySelected(object sender, PlayerIndexEventArgs e)
         {
-            if (!Guide.IsTrialMode)
-            {
-                ScreenManager.AddScreen(new ChallengeModeSelectionScreen(ChallengeManager.ChallengeLevel.MEDIUM), null);
-            }
-            else
-            {
-                ScreenManager.AddScreen(new TrialModeErrorScreen(), null);
-            }
+            ScreenManager.AddScreen(new ChallengeModeSelectionScreen(ChallengeManager.ChallengeLevel.MEDIUM), null);
         }
 
         void hardEntrySelected(object sender, PlayerIndexEventArgs e)
         {
-            if (!Guide.IsTrialMode)
-            {
-                ScreenManager.AddScreen(new ChallengeModeSelectionScreen(ChallengeManager.ChallengeLevel.HARD), null);
-            }
-            else
-            {
-                ScreenManager.AddScreen(new TrialModeErrorScreen(), null);
-            }
+            ScreenManager.AddScreen(new ChallengeModeSelectionScreen(ChallengeManager.ChallengeLevel.HARD), null);
         }
 
         void crazyEntrySelected(object sender, PlayerIndexEventArgs e)
         {
-            if (!Guide.IsTrialMode)
-            {
-                ScreenManager.AddScreen(new ChallengeModeSelectionScreen(ChallengeManager.ChallengeLevel.CRAZY), null);
-            }
-            else
-            {
-                ScreenManager.AddScreen(new TrialModeErrorScreen(), null);
-            }
+            ScreenManager.AddScreen(new ChallengeModeSelectionScreen(ChallengeManager.ChallengeLevel.CRAZY), null);
         }
 
         void impossibleEntrySelected(object sender, PlayerIndexEventArgs e)
         {
-            if (!Guide.IsTrialMode)
-            {
-                ScreenManager.AddScreen(new ChallengeModeSelectionScreen(ChallengeManager.ChallengeLevel.IMPOSSIBLE), null);
-            }
-            else
-            {
-                ScreenManager.AddScreen(new TrialModeErrorScreen(), null);
-            }
+            ScreenManager.AddScreen(new ChallengeModeSelectionScreen(ChallengeManager.ChallengeLevel.IMPOSSIBLE), null);
         }
     }
 }

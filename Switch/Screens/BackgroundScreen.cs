@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Switch.Utils;
 using System.Collections.Generic;
-//using Switch.Menus;
+using Switch.Menus;
 
 namespace Switch
 {
@@ -137,9 +137,7 @@ namespace Switch
             {
                 if (ControllingPlayer.HasValue)
                 {
-                    //*** RE ENABLE ME
-                    //ScreenManager.AddScreen(new MainMenuScreen(), ControllingPlayer);
-
+                    ScreenManager.AddScreen(new MainMenuScreen(), ControllingPlayer);
                 }
                 else
                 {

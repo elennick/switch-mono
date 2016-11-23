@@ -1,6 +1,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-//using Switch.Menus;
+using Switch.Menus;
 using Switch.Utils;
 using System;
 
@@ -25,7 +25,14 @@ namespace Switch
             // Create the screen manager component.
             screenManager = new ScreenManager(this);
             Components.Add(screenManager);
-            screenManager.AddScreen(new LogoScreen(), null);
+            if (DEBUG_MODE)
+            {
+                screenManager.AddScreen(new BackgroundScreen(), null);
+            }
+            else
+            {
+                screenManager.AddScreen(new LogoScreen(), null);
+            }
         }
 
         protected override void Draw(GameTime gameTime)
