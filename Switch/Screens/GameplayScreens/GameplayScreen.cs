@@ -419,13 +419,11 @@ namespace Switch
                 VibrationManager.Instance.cancelAllVibrations();
                 if (this.getGameMode() == GameMode.CHALLENGE_MODE)
                 {
-                    //** RE-ENABLE ME
-                    //ScreenManager.AddScreen(new PauseMenuScreen(this.challenge), playerIndexThatPaused);
+                    ScreenManager.AddScreen(new PauseMenuScreen(this.challenge), playerIndexThatPaused);
                 }
                 else
                 {
-                    //** RE-ENABLE ME
-                    //ScreenManager.AddScreen(new PauseMenuScreen(null), playerIndexThatPaused);
+                    ScreenManager.AddScreen(new PauseMenuScreen(null), playerIndexThatPaused);
                 }
             }
         }

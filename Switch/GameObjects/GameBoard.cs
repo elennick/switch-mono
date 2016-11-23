@@ -620,11 +620,6 @@ namespace Switch.GameObjects
                 fireNuke();
             }
 
-            if (gamePadState.ThumbSticks.Left.Y >= -0.3 && gamePadState.DPad.Down != ButtonState.Pressed)
-            {
-                timeDownHeld = 0;
-            }
-
             //keyboard stuff
             KeyboardState keyboardState = input.CurrentKeyboardStates[this.playerIndex];
             KeyboardState previousKeyboardState = input.LastKeyboardStates[this.playerIndex];
@@ -653,6 +648,12 @@ namespace Switch.GameObjects
             if (keyboardState.IsKeyDown(Keys.B) && previousKeyboardState.IsKeyUp(Keys.B))
             {
                 fireNuke();
+            }
+
+            //down held stuff
+            if (gamePadState.ThumbSticks.Left.Y >= -0.3 && gamePadState.DPad.Down != ButtonState.Pressed && !keyboardState.IsKeyDown(Keys.Down))
+            {
+                timeDownHeld = 0;
             }
         }
 

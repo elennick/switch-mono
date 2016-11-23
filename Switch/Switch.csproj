@@ -96,6 +96,7 @@
     <Compile Include="Managers\StorageManager.cs" />
     <Compile Include="Managers\VibrationManager.cs" />
     <Compile Include="Screens\BackgroundScreen.cs" />
+    <Compile Include="Screens\ExitToMainMenuScreen.cs" />
     <Compile Include="Screens\GameplayScreens\GameplayScreen.cs" />
     <Compile Include="Screens\GameplayScreens\ScoreAttackScreen.cs" />
     <Compile Include="Screens\LoadingScreen.cs" />
@@ -110,6 +111,7 @@
     <Compile Include="Screens\Menus\MenuEntry.cs" />
     <Compile Include="Screens\Menus\MenuScreen.cs" />
     <Compile Include="Screens\Menus\OptionsMenuScreen.cs" />
+    <Compile Include="Screens\Menus\PauseMenuScreen.cs" />
     <Compile Include="Screens\Menus\ScoreAttackSelectionScreen.cs" />
     <Compile Include="Screens\Menus\StatsScreen.cs" />
     <Compile Include="Screens\PlayerIndexEventArgs.cs" />

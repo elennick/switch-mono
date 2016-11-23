@@ -10,7 +10,7 @@ namespace Switch
     {
         GraphicsDeviceManager graphics;
         ScreenManager screenManager;
-        public static bool DEBUG_MODE = false;
+        public static bool DEBUG_MODE = true;
 
         public SwitchGame()
         {
