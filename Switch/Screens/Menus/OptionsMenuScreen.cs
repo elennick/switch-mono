@@ -10,24 +10,27 @@ namespace Switch.Menus
     {
         MenuEntry rumbleOnEntry;
         MenuEntry musicOnEntry;
+        MenuEntry fullScreenEntry;
         MenuEntry controlsEntry;
-        MenuEntry videoSettingsEntry;
         MenuEntry howToPlayEntry;
         MenuEntry creditsEntry;
         MenuEntry statsEntry;
 
         static bool musicOn = true;
         static bool rumbleOn = true;
+        static bool fullscreenOn;
 
         public OptionsMenuScreen()
             : base("Help & Options")
         {
             this.setSubMenuTitleText("Configure Your Junk!");
 
+            fullscreenOn = SwitchGame.Instance.Graphics.IsFullScreen;
+
             musicOnEntry = new MenuEntry(string.Empty);
             rumbleOnEntry = new MenuEntry(string.Empty);
+            fullScreenEntry = new MenuEntry(string.Empty);
             controlsEntry = new MenuEntry("Controls");
-            videoSettingsEntry = new MenuEntry("Video/Screen");
             howToPlayEntry = new MenuEntry("How To Play");
             creditsEntry = new MenuEntry("Credits");
             statsEntry = new MenuEntry("Game Stats");
@@ -38,8 +41,8 @@ namespace Switch.Menus
 
             rumbleOnEntry.Selected += RumbleOnMenuEntrySelected;
             musicOnEntry.Selected += MusicOnMenuEntrySelected;
+            fullScreenEntry.Selected += FullScreenEntrySelected;
             controlsEntry.Selected += ControlsMenuEntrySelected;
-            videoSettingsEntry.Selected += VideoSettingsMenuEntrySelected;
             howToPlayEntry.Selected += HowToPlayMenuEntrySelected;
             creditsEntry.Selected += CreditsMenuEntrySelected;
             statsEntry.Selected += StatsMenuEntrySelected;
@@ -47,7 +50,7 @@ namespace Switch.Menus
 
             MenuEntries.Add(rumbleOnEntry);
             MenuEntries.Add(musicOnEntry);
-            MenuEntries.Add(videoSettingsEntry);
+            MenuEntries.Add(fullScreenEntry);
             MenuEntries.Add(controlsEntry);
             MenuEntries.Add(howToPlayEntry);
             MenuEntries.Add(creditsEntry);
@@ -59,6 +62,7 @@ namespace Switch.Menus
         {
             musicOnEntry.Text = "Music: " + (musicOn ? "ON" : "OFF");
             rumbleOnEntry.Text = "Rumble: " + (rumbleOn ? "ON" : "OFF");
+            fullScreenEntry.Text = "Mode: " + (fullscreenOn ? "FULLSCREEN" : "WINDOWED");
         }
 
         void MusicOnMenuEntrySelected(object sender, PlayerIndexEventArgs e)
@@ -75,14 +79,17 @@ namespace Switch.Menus
             VibrationManager.Instance.setVibrationEnabled(rumbleOn);
         }
 
+        void FullScreenEntrySelected(object sender, PlayerIndexEventArgs e)
+        {
+            fullscreenOn = !fullscreenOn;
+            SetMenuEntryText();
+            SwitchGame.Instance.Graphics.IsFullScreen = fullscreenOn;
+            SwitchGame.Instance.Graphics.ApplyChanges();
+        }
+
         void ControlsMenuEntrySelected(object sender, PlayerIndexEventArgs e)
         {
             ScreenManager.AddScreen(new ControlsScreen(), null);
-        }
-
-        void VideoSettingsMenuEntrySelected(object sender, PlayerIndexEventArgs e)
-        {
-            ScreenManager.AddScreen(new VideoSettingsScreen(), null);
         }
 
         void HowToPlayMenuEntrySelected(object sender, PlayerIndexEventArgs e)

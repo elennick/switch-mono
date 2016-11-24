@@ -107,7 +107,6 @@
     <Compile Include="Screens\Menus\ChallengeModeMenuEntry.cs" />
     <Compile Include="Screens\Menus\ChallengeModeMessageBoxScreen.cs" />
     <Compile Include="Screens\Menus\ChallengeModeSelectionScreen.cs" />
-    <Compile Include="Screens\Menus\VideoSettingsScreen.cs" />
     <Compile Include="Screens\Menus\ControlsScreen.cs" />
     <Compile Include="Screens\Menus\CreditsScreen.cs" />
     <Compile Include="Screens\Menus\ExitOrBackMenuEntry.cs" />

@@ -15,12 +15,6 @@ namespace Switch
 
         public static bool DEBUG_MODE = true; //skips logo screen, disables music and gives unlimited power to use abilities during gameplay
 
-        private static List<SupportedResolution> supportedResolutions = new List<SupportedResolution>
-        {
-            new SupportedResolution(1280, 720),
-            new SupportedResolution(1920, 1080)
-        };
-
         public SwitchGame()
         {
             Instance = this;
@@ -29,8 +23,9 @@ namespace Switch
 
             Graphics = new GraphicsDeviceManager(this);
 
-            Graphics.PreferredBackBufferWidth = supportedResolutions[0].Width;
-            Graphics.PreferredBackBufferHeight = supportedResolutions[0].Height;
+            Graphics.PreferredBackBufferWidth = 1280;
+            Graphics.PreferredBackBufferHeight = 720;
+            Graphics.IsFullScreen = !DEBUG_MODE;
 
             // Create the screen manager component.
             screenManager = new ScreenManager(this);
