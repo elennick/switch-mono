@@ -254,13 +254,11 @@ namespace Switch
                         SoundManager.Instance.playSound("player-select");
 
                         ChallengeManager challengeManager = ChallengeManager.Instance;
-                        if (!challengeManager.getChallengeStatus(this.challenge.getName()))
+                        if (!challengeManager.GetChallengeStatus(this.challenge.getName()))
                         {
-                            challengeManager.setChallengeCompleteStatus(this.challenge.getName(), true);
-#if XBOX
-                            StorageManager.Instance.saveChallengeStatuses(challengeManager.getChallengeSaveData());
+                            challengeManager.SetChallengeCompleteStatus(this.challenge.getName(), true);
+                            StorageManager.Instance.SaveChallengeStatuses(challengeManager.GetChallengeSaveData());
                             saveStats();
-#endif
                         }
 
                         ChallengeCompleteScreen challengeCompleteScreen = new ChallengeCompleteScreen("Challenge Completed!");
@@ -403,11 +401,11 @@ namespace Switch
                     consolidatedStats.addStats(gameBoardToSaveStatsFor.getStats());
                 }
 
-                StorageManager.Instance.addStatsData(consolidatedStats);
+                StorageManager.Instance.AddStatsData(consolidatedStats);
             }
             else
             {
-                StorageManager.Instance.addStatsData(gameBoards[0].getStats());
+                StorageManager.Instance.AddStatsData(gameBoards[0].getStats());
             }
         }
 

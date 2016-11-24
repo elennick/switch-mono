@@ -21,7 +21,7 @@ namespace Switch.Menus
         public ChallengeModeDifficultySelectionScreen()
             : base("Challenge Difficulty")
         {
-            this.setSubMenuTitleText("Challenges " + ChallengeManager.Instance.getPercentOfChallengesCompleted() + "% Completed");
+            this.setSubMenuTitleText("Challenges " + ChallengeManager.Instance.GetPercentOfChallengesCompleted() + "% Completed");
 
             easyEntry = new MenuEntry("Easy");
             mediumEntry = new MenuEntry("Medium");

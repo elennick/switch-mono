@@ -34,7 +34,7 @@ namespace Switch
             aButtonImage = content.Load<Texture2D>("Sprites\\ControllerImages\\xboxControllerButtonA");
             bButtonImage = content.Load<Texture2D>("Sprites\\ControllerImages\\xboxControllerButtonB");
 
-            stats = StorageManager.Instance.getGameStats();
+            stats = StorageManager.Instance.GetGameStats();
         }
 
         public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)

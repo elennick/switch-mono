@@ -19,14 +19,14 @@ namespace Switch.Menus
         public ChallengeModeSelectionScreen(Switch.GameObjects.Challenges.ChallengeManager.ChallengeLevel level)
             : base("Select A Challenge!")
         {
-            this.setSubMenuTitleText("Challenges " + ChallengeManager.Instance.getPercentOfChallengesCompleted() + "% Completed");
+            this.setSubMenuTitleText("Challenges " + ChallengeManager.Instance.GetPercentOfChallengesCompleted() + "% Completed");
 
-            List<Challenge> challenges = ChallengeManager.Instance.getChallenges(level);
+            List<Challenge> challenges = ChallengeManager.Instance.GetChallenges(level);
             foreach (Challenge challenge in challenges)
             {
                 ChallengeModeMenuEntry menuEntry = new ChallengeModeMenuEntry(challenge.getName(), 
                                                                               challenge.getDescription(), 
-                                                                              ChallengeManager.Instance.getChallengeStatus(challenge.getName()));
+                                                                              ChallengeManager.Instance.GetChallengeStatus(challenge.getName()));
                 menuEntry.Selected += challengeEntrySelected;
                 MenuEntries.Add(menuEntry);
             }
@@ -72,7 +72,7 @@ namespace Switch.Menus
         void challengeEntrySelected(object sender, PlayerIndexEventArgs e)
         {
             string challengeName = ((MenuEntry)sender).Text;
-            currentlySelectedChallenge = ChallengeManager.Instance.getChallengeByName(challengeName);
+            currentlySelectedChallenge = ChallengeManager.Instance.GetChallengeByName(challengeName);
             string message = "Challenge - " + currentlySelectedChallenge.getName() + "\n\n" + currentlySelectedChallenge.getDescription();
 
             ChallengeModeMessageBoxScreen confirmExitMessageBox = new ChallengeModeMessageBoxScreen(currentlySelectedChallenge.getName(), 

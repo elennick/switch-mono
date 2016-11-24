@@ -32,7 +32,6 @@ namespace Switch
         Texture2D selectorImage;
         ContentManager contentManager;
 
-
         bool isInitialized;
 
         bool traceEnabled;

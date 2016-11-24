@@ -11,9 +11,10 @@ namespace Switch.Menus
         MenuEntry rumbleOnEntry;
         MenuEntry musicOnEntry;
         MenuEntry controlsEntry;
+        MenuEntry videoSettingsEntry;
         MenuEntry howToPlayEntry;
-        MenuEntry credits;
-        MenuEntry stats;
+        MenuEntry creditsEntry;
+        MenuEntry statsEntry;
 
         static bool musicOn = true;
         static bool rumbleOn = true;
@@ -26,9 +27,10 @@ namespace Switch.Menus
             musicOnEntry = new MenuEntry(string.Empty);
             rumbleOnEntry = new MenuEntry(string.Empty);
             controlsEntry = new MenuEntry("Controls");
+            videoSettingsEntry = new MenuEntry("Video/Screen");
             howToPlayEntry = new MenuEntry("How To Play");
-            credits = new MenuEntry("Credits");
-            stats = new MenuEntry("Game Stats");
+            creditsEntry = new MenuEntry("Credits");
+            statsEntry = new MenuEntry("Game Stats");
 
             SetMenuEntryText();
 
@@ -37,17 +39,19 @@ namespace Switch.Menus
             rumbleOnEntry.Selected += RumbleOnMenuEntrySelected;
             musicOnEntry.Selected += MusicOnMenuEntrySelected;
             controlsEntry.Selected += ControlsMenuEntrySelected;
+            videoSettingsEntry.Selected += VideoSettingsMenuEntrySelected;
             howToPlayEntry.Selected += HowToPlayMenuEntrySelected;
-            credits.Selected += CreditsMenuEntrySelected;
-            stats.Selected += StatsMenuEntrySelected;
+            creditsEntry.Selected += CreditsMenuEntrySelected;
+            statsEntry.Selected += StatsMenuEntrySelected;
             backMenuEntry.Selected += OnCancel;
 
             MenuEntries.Add(rumbleOnEntry);
             MenuEntries.Add(musicOnEntry);
+            MenuEntries.Add(videoSettingsEntry);
             MenuEntries.Add(controlsEntry);
             MenuEntries.Add(howToPlayEntry);
-            MenuEntries.Add(credits);
-            MenuEntries.Add(stats);
+            MenuEntries.Add(creditsEntry);
+            MenuEntries.Add(statsEntry);
             MenuEntries.Add(backMenuEntry);
         }
 
@@ -74,6 +78,11 @@ namespace Switch.Menus
         void ControlsMenuEntrySelected(object sender, PlayerIndexEventArgs e)
         {
             ScreenManager.AddScreen(new ControlsScreen(), null);
+        }
+
+        void VideoSettingsMenuEntrySelected(object sender, PlayerIndexEventArgs e)
+        {
+            ScreenManager.AddScreen(new VideoSettingsScreen(), null);
         }
 
         void HowToPlayMenuEntrySelected(object sender, PlayerIndexEventArgs e)
