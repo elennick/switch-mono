@@ -104,7 +104,6 @@ D:\Development\switch-mono\Switch\Switch\bin\DesktopGL\x86\Debug\Content\Sprites
 D:\Development\switch-mono\Switch\Switch\bin\DesktopGL\x86\Debug\Content\Sprites\Help\high_scores.xnb
 D:\Development\switch-mono\Switch\Switch\bin\DesktopGL\x86\Debug\Content\Sprites\Help\kristian.xnb
 D:\Development\switch-mono\Switch\Switch\bin\DesktopGL\x86\Debug\Content\Sprites\Help\menu_title_background.xnb
-D:\Development\switch-mono\Switch\Switch\obj\x86\Debug\Switch.csprojResolveAssemblyReference.cache
 D:\Development\switch-mono\Switch\Switch\bin\DesktopGL\x86\Debug\Content\Sound\Effects\2p-alarm.xnb
 D:\Development\switch-mono\Switch\Switch\bin\DesktopGL\x86\Debug\Content\Sound\Effects\bullettime.xnb
 D:\Development\switch-mono\Switch\Switch\bin\DesktopGL\x86\Debug\Content\Sound\Effects\explode-tile.xnb
@@ -146,3 +145,7 @@ D:\Development\switch-mono\Switch\Switch\bin\DesktopGL\x86\Debug\Content\Sprites
 D:\Development\switch-mono\Switch\Switch\bin\DesktopGL\x86\Debug\Content\Sprites\BoardComponents\Powers\nuke_shadow.xnb
 D:\Development\switch-mono\Switch\Switch\bin\DesktopGL\x86\Debug\Content\Sprites\BoardComponents\Powers\power_25.xnb
 D:\Development\switch-mono\Switch\Switch\bin\DesktopGL\x86\Debug\Content\Sprites\BoardComponents\Powers\power_50.xnb
+D:\Development\switch-mono\Switch\Switch\bin\DesktopGL\x86\Debug\Switch.exe.manifest
+D:\Development\switch-mono\Switch\Switch\bin\DesktopGL\x86\Debug\Switch.application
+D:\Development\switch-mono\Switch\Switch\obj\x86\Debug\Switch.exe.manifest
+D:\Development\switch-mono\Switch\Switch\obj\x86\Debug\Switch.application

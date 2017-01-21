@@ -69,7 +69,7 @@ namespace Switch
             Viewport viewport = ScreenManager.GraphicsDevice.Viewport;
 
             SpriteFont bigFont = ScreenManager.BigFont;
-            Color titleColor = new Color(192, 192, 192, TransitionAlpha);
+            Color titleColor = new Color(192, 192, 192) * TransitionAlpha;
 
             Vector2 position = new Vector2(0, 0);
 

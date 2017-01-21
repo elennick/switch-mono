@@ -40,7 +40,7 @@ namespace Switch.Menus
             Vector2 scale = Vector2.One;
 
             // Modify the alpha to fade text out during transitions.
-            color = new Color(color.R, color.G, color.B, screen.TransitionAlpha);
+            color = new Color(color.R, color.G, color.B) * screen.TransitionAlpha;
 
             // Draw text, centered on the middle of each line.
             ScreenManager screenManager = screen.ScreenManager;

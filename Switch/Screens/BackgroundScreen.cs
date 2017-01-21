@@ -157,7 +157,7 @@ namespace Switch
             SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
             Viewport viewport = ScreenManager.GraphicsDevice.Viewport;
             Rectangle fullscreen = new Rectangle(0, 0, viewport.Width, viewport.Height);
-            byte fade = TransitionAlpha;
+            float fade = TransitionAlpha;
 
             spriteBatch.Begin();
 

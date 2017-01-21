@@ -44,8 +44,8 @@ namespace Switch
             SpriteFont littleFont = ScreenManager.LittleFont;
             SpriteFont font = ScreenManager.Font;
             SpriteFont bigFont = ScreenManager.BigFont;
-            Color titleColor = new Color(192, 192, 192, TransitionAlpha);
-            Color yellowColor = new Color(255, 255, 0, TransitionAlpha);
+            Color titleColor = new Color(192, 192, 192) * TransitionAlpha;
+            Color yellowColor = new Color(255, 255, 0) * TransitionAlpha;
             Vector2 position = new Vector2(0, 0);
 
             float transitionOffset = (float)Math.Pow(TransitionPosition, 2);
@@ -100,7 +100,7 @@ namespace Switch
             //draw button image and text
             int xPixelOffset = (viewport.Width - backgroundTexture.Width) / 2;
             Rectangle bButtonRect = new Rectangle((int)position.X + xPixelOffset + 220, 570, 40, 40);
-            spriteBatch.Draw(bButtonImage, bButtonRect, Color.White);
+            spriteBatch.Draw(bButtonImage, bButtonRect, Color.White * TransitionAlpha);
             Vector2 backToMenuPosition = new Vector2(bButtonRect.X + 50, bButtonRect.Y);
 
             spriteBatch.DrawString(littleFont, "Back To Help & Options", backToMenuPosition, yellowColor);

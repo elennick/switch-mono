@@ -13,7 +13,8 @@ namespace Switch
         public ScreenManager screenManager { get; }
         public static SwitchGame Instance { get; set; }
 
-        public static bool DEBUG_MODE = true; //skips logo screen, disables music and gives unlimited power to use abilities during gameplay
+        //skips logo screen, disables music, defaults to windowed mode and gives unlimited power to use abilities during gameplay
+        public static bool DEBUG_MODE = true;
 
         public SwitchGame()
         {

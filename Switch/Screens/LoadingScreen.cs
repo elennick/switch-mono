@@ -141,7 +141,7 @@ namespace Switch
                 SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
                 SpriteFont font = ScreenManager.Font;
                 Viewport viewport = ScreenManager.GraphicsDevice.Viewport;
-                Color color = new Color(255, 255, 255, TransitionAlpha);
+                Color color = new Color(255, 255, 255) * TransitionAlpha;
 
                 float transitionOffset = (float)Math.Pow(TransitionPosition, 2);
                 if (ScreenState == ScreenState.TransitionOn)

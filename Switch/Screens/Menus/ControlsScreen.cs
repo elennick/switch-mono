@@ -42,7 +42,7 @@ namespace Switch
             Viewport viewport = ScreenManager.GraphicsDevice.Viewport;
 
             Vector2 position = new Vector2(0, 0);
-            Color titleColor = new Color(192, 192, 192, TransitionAlpha);
+            Color titleColor = new Color(192, 192, 192) * TransitionAlpha;
 
             float transitionOffset = (float)Math.Pow(TransitionPosition, 2);
             if (ScreenState == ScreenState.TransitionOn)

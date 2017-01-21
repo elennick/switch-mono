@@ -105,8 +105,8 @@ namespace Switch.Menus
 
             Vector2 position = new Vector2(0, 0);
 
-            Color whiteColor = new Color(192, 192, 192, TransitionAlpha);
-            Color yellowColor = new Color(255, 255, 0, TransitionAlpha);
+            Color whiteColor = new Color(192, 192, 192) * TransitionAlpha;
+            Color yellowColor = new Color(255, 255, 0) * TransitionAlpha;
 
             float transitionOffset = (float)Math.Pow(TransitionPosition, 2);
             if (ScreenState == ScreenState.TransitionOn)

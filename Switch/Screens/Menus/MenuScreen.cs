@@ -236,8 +236,8 @@ namespace Switch.Menus
 
             spriteBatch.Begin();
 
-            Color titleColor = new Color(192, 192, 192, TransitionAlpha);
-            Color greenColor = new Color(50, 205, 50, TransitionAlpha);
+            Color titleColor = new Color(192, 192, 192) * TransitionAlpha;
+            Color greenColor = new Color(50, 205, 50) * TransitionAlpha;
 
             //draw background
             if (this.backgroundTexture != null && this.showBackgroundColor)
