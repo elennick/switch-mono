@@ -52,7 +52,7 @@ namespace Switch.GameObjects
         private DetailedSpriteObject blankWhiteSpritObject;
         private int maxBulletTime;
         private Random random;
-        private byte fadeFromWhiteAlpha;
+        private float fadeFromWhiteAlpha;
         private Difficulty difficulty;
 
         /**
@@ -99,7 +99,7 @@ namespace Switch.GameObjects
             this.isShaking = false;
             this.timeLeftShaking = 0;
             this.timeSinceLastShake = 0;
-            this.fadeFromWhiteAlpha = 255;
+            this.fadeFromWhiteAlpha = 1;
             this.maxBulletTime = 15000; //bullet time is 15 seconds long by default
 
             this.rotater = new Rotater(this.tileSet.getRotater(), 0, this.numTilesWidth - 2, 1);
@@ -353,7 +353,7 @@ namespace Switch.GameObjects
                 this.timeLeftShaking = millisToShakeFor;
                 this.timeSinceLastShake = 0;
                 this.setPaused(true);
-                this.fadeFromWhiteAlpha = 255;
+                this.fadeFromWhiteAlpha = 1;
             }
         }
 
@@ -414,7 +414,7 @@ namespace Switch.GameObjects
                                                      this.originalBoardPosition.Y + YVariation);
                 }
 
-                this.fadeFromWhiteAlpha -= 3;
+                this.fadeFromWhiteAlpha -= 0.005f;
                 this.timeLeftShaking -= elapsedTime;
                 this.timeSinceLastShake += elapsedTime;
             }
@@ -559,7 +559,7 @@ namespace Switch.GameObjects
             //draw the nuke white overlay image if the board is currently shaking due to a nuke
             if (this.isShaking)
             {
-                Color color = new Color(255, 255, 255, (byte)MathHelper.Clamp(fadeFromWhiteAlpha, 0, 255));
+                Color color = new Color(255, 255, 255) * (float)MathHelper.Clamp(fadeFromWhiteAlpha, 0f, 1f);
                 spriteBatch.Draw(blankWhiteSpritObject.getTexture(), blankWhiteSpritObject.getDestinationRect(), color);
             }
 
@@ -648,6 +648,12 @@ namespace Switch.GameObjects
             if (keyboardState.IsKeyDown(Keys.B) && previousKeyboardState.IsKeyUp(Keys.B))
             {
                 fireNuke();
+            }
+
+            //easy shortcut to quit the entire game if we're running in dev/debug mode
+            if (keyboardState.IsKeyDown(Keys.LeftShift) && previousKeyboardState.IsKeyUp(Keys.Escape) && SwitchGame.DEBUG_MODE)
+            {
+                SwitchGame.Instance.screenManager.Game.Exit();
             }
 
             //down held stuff

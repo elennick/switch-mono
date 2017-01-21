@@ -103,22 +103,6 @@ namespace Switch
             Vector2 stringPosition = new Vector2(viewport.Width / 2, viewport.Height / 2);
             Vector2 stringOrigin = Utils.Utils.Instance.getTextStringCenterOrigin(pressStartString, bigFont);
             spriteBatch.DrawString(bigFont, pressStartString, new Vector2(stringPosition.X + position.X, stringPosition.Y), titleColor, 0, stringOrigin, scale, SpriteEffects.None, 0);
-
-            /*
-            Vector2 leftImagePosition = new Vector2(stringPosition.X + position.X - 275, stringPosition.Y);
-            Vector2 leftImageBackgroundOrigin = new Vector2(greenTileBackground.Width / 2, greenTileBackground.Height / 2);
-            spriteBatch.Draw(greenTileBackground, leftImagePosition, null, titleColor, rotationAngle, leftImageBackgroundOrigin, scale, SpriteEffects.None, 0);
-
-            Vector2 leftImageForegroundOrigin = new Vector2(greenTileForeground.Width / 2, greenTileForeground.Height / 2);
-            spriteBatch.Draw(greenTileForeground, leftImagePosition, null, titleColor, rotationAngle, leftImageForegroundOrigin, scale, SpriteEffects.None, 0);
-
-            Vector2 rightImagePosition = new Vector2(stringPosition.X + position.X + 275, stringPosition.Y);
-            Vector2 rightImageBackgroundOrigin = new Vector2(greenTileBackground.Width / 2, greenTileBackground.Height / 2);
-            spriteBatch.Draw(greenTileBackground, rightImagePosition, null, titleColor, rotationAngle, rightImageBackgroundOrigin, scale, SpriteEffects.None, 0);
-
-            Vector2 rightImageForegroundOrigin = new Vector2(greenTileForeground.Width / 2, greenTileForeground.Height / 2);
-            spriteBatch.Draw(greenTileForeground, rightImagePosition, null, titleColor, rotationAngle, rightImageForegroundOrigin, scale, SpriteEffects.None, 0);
-            */
              
             spriteBatch.End();
         }
