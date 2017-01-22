@@ -22,7 +22,7 @@ namespace Switch.GameObjects.GameDisplays
             this.gameBoard = gameBoard;
         }
 
-        public abstract void draw(SpriteBatch spriteBatch, GameTime gameTime);
+        public abstract void Draw(SpriteBatch spriteBatch, GameTime gameTime);
 
         public virtual void update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
         {

@@ -143,11 +143,11 @@ namespace Switch
                 Viewport viewport = ScreenManager.GraphicsDevice.Viewport;
                 Color color = new Color(255, 255, 255) * TransitionAlpha;
 
-                float transitionOffset = (float)Math.Pow(TransitionPosition, 2);
-                if (ScreenState == ScreenState.TransitionOn)
-                {
-                    scale += (transitionOffset * 0.025f);
-                }
+                //float transitionOffset = (float)Math.Pow(TransitionPosition, 2);
+                //if (ScreenState == ScreenState.TransitionOn)
+                //{
+                    //scale += (transitionOffset * 0.025f);
+                //}
 
                 spriteBatch.Begin();
 

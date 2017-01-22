@@ -24,7 +24,7 @@ namespace Switch.GameObjects.GameDisplays
             this.scoreToDisplay = score;
         }
 
-        public override void draw(SpriteBatch spriteBatch, GameTime gameTime)
+        public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             this.updateScore(this.gameBoard.getScore());
             String scoreLabel = "Score";

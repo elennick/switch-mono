@@ -17,9 +17,9 @@ namespace Switch.GameObjects.Challenges
             this.isChallengeCompleted = isCompleted;
         }
 
-        public ChallengeSaveData(Challenge challenge, bool isCompleted)
+        public ChallengeSaveData(IChallenge challenge, bool isCompleted)
         {
-            this.challengeName = challenge.getName();
+            this.challengeName = challenge.GetName();
             this.isChallengeCompleted = isCompleted;
         }
 

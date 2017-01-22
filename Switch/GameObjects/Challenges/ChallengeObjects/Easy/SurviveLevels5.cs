@@ -9,14 +9,14 @@ using Switch.Utils.Difficulty;
 
 namespace Switch.GameObjects.Challenges.ChallengeObjects
 {
-    class SurviveLevels5 : Challenge
+    class SurviveLevels5 : IChallenge
     {
-        public string getName()
+        public string GetName()
         {
             return "Surival Of The Fittest";
         }
 
-        public string getDescription()
+        public string GetDescription()
         {
             return "Survive for 5 levels! As the clock counts down, your level goes\n" +
                    "up and the tiles start coming down faster! Can you handle the\n" +
@@ -24,27 +24,27 @@ namespace Switch.GameObjects.Challenges.ChallengeObjects
                    "the screen slightly faster than normal? We'll soon find out...";
         }
 
-        public Difficulty getDifficulty()
+        public Difficulty GetDifficulty()
         {
             return new Easy();
         }
 
-        public bool isCompleted(GameboardStats stats)
+        public bool IsCompleted(GameboardStats stats)
         {
             return (stats.level >= 5);
         }
 
-        public string getStatusText(GameboardStats stats)
+        public string GetStatusText(GameboardStats stats)
         {
             return "" + stats.level + " / 5\nLevels Survived";
         }
 
-        public int isSpeedUpEnabled()
+        public int IsSpeedUpEnabled()
         {
             return 10000;
         }
 
-        public int startingPower()
+        public int StartingPower()
         {
             return 25;
         }

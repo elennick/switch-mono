@@ -8,26 +8,26 @@ using Switch.Utils.Difficulty;
 
 namespace Switch.GameObjects.Challenges.ChallengeObjects
 {
-    class FireLasers2 : Challenge
+    class FireLasers2 : IChallenge
     {
-        public string getName()
+        public string GetName()
         {
             return "Fire Da Laser!";
         }
 
-        public string getDescription()
+        public string GetDescription()
         {
             return "Fire the laser twice! Simply save up 50 energy and fire by\n" +
                    "pressing (Y). Two times the lasering, two times the fun! That\n" +
                    "joke was really lame!";
         }
 
-        public Difficulty getDifficulty()
+        public Difficulty GetDifficulty()
         {
             return new Easy();
         }
 
-        public bool isCompleted(GameboardStats stats)
+        public bool IsCompleted(GameboardStats stats)
         {
             if (stats.numberOfLasersFired >= 2)
             {
@@ -37,17 +37,17 @@ namespace Switch.GameObjects.Challenges.ChallengeObjects
             return false;
         }
 
-        public string getStatusText(GameboardStats stats)
+        public string GetStatusText(GameboardStats stats)
         {
             return "" + stats.numberOfLasersFired + " / 2\nLasers Fired";
         }
 
-        public int isSpeedUpEnabled()
+        public int IsSpeedUpEnabled()
         {
             return 0;
         }
 
-        public int startingPower()
+        public int StartingPower()
         {
             return 0;
         }

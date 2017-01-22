@@ -9,41 +9,41 @@ using Switch.Utils.Difficulty;
 
 namespace Switch.GameObjects.Challenges.ChallengeObjects
 {
-    class SurviveLevels10 : Challenge
+    class SurviveLevels10 : IChallenge
     {
-        public string getName()
+        public string GetName()
         {
             return "Still Alive";
         }
 
-        public string getDescription()
+        public string GetDescription()
         {
             return "Survive for 10 levels worth of time without losing the game. Use\n" +
                    "all the tools at your disposal to survive until the time limit is\n" +
                    "up! IT'S SO VERY INTENSE AHHHHHH!!!";
         }
 
-        public Difficulty getDifficulty()
+        public Difficulty GetDifficulty()
         {
             return new Normal();
         }
 
-        public bool isCompleted(GameboardStats stats)
+        public bool IsCompleted(GameboardStats stats)
         {
             return (stats.level >= 10);
         }
 
-        public string getStatusText(GameboardStats stats)
+        public string GetStatusText(GameboardStats stats)
         {
             return "" + stats.level + " / 10\nLevels Survived";
         }
 
-        public int isSpeedUpEnabled()
+        public int IsSpeedUpEnabled()
         {
             return 10000;
         }
 
-        public int startingPower()
+        public int StartingPower()
         {
             return 25;
         }

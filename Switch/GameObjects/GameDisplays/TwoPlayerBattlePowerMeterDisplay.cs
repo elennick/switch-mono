@@ -49,7 +49,7 @@ namespace SwitchGame.GameObjects.GameDisplays
             this.timeAgoWarningSoundWasLastPlayed = 0;
         }
 
-        public override void draw(SpriteBatch spriteBatch, GameTime gameTime)
+        public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             this.setPower(this.gameBoard1.getPower(), PlayerIndex.One);
             this.setPower(this.gameBoard2.getPower(), PlayerIndex.Two);

@@ -12,7 +12,7 @@ namespace Switch.Menus
     class ChallengeModeSelectionScreen : MenuScreen
     {
         MenuEntry backMenuEntry;
-        Challenge currentlySelectedChallenge;
+        IChallenge currentlySelectedChallenge;
         private Texture2D uncheckedCheckbox;
         private Texture2D checkedCheckbox;
 
@@ -21,12 +21,12 @@ namespace Switch.Menus
         {
             this.setSubMenuTitleText("Challenges " + ChallengeManager.Instance.GetPercentOfChallengesCompleted() + "% Completed");
 
-            List<Challenge> challenges = ChallengeManager.Instance.GetChallenges(level);
-            foreach (Challenge challenge in challenges)
+            List<IChallenge> challenges = ChallengeManager.Instance.GetChallenges(level);
+            foreach (IChallenge challenge in challenges)
             {
-                ChallengeModeMenuEntry menuEntry = new ChallengeModeMenuEntry(challenge.getName(), 
-                                                                              challenge.getDescription(), 
-                                                                              ChallengeManager.Instance.GetChallengeStatus(challenge.getName()));
+                ChallengeModeMenuEntry menuEntry = new ChallengeModeMenuEntry(challenge.GetName(), 
+                                                                              challenge.GetDescription(), 
+                                                                              ChallengeManager.Instance.GetChallengeStatus(challenge.GetName()));
                 menuEntry.Selected += challengeEntrySelected;
                 MenuEntries.Add(menuEntry);
             }
@@ -73,10 +73,10 @@ namespace Switch.Menus
         {
             string challengeName = ((MenuEntry)sender).Text;
             currentlySelectedChallenge = ChallengeManager.Instance.GetChallengeByName(challengeName);
-            string message = "Challenge - " + currentlySelectedChallenge.getName() + "\n\n" + currentlySelectedChallenge.getDescription();
+            string message = "Challenge - " + currentlySelectedChallenge.GetName() + "\n\n" + currentlySelectedChallenge.GetDescription();
 
-            ChallengeModeMessageBoxScreen confirmExitMessageBox = new ChallengeModeMessageBoxScreen(currentlySelectedChallenge.getName(), 
-                                                                          currentlySelectedChallenge.getDescription(), false);
+            ChallengeModeMessageBoxScreen confirmExitMessageBox = new ChallengeModeMessageBoxScreen(currentlySelectedChallenge.GetName(), 
+                                                                          currentlySelectedChallenge.GetDescription(), false);
             confirmExitMessageBox.Accepted += ConfirmChallengeSelected;
             ScreenManager.AddScreen(confirmExitMessageBox, ControllingPlayer);
         }

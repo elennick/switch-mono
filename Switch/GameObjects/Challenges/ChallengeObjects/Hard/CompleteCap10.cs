@@ -8,14 +8,14 @@ using Switch.Utils.Difficulty;
 
 namespace Switch.GameObjects.Challenges.ChallengeObjects
 {
-    class CompleteCap10 : Challenge
+    class CompleteCap10 : IChallenge
     {
-        public string getName()
+        public string GetName()
         {
             return "Cap'ten Kirk";
         }
 
-        public string getDescription()
+        public string GetDescription()
         {
             return "Complete ten caps. All you have to do is drop a bottom cap\n" +
                    "anywhere on the board and then place a top cap anywhere\n" +
@@ -23,12 +23,12 @@ namespace Switch.GameObjects.Challenges.ChallengeObjects
                    "works! Full speed ahead Mister Sulu!";
         }
 
-        public Difficulty getDifficulty()
+        public Difficulty GetDifficulty()
         {
             return new Hard();
         }
 
-        public bool isCompleted(GameboardStats stats)
+        public bool IsCompleted(GameboardStats stats)
         {
             if (stats.numberOfCapsCompleted >= 10)
             {
@@ -38,17 +38,17 @@ namespace Switch.GameObjects.Challenges.ChallengeObjects
             return false;
         }
 
-        public string getStatusText(GameboardStats stats)
+        public string GetStatusText(GameboardStats stats)
         {
             return "" + stats.numberOfCapsCompleted + " / 10\nCaps Completed";
         }
 
-        public int isSpeedUpEnabled()
+        public int IsSpeedUpEnabled()
         {
             return 0;
         }
 
-        public int startingPower()
+        public int StartingPower()
         {
             return 50;
         }

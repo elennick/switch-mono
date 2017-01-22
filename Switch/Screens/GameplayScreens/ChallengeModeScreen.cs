@@ -21,7 +21,7 @@ namespace Switch
     {
         Random random = new Random();
 
-        public ChallengeModeScreen(Challenge challenge, PlayerIndex playerIndex) : base(1)
+        public ChallengeModeScreen(IChallenge challenge, PlayerIndex playerIndex) : base(1)
         {
             this.challenge = challenge;
             base.setPlayerOne(playerIndex);
@@ -58,13 +58,13 @@ namespace Switch
             SpriteFont scoreFont = content.Load<SpriteFont>("Fonts\\PhillySansFont");
 
             //create a new gameboard to use for 1p
-            GameBoard gameBoard = new GameBoard(new Vector2(480, 55), TileSet.loadAndGetDefaultTileset(content, challenge.getDifficulty()),challenge.getDifficulty(), 400, 564, (int)playerIndex1);
+            GameBoard gameBoard = new GameBoard(new Vector2(480, 55), TileSet.loadAndGetDefaultTileset(content, challenge.GetDifficulty()),challenge.GetDifficulty(), 400, 564, (int)playerIndex1);
             gameBoard.setScaleTiles(true);
-            gameBoard.getStats().power = this.challenge.startingPower();
+            gameBoard.getStats().power = this.challenge.StartingPower();
             this.addGameplayScreenObject(gameBoard);
 
             //check to see if this challenge wants the board to speed up or stay constant speed
-            int speedUpTime = challenge.isSpeedUpEnabled();
+            int speedUpTime = challenge.IsSpeedUpEnabled();
             if (speedUpTime > 0)
             {
                 gameBoard.setSpeedUpEnabled(true);

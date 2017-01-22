@@ -9,41 +9,41 @@ using Switch.Utils.Difficulty;
 
 namespace Switch.GameObjects.Challenges.ChallengeObjects
 {
-    class CapMultipliers : Challenge
+    class CapMultipliers : IChallenge
     {
-        public string getName()
+        public string GetName()
         {
             return "Multiplicity";
         }
 
-        public string getDescription()
+        public string GetDescription()
         {
             return "Cap any five multipliers. When you cap a set of tiles, there\n" +
                    "must be at least one multiplier in between them (2x, 3x or 4x).\n" +
                    "Do it five times! DO IT!";
         }
 
-        public Difficulty getDifficulty()
+        public Difficulty GetDifficulty()
         {
             return new Hard();
         }
 
-        public bool isCompleted(GameboardStats stats)
+        public bool IsCompleted(GameboardStats stats)
         {
             return (stats.numberOfMultipliersCapped >= 5);
         }
 
-        public string getStatusText(GameboardStats stats)
+        public string GetStatusText(GameboardStats stats)
         {
             return "" + stats.numberOfMultipliersCapped + " / 5\nMultipliers Capped";
         }
 
-        public int isSpeedUpEnabled()
+        public int IsSpeedUpEnabled()
         {
             return 0;
         }
 
-        public int startingPower()
+        public int StartingPower()
         {
             return 50;
         }

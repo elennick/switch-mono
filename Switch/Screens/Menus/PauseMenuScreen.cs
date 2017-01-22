@@ -12,12 +12,12 @@ namespace Switch.Menus
     /// </summary>
     class PauseMenuScreen : MenuScreen
     {
-        private Challenge challenge;
+        private IChallenge challenge;
 
         /// <summary>
         /// Constructor.
         /// </summary>
-        public PauseMenuScreen(Challenge challenge)
+        public PauseMenuScreen(IChallenge challenge)
             : base("PAUSED")
         {
             // Flag that there is no need for the game to transition
@@ -67,8 +67,8 @@ namespace Switch.Menus
 
         void ChallengeInfoEntrySelected(object sender, PlayerIndexEventArgs e)
         {
-            ChallengeModeMessageBoxScreen challengeInfoEntryScreen = new ChallengeModeMessageBoxScreen(this.challenge.getName(),
-                                                                          this.challenge.getDescription(), true);
+            ChallengeModeMessageBoxScreen challengeInfoEntryScreen = new ChallengeModeMessageBoxScreen(this.challenge.GetName(),
+                                                                          this.challenge.GetDescription(), true);
             ScreenManager.AddScreen(challengeInfoEntryScreen, ControllingPlayer);
         }
 

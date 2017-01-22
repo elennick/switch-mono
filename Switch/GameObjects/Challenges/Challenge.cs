@@ -9,14 +9,14 @@ using Switch.Utils.Difficulty;
 
 namespace Switch.GameObjects.Challenges
 {
-    interface Challenge
+    interface IChallenge
     {
-        String getName();
-        String getDescription();
-        Difficulty getDifficulty();
-        bool isCompleted(GameboardStats stats);
-        String getStatusText(GameboardStats stats);
-        int isSpeedUpEnabled();
-        int startingPower();
+        String GetName();
+        String GetDescription();
+        Difficulty GetDifficulty();
+        bool IsCompleted(GameboardStats stats);
+        String GetStatusText(GameboardStats stats);
+        int IsSpeedUpEnabled();
+        int StartingPower();
     }
 }

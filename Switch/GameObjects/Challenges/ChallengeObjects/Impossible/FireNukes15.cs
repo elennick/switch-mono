@@ -8,14 +8,14 @@ using Switch.Utils.Difficulty;
 
 namespace Switch.GameObjects.Challenges.ChallengeObjects
 {
-    class FireNukes15 : Challenge
+    class FireNukes15 : IChallenge
     {
-        public string getName()
+        public string GetName()
         {
             return "Hell-Bringer";
         }
 
-        public string getDescription()
+        public string GetDescription()
         {
             return "Fire fifteen nuclear strikes. Save up 100 energy and let that\n" +
                    "sucker rip! This is your final and most difficult challenge...\n" +
@@ -23,12 +23,12 @@ namespace Switch.GameObjects.Challenges.ChallengeObjects
                    "your arsenal!";
         }
 
-        public Difficulty getDifficulty()
+        public Difficulty GetDifficulty()
         {
             return new Impossible();
         }
 
-        public bool isCompleted(GameboardStats stats)
+        public bool IsCompleted(GameboardStats stats)
         {
             if (stats.numberOfNukesFired >= 15)
             {
@@ -38,17 +38,17 @@ namespace Switch.GameObjects.Challenges.ChallengeObjects
             return false;
         }
 
-        public string getStatusText(GameboardStats stats)
+        public string GetStatusText(GameboardStats stats)
         {
             return "" + stats.numberOfNukesFired + " / 15\nNukes Fired";
         }
 
-        public int isSpeedUpEnabled()
+        public int IsSpeedUpEnabled()
         {
             return 60000;
         }
 
-        public int startingPower()
+        public int StartingPower()
         {
             return 100;
         }

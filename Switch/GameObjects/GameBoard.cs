@@ -108,7 +108,7 @@ namespace Switch.GameObjects
             int startingPower;
             if (!SwitchGame.DEBUG_MODE)
             {
-                startingPower = 25;
+                startingPower = 0;
             }
             else
             {

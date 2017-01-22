@@ -96,7 +96,7 @@ namespace Switch
         {
             SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
             Viewport viewport = ScreenManager.GraphicsDevice.Viewport;
-            Color color = new Color(255, 255, 255) * (float)MathHelper.Clamp(TransitionAlpha, 0, 255);
+            Color color = new Color(255, 255, 255);
 
             Vector2 logoOrigin = new Vector2(logoImage.Width / 2, logoImage.Height / 2);
             Rectangle logoRect = new Rectangle((int)logoOrigin.X, 

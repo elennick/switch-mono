@@ -66,7 +66,7 @@ namespace Switch.GameObjects.GameDisplays
             }
         }
 
-        public override void draw(SpriteBatch spriteBatch, GameTime gameTime)
+        public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             this.setPower(this.gameBoard.getPower());
             this.setMaxBulletTime(this.gameBoard.getMaxBulletTime());

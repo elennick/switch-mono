@@ -41,7 +41,7 @@ namespace Switch.GameObjects.GameDisplays
             this.position = position;
         }
 
-        public override void draw(SpriteBatch spriteBatch, GameTime gameTime)
+        public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             this.setPower(this.gameBoard.getPower());
             float scaleX = (float)this.power / 100;

@@ -9,12 +9,12 @@ namespace Switch.GameObjects.Challenges
     class ChallengeManager
     {
         private static ChallengeManager instance;
-        public enum ChallengeLevel { EASY, MEDIUM, HARD, CRAZY, IMPOSSIBLE };
-        private List<Challenge> easyChallenges;
-        private List<Challenge> mediumChallenges;
-        private List<Challenge> hardChallenges;
-        private List<Challenge> crazyChallenges;
-        private List<Challenge> impossibleChallenges;
+        public enum ChallengeLevel { Easy, Medium, Hard, Crazy, Impossible };
+        private List<IChallenge> easyChallenges;
+        private List<IChallenge> mediumChallenges;
+        private List<IChallenge> hardChallenges;
+        private List<IChallenge> crazyChallenges;
+        private List<IChallenge> impossibleChallenges;
         public static ChallengeLevel lastKnownChallengeLevel;
         private Dictionary<string, ChallengeSaveData> challengeSaveData;
 
@@ -22,43 +22,43 @@ namespace Switch.GameObjects.Challenges
         {
             challengeSaveData = new Dictionary<String, ChallengeSaveData>();
 
-            lastKnownChallengeLevel = ChallengeLevel.EASY;
+            lastKnownChallengeLevel = ChallengeLevel.Easy;
 
-            easyChallenges = new List<Challenge>();
-            mediumChallenges = new List<Challenge>();
-            hardChallenges = new List<Challenge>();
-            crazyChallenges = new List<Challenge>();
-            impossibleChallenges = new List<Challenge>();
+            easyChallenges = new List<IChallenge>();
+            mediumChallenges = new List<IChallenge>();
+            hardChallenges = new List<IChallenge>();
+            crazyChallenges = new List<IChallenge>();
+            impossibleChallenges = new List<IChallenge>();
 
-            AddChallenge(new Score1000(), ChallengeLevel.EASY);
-            AddChallenge(new DestroyTiles25(), ChallengeLevel.EASY);
-            AddChallenge(new SurviveLevels5(), ChallengeLevel.EASY);
-            AddChallenge(new FireLasers2(), ChallengeLevel.EASY);
-            AddChallenge(new FireNukes1(), ChallengeLevel.EASY);
+            AddChallenge(new Score1000(), ChallengeLevel.Easy);
+            AddChallenge(new DestroyTiles25(), ChallengeLevel.Easy);
+            AddChallenge(new SurviveLevels5(), ChallengeLevel.Easy);
+            AddChallenge(new FireLasers2(), ChallengeLevel.Easy);
+            AddChallenge(new FireNukes1(), ChallengeLevel.Easy);
 
-            AddChallenge(new Score3000(), ChallengeLevel.MEDIUM);
-            AddChallenge(new DestroyTiles100(), ChallengeLevel.MEDIUM);
-            AddChallenge(new SurviveLevels10(), ChallengeLevel.MEDIUM);
-            AddChallenge(new CapTiles20(), ChallengeLevel.MEDIUM);
-            AddChallenge(new FireNukes3(), ChallengeLevel.MEDIUM);
+            AddChallenge(new Score3000(), ChallengeLevel.Medium);
+            AddChallenge(new DestroyTiles100(), ChallengeLevel.Medium);
+            AddChallenge(new SurviveLevels10(), ChallengeLevel.Medium);
+            AddChallenge(new CapTiles20(), ChallengeLevel.Medium);
+            AddChallenge(new FireNukes3(), ChallengeLevel.Medium);
 
-            AddChallenge(new Score5000(), ChallengeLevel.HARD);
-            AddChallenge(new DestroyTilesWithLaser50(), ChallengeLevel.HARD);
-            AddChallenge(new DestroyTilesWithNuke50(), ChallengeLevel.HARD);
-            AddChallenge(new CapMultipliers(), ChallengeLevel.HARD);
-            AddChallenge(new CompleteCap10(), ChallengeLevel.HARD);
+            AddChallenge(new Score5000(), ChallengeLevel.Hard);
+            AddChallenge(new DestroyTilesWithLaser50(), ChallengeLevel.Hard);
+            AddChallenge(new DestroyTilesWithNuke50(), ChallengeLevel.Hard);
+            AddChallenge(new CapMultipliers(), ChallengeLevel.Hard);
+            AddChallenge(new CompleteCap10(), ChallengeLevel.Hard);
 
-            AddChallenge(new Score15000(), ChallengeLevel.CRAZY);
-            AddChallenge(new DestroyTiles200(), ChallengeLevel.CRAZY);
-            AddChallenge(new SurviveLevels10Hard(), ChallengeLevel.CRAZY);
-            AddChallenge(new CompleteCap25(), ChallengeLevel.CRAZY);
-            AddChallenge(new FireNukes7(), ChallengeLevel.CRAZY);
+            AddChallenge(new Score15000(), ChallengeLevel.Crazy);
+            AddChallenge(new DestroyTiles200(), ChallengeLevel.Crazy);
+            AddChallenge(new SurviveLevels10Hard(), ChallengeLevel.Crazy);
+            AddChallenge(new CompleteCap25(), ChallengeLevel.Crazy);
+            AddChallenge(new FireNukes7(), ChallengeLevel.Crazy);
 
-            AddChallenge(new Score100000(), ChallengeLevel.IMPOSSIBLE);
-            AddChallenge(new DestroyTiles500(), ChallengeLevel.IMPOSSIBLE);
-            AddChallenge(new FireNukeDuringBT(), ChallengeLevel.IMPOSSIBLE);
-            AddChallenge(new SurviveMinutes10(), ChallengeLevel.IMPOSSIBLE);
-            AddChallenge(new FireNukes15(), ChallengeLevel.IMPOSSIBLE);
+            AddChallenge(new Score100000(), ChallengeLevel.Impossible);
+            AddChallenge(new DestroyTiles500(), ChallengeLevel.Impossible);
+            AddChallenge(new FireNukeDuringBT(), ChallengeLevel.Impossible);
+            AddChallenge(new SurviveMinutes10(), ChallengeLevel.Impossible);
+            AddChallenge(new FireNukes15(), ChallengeLevel.Impossible);
 
         }
 
@@ -106,21 +106,21 @@ namespace Switch.GameObjects.Challenges
             return percentCompleted;
         }
 
-        public void AddChallenge(Challenge challenge, ChallengeLevel level)
+        public void AddChallenge(IChallenge challenge, ChallengeLevel level)
         {
-            if (level == ChallengeLevel.EASY)
+            if (level == ChallengeLevel.Easy)
             {
                 easyChallenges.Add(challenge);
             }
-            else if (level == ChallengeLevel.MEDIUM)
+            else if (level == ChallengeLevel.Medium)
             {
                 mediumChallenges.Add(challenge);
             }
-            else if (level == ChallengeLevel.HARD)
+            else if (level == ChallengeLevel.Hard)
             {
                 hardChallenges.Add(challenge);
             }
-            else if (level == ChallengeLevel.CRAZY)
+            else if (level == ChallengeLevel.Crazy)
             {
                 crazyChallenges.Add(challenge);
             }
@@ -130,26 +130,26 @@ namespace Switch.GameObjects.Challenges
             }
         }
 
-        public List<Challenge> GetChallenges()
+        public List<IChallenge> GetChallenges()
         {
             return GetAllChallengesAsList();
         }
 
-        public List<Challenge> GetChallenges(ChallengeLevel level)
+        public List<IChallenge> GetChallenges(ChallengeLevel level)
         {
-            if (level == ChallengeLevel.EASY)
+            if (level == ChallengeLevel.Easy)
             {
                 return easyChallenges;
             }
-            else if (level == ChallengeLevel.MEDIUM)
+            else if (level == ChallengeLevel.Medium)
             {
                 return mediumChallenges;
             }
-            else if (level == ChallengeLevel.HARD)
+            else if (level == ChallengeLevel.Hard)
             {
                 return hardChallenges;
             }
-            else if (level == ChallengeLevel.CRAZY)
+            else if (level == ChallengeLevel.Crazy)
             {
                 return crazyChallenges;
             }
@@ -159,11 +159,11 @@ namespace Switch.GameObjects.Challenges
             }
         }
 
-        public Challenge GetChallengeByName(String name)
+        public IChallenge GetChallengeByName(String name)
         {
-            foreach (Challenge challenge in GetAllChallengesAsList())
+            foreach (IChallenge challenge in GetAllChallengesAsList())
             {
-                if (challenge.getName().Equals(name))
+                if (challenge.GetName().Equals(name))
                 {
                     return challenge;
                 }
@@ -183,14 +183,14 @@ namespace Switch.GameObjects.Challenges
         public List<ChallengeSaveData> CreateNewChallengeSaveData()
         {
             List<ChallengeSaveData> challengeSaveDataList = new List<ChallengeSaveData>();
-            foreach (Challenge challenge in GetAllChallengesAsList())
+            foreach (IChallenge challenge in GetAllChallengesAsList())
             {
-                ChallengeSaveData data = new ChallengeSaveData(challenge.getName(), false);
+                ChallengeSaveData data = new ChallengeSaveData(challenge.GetName(), false);
                 challengeSaveDataList.Add(data);
 
-                if (!this.challengeSaveData.ContainsKey(challenge.getName()))
+                if (!this.challengeSaveData.ContainsKey(challenge.GetName()))
                 {
-                    this.challengeSaveData.Add(challenge.getName(), data);
+                    this.challengeSaveData.Add(challenge.GetName(), data);
                 }
             }
 
@@ -214,31 +214,31 @@ namespace Switch.GameObjects.Challenges
             }
         }
 
-        private List<Challenge> GetAllChallengesAsList()
+        private List<IChallenge> GetAllChallengesAsList()
         {
-            List<Challenge> allChallenges = new List<Challenge>();
+            List<IChallenge> allChallenges = new List<IChallenge>();
 
-            foreach (Challenge challenge in easyChallenges)
+            foreach (IChallenge challenge in easyChallenges)
             {
                 allChallenges.Add(challenge);
             }
 
-            foreach (Challenge challenge in mediumChallenges)
+            foreach (IChallenge challenge in mediumChallenges)
             {
                 allChallenges.Add(challenge);
             }
 
-            foreach (Challenge challenge in hardChallenges)
+            foreach (IChallenge challenge in hardChallenges)
             {
                 allChallenges.Add(challenge);
             }
 
-            foreach (Challenge challenge in crazyChallenges)
+            foreach (IChallenge challenge in crazyChallenges)
             {
                 allChallenges.Add(challenge);
             }
 
-            foreach (Challenge challenge in impossibleChallenges)
+            foreach (IChallenge challenge in impossibleChallenges)
             {
                 allChallenges.Add(challenge);
             }

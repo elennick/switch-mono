@@ -59,7 +59,7 @@ namespace Switch.GameObjects.GameDisplays
             this.available = available;
         }
 
-        public override void draw(SpriteBatch spriteBatch, GameTime gameTime)
+        public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             Vector2 buttonImagePosition = new Vector2(this.position.X, this.position.Y + 5);
             Vector2 availabilityTextPosition = new Vector2(this.position.X + 55, this.position.Y + 35);

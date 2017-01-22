@@ -8,26 +8,26 @@ using Switch.Utils.Difficulty;
 
 namespace Switch.GameObjects.Challenges.ChallengeObjects
 {
-    class FireNukes3 : Challenge
+    class FireNukes3 : IChallenge
     {
-        public string getName()
+        public string GetName()
         {
             return "Trifecta Of Death";
         }
 
-        public string getDescription()
+        public string GetDescription()
         {
             return "Fire three nuclear strikes. Save up 100 energy and let that\n" +
                    "sucker rip! Do it 3 times and you will pass this challenge\n" +
                    "of epic destruction! ";
         }
 
-        public Difficulty getDifficulty()
+        public Difficulty GetDifficulty()
         {
             return new Hard();
         }
 
-        public bool isCompleted(GameboardStats stats)
+        public bool IsCompleted(GameboardStats stats)
         {
             if (stats.numberOfNukesFired >= 3)
             {
@@ -37,17 +37,17 @@ namespace Switch.GameObjects.Challenges.ChallengeObjects
             return false;
         }
 
-        public string getStatusText(GameboardStats stats)
+        public string GetStatusText(GameboardStats stats)
         {
             return "" + stats.numberOfNukesFired + " / 3\nNukes Fired";
         }
 
-        public int isSpeedUpEnabled()
+        public int IsSpeedUpEnabled()
         {
             return 0;
         }
 
-        public int startingPower()
+        public int StartingPower()
         {
             return 25;
         }

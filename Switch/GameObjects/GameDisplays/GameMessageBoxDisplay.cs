@@ -26,7 +26,7 @@ namespace Switch.GameObjects.GameDisplays
             this.maxNumOfMessages = maxNumOfMessages;
         }
 
-        public override void draw(SpriteBatch spriteBatch, GameTime gameTime)
+        public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             for(int i = 0; i < messageQueue.Count; i++) {
                 int msgPosX = (int)(this.position.X + 10);

@@ -9,26 +9,26 @@ using Switch.Utils.Difficulty;
 
 namespace Switch.GameObjects.Challenges.ChallengeObjects
 {
-    class DestroyTilesWithNuke50 : Challenge
+    class DestroyTilesWithNuke50 : IChallenge
     {
-        public string getName()
+        public string GetName()
         {
             return "Duke Nuked";
         }
 
-        public string getDescription()
+        public string GetDescription()
         {
             return "Destroy 50 tiles using only the nuclear strike! You must remove\n" +
                    "50 tiles from the screen to pass this challenge but only tiles\n" +
                    "destroyed using the nuke will count. Hail to the king, baby!\n";
         }
 
-        public Difficulty getDifficulty()
+        public Difficulty GetDifficulty()
         {
             return new Hard();
         }
 
-        public bool isCompleted(GameboardStats stats)
+        public bool IsCompleted(GameboardStats stats)
         {
             if (stats.numberOfBlocksDestroyedByNuke >= 50)
             {
@@ -38,17 +38,17 @@ namespace Switch.GameObjects.Challenges.ChallengeObjects
             return false;
         }
 
-        public string getStatusText(GameboardStats stats)
+        public string GetStatusText(GameboardStats stats)
         {
             return "" + stats.numberOfBlocksDestroyedByNuke + " / 50\nTiles Destroyed";
         }
 
-        public int isSpeedUpEnabled()
+        public int IsSpeedUpEnabled()
         {
             return 0;
         }
 
-        public int startingPower()
+        public int StartingPower()
         {
             return 50;
         }

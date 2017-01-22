@@ -8,26 +8,26 @@ using Switch.Utils.Difficulty;
 
 namespace Switch.GameObjects.Challenges.ChallengeObjects
 {
-    class CapTiles20 : Challenge
+    class CapTiles20 : IChallenge
     {
-        public string getName()
+        public string GetName()
         {
             return "Caught In The Middle";
         }
 
-        public string getDescription()
+        public string GetDescription()
         {
             return "Destroy fifteen tiles by capping them. You must remove 15\n" +
                    "tiles from the screen but only ones destroyed by being\n" +
                    "sandwiched will count towards this total! Mmmm... sandwich.";
         }
 
-        public Difficulty getDifficulty()
+        public Difficulty GetDifficulty()
         {
             return new Normal();
         }
 
-        public bool isCompleted(GameboardStats stats)
+        public bool IsCompleted(GameboardStats stats)
         {
             if (stats.numberOfTilesDestroyedByCapping >= 15)
             {
@@ -37,17 +37,17 @@ namespace Switch.GameObjects.Challenges.ChallengeObjects
             return false;
         }
 
-        public string getStatusText(GameboardStats stats)
+        public string GetStatusText(GameboardStats stats)
         {
             return "" + stats.numberOfTilesDestroyedByCapping + " / 15\nTiles Destroyed";
         }
 
-        public int isSpeedUpEnabled()
+        public int IsSpeedUpEnabled()
         {
             return 0;
         }
 
-        public int startingPower()
+        public int StartingPower()
         {
             return 25;
         }

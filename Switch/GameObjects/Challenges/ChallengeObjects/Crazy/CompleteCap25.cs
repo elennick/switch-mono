@@ -8,14 +8,14 @@ using Switch.Utils.Difficulty;
 
 namespace Switch.GameObjects.Challenges.ChallengeObjects
 {
-    class CompleteCap25 : Challenge
+    class CompleteCap25 : IChallenge
     {
-        public string getName()
+        public string GetName()
         {
             return "Cap It";
         }
 
-        public string getDescription()
+        public string GetDescription()
         {
             return "Complete twenty-five caps. All you have to do is drop a bottom\n" +
                    "cap anywhere on the board and then place a top cap anywhere\n" +
@@ -23,32 +23,27 @@ namespace Switch.GameObjects.Challenges.ChallengeObjects
                    "way works!";
         }
 
-        public Difficulty getDifficulty()
+        public Difficulty GetDifficulty()
         {
             return new Hard();
         }
 
-        public bool isCompleted(GameboardStats stats)
+        public bool IsCompleted(GameboardStats stats)
         {
-            if (stats.numberOfCapsCompleted >= 25)
-            {
-                return true;
-            }
-
-            return false;
+            return stats.numberOfCapsCompleted >= 25;
         }
 
-        public string getStatusText(GameboardStats stats)
+        public string GetStatusText(GameboardStats stats)
         {
             return "" + stats.numberOfCapsCompleted + " / 25\nCaps Completed";
         }
 
-        public int isSpeedUpEnabled()
+        public int IsSpeedUpEnabled()
         {
             return 30000;
         }
 
-        public int startingPower()
+        public int StartingPower()
         {
             return 25;
         }

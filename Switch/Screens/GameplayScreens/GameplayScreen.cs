@@ -24,7 +24,7 @@ namespace Switch
         private List<GameDisplay> gameDisplays;
         private List<DetailedSpriteObject> spriteObjects;
         private int numPlayers;
-        protected Challenge challenge;
+        protected IChallenge challenge;
         public CountDownState currentCountDownState;
         private int timeSinceLastCountDownChange;
         public enum CountDownState { NOT_STARTED, PAUSE, READY, SET, GO, DONE };
@@ -245,7 +245,7 @@ namespace Switch
                     }
 
                     if (this.challenge != null 
-                        && this.challenge.isCompleted(gameBoard.getStats())
+                        && this.challenge.IsCompleted(gameBoard.getStats())
                         && !AnimationManager.Instance.areAnyAnimationsActive()
                         && !gameboardIsFiringNuke()
                         && !gameBoard.isGameOver())
@@ -254,9 +254,9 @@ namespace Switch
                         SoundManager.Instance.playSound("player-select");
 
                         ChallengeManager challengeManager = ChallengeManager.Instance;
-                        if (!challengeManager.GetChallengeStatus(this.challenge.getName()))
+                        if (!challengeManager.GetChallengeStatus(this.challenge.GetName()))
                         {
-                            challengeManager.SetChallengeCompleteStatus(this.challenge.getName(), true);
+                            challengeManager.SetChallengeCompleteStatus(this.challenge.GetName(), true);
                             StorageManager.Instance.SaveChallengeStatuses(challengeManager.GetChallengeSaveData());
                             saveStats();
                         }
@@ -303,7 +303,7 @@ namespace Switch
                 //draw game displays (score, power meters, etc)
                 foreach (GameDisplay display in gameDisplays)
                 {
-                    display.draw(spriteBatch, gameTime);
+                    display.Draw(spriteBatch, gameTime);
                 }
             }
 

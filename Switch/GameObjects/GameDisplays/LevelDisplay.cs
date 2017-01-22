@@ -17,7 +17,7 @@ namespace Switch.GameObjects.GameDisplays
 
         }
 
-        public override void draw(SpriteBatch spriteBatch, GameTime gameTime)
+        public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             String lvlLabel = "Level";
             Vector2 labelOrigin = Utils.Utils.Instance.getTextStringCenterOrigin(lvlLabel, this.font);

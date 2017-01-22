@@ -8,24 +8,24 @@ using Switch.Utils.Difficulty;
 
 namespace Switch.GameObjects.Challenges.ChallengeObjects
 {
-    class Score5000 : Challenge
+    class Score5000 : IChallenge
     {
-        public string getName()
+        public string GetName()
         {
             return "Score Attack";
         }
 
-        public string getDescription()
+        public string GetDescription()
         {
             return "Score 5000 points! I don't have any other funny things to say!";
         }
 
-        public Difficulty getDifficulty()
+        public Difficulty GetDifficulty()
         {
             return new Hard();
         }
 
-        public bool isCompleted(GameboardStats stats)
+        public bool IsCompleted(GameboardStats stats)
         {
             if (stats.score >= 5000)
             {
@@ -35,17 +35,17 @@ namespace Switch.GameObjects.Challenges.ChallengeObjects
             return false;
         }
 
-        public string getStatusText(GameboardStats stats)
+        public string GetStatusText(GameboardStats stats)
         {
             return "" + stats.score + " / 5000\nPoints Scored";
         }
 
-        public int isSpeedUpEnabled()
+        public int IsSpeedUpEnabled()
         {
             return 0;
         }
 
-        public int startingPower()
+        public int StartingPower()
         {
             return 50;
         }

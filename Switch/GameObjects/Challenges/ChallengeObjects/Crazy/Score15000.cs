@@ -8,24 +8,24 @@ using Switch.Utils.Difficulty;
 
 namespace Switch.GameObjects.Challenges.ChallengeObjects
 {
-    class Score15000 : Challenge
+    class Score15000 : IChallenge
     {
-        public string getName()
+        public string GetName()
         {
             return "Score!";
         }
 
-        public string getDescription()
+        public string GetDescription()
         {
             return "Score 15000 points! Show the crowd what you're made of!";
         }
 
-        public Difficulty getDifficulty()
+        public Difficulty GetDifficulty()
         {
             return new Hard();
         }
 
-        public bool isCompleted(GameboardStats stats)
+        public bool IsCompleted(GameboardStats stats)
         {
             if (stats.score >= 15000)
             {
@@ -35,17 +35,17 @@ namespace Switch.GameObjects.Challenges.ChallengeObjects
             return false;
         }
 
-        public string getStatusText(GameboardStats stats)
+        public string GetStatusText(GameboardStats stats)
         {
             return "" + stats.score + " / 15000\nPoints Scored";
         }
 
-        public int isSpeedUpEnabled()
+        public int IsSpeedUpEnabled()
         {
             return 60000;
         }
 
-        public int startingPower()
+        public int StartingPower()
         {
             return 25;
         }

@@ -12,20 +12,20 @@ namespace Switch.GameObjects.GameDisplays
 {
     class ChallengeStatusDisplay : GameDisplay
     {
-        private Challenge challenge;
+        private IChallenge challenge;
         protected GameBoard gameBoard;
 
-        public ChallengeStatusDisplay(Vector2 position, SpriteFont font, GameBoard gameBoard, Challenge challenge)
+        public ChallengeStatusDisplay(Vector2 position, SpriteFont font, GameBoard gameBoard, IChallenge challenge)
             : base(position, font, gameBoard)
         {
             this.challenge = challenge;
             this.gameBoard = gameBoard;
         }
 
-        public override void draw(SpriteBatch spriteBatch, GameTime gameTime)
+        public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             spriteBatch.DrawString(font,
-                challenge.getStatusText(gameBoard.getStats()),
+                challenge.GetStatusText(gameBoard.getStats()),
                 position,
                 new Color(217, 217, 217));
         }

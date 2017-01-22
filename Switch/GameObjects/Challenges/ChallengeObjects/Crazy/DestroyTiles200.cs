@@ -9,25 +9,25 @@ using Switch.Utils.Difficulty;
 
 namespace Switch.GameObjects.Challenges.ChallengeObjects
 {
-    class DestroyTiles200 : Challenge
+    class DestroyTiles200 : IChallenge
     {
-        public string getName()
+        public string GetName()
         {
             return "Tile Time";
         }
 
-        public string getDescription()
+        public string GetDescription()
         {
             return "Destroy 200 tiles. It's a tile genocide and you're responsible. You\n" +
                    "should be ashamed :(";
         }
 
-        public Difficulty getDifficulty()
+        public Difficulty GetDifficulty()
         {
             return new Hard();
         }
 
-        public bool isCompleted(GameboardStats stats)
+        public bool IsCompleted(GameboardStats stats)
         {
             if (stats.numberOfBlocksDestroyed >= 200)
             {
@@ -37,17 +37,17 @@ namespace Switch.GameObjects.Challenges.ChallengeObjects
             return false;
         }
 
-        public string getStatusText(GameboardStats stats)
+        public string GetStatusText(GameboardStats stats)
         {
             return "" + stats.numberOfBlocksDestroyed + " / 200\nTiles Destroyed";
         }
 
-        public int isSpeedUpEnabled()
+        public int IsSpeedUpEnabled()
         {
             return 0;
         }
 
-        public int startingPower()
+        public int StartingPower()
         {
             return 25;
         }

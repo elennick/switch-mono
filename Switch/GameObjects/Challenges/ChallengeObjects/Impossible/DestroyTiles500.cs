@@ -9,25 +9,25 @@ using Switch.Utils.Difficulty;
 
 namespace Switch.GameObjects.Challenges.ChallengeObjects
 {
-    class DestroyTiles500 : Challenge
+    class DestroyTiles500 : IChallenge
     {
-        public string getName()
+        public string GetName()
         {
             return "Destroy Tiles";
         }
 
-        public string getDescription()
+        public string GetDescription()
         {
             return "Destroy 500 tiles. You may use any method to do so including\n" + 
                    "matching, capping, lasering and nuking.";
         }
 
-        public Difficulty getDifficulty()
+        public Difficulty GetDifficulty()
         {
             return new Hard();
         }
 
-        public bool isCompleted(GameboardStats stats)
+        public bool IsCompleted(GameboardStats stats)
         {
             if (stats.numberOfBlocksDestroyed >= 500)
             {
@@ -37,17 +37,17 @@ namespace Switch.GameObjects.Challenges.ChallengeObjects
             return false;
         }
 
-        public string getStatusText(GameboardStats stats)
+        public string GetStatusText(GameboardStats stats)
         {
             return "" + stats.numberOfBlocksDestroyed + " / 500\nTiles Destroyed";
         }
 
-        public int isSpeedUpEnabled()
+        public int IsSpeedUpEnabled()
         {
             return 0;
         }
 
-        public int startingPower()
+        public int StartingPower()
         {
             return 100;
         }

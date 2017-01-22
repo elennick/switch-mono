@@ -9,14 +9,14 @@ using Switch.Utils.Difficulty;
 
 namespace Switch.GameObjects.Challenges.ChallengeObjects
 {
-    class DestroyTilesWithLaser50 : Challenge
+    class DestroyTilesWithLaser50 : IChallenge
     {
-        public string getName()
+        public string GetName()
         {
             return "Gone In A Flash";
         }
 
-        public string getDescription()
+        public string GetDescription()
         {
             return "Destroy 50 tiles... using the laser! You must demolish a total\n" +
                    "of fifty tiles but only ones removed by using the laser weapon\n" +
@@ -24,12 +24,12 @@ namespace Switch.GameObjects.Challenges.ChallengeObjects
                    "precision tool by pressing (Y)!\n";
         }
 
-        public Difficulty getDifficulty()
+        public Difficulty GetDifficulty()
         {
             return new Hard();
         }
 
-        public bool isCompleted(GameboardStats stats)
+        public bool IsCompleted(GameboardStats stats)
         {
             if (stats.numberOfBlocksDestroyedByLaser >= 50)
             {
@@ -39,17 +39,17 @@ namespace Switch.GameObjects.Challenges.ChallengeObjects
             return false;
         }
 
-        public string getStatusText(GameboardStats stats)
+        public string GetStatusText(GameboardStats stats)
         {
             return "" + stats.numberOfBlocksDestroyedByLaser + " / 50\nTiles Destroyed";
         }
 
-        public int isSpeedUpEnabled()
+        public int IsSpeedUpEnabled()
         {
             return 0;
         }
 
-        public int startingPower()
+        public int StartingPower()
         {
             return 25;
         }

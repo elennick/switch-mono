@@ -8,14 +8,14 @@ using Switch.Utils.Difficulty;
 
 namespace Switch.GameObjects.Challenges.ChallengeObjects
 {
-    class Score1000 : Challenge
+    class Score1000 : IChallenge
     {
-        public string getName()
+        public string GetName()
         {
             return "High Scoring";
         }
 
-        public string getDescription()
+        public string GetDescription()
         {
             return "Score 1000 points! Each tile destroyed is worth 25 points.\n" +
                    "Match tiles for small time points. Cap tiles in between cappers\n" +
@@ -23,12 +23,12 @@ namespace Switch.GameObjects.Challenges.ChallengeObjects
                    "of points!";
         }
 
-        public Difficulty getDifficulty()
+        public Difficulty GetDifficulty()
         {
             return new Easy();
         }
 
-        public bool isCompleted(GameboardStats stats)
+        public bool IsCompleted(GameboardStats stats)
         {
             if (stats.score >= 1000)
             {
@@ -38,17 +38,17 @@ namespace Switch.GameObjects.Challenges.ChallengeObjects
             return false;
         }
 
-        public string getStatusText(GameboardStats stats)
+        public string GetStatusText(GameboardStats stats)
         {
             return "" + stats.score + " / 1000\nPoints Scored";
         }
 
-        public int isSpeedUpEnabled()
+        public int IsSpeedUpEnabled()
         {
             return 0;
         }
 
-        public int startingPower()
+        public int StartingPower()
         {
             return 25;
         }

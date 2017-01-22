@@ -8,14 +8,14 @@ using Switch.Utils.Difficulty;
 
 namespace Switch.GameObjects.Challenges.ChallengeObjects
 {
-    class FireNukeDuringBT : Challenge
+    class FireNukeDuringBT : IChallenge
     {
-        public string getName()
+        public string GetName()
         {
             return "Combo Platter";
         }
 
-        public string getDescription()
+        public string GetDescription()
         {
             return "Fire a nuke while bullet time is active. You will have fifteen\n" +
                 "seconds after triggering bullet time with which to obtain another\n" +
@@ -23,12 +23,12 @@ namespace Switch.GameObjects.Challenges.ChallengeObjects
                 "see it coming! Or maybe they will.";
         }
 
-        public Difficulty getDifficulty()
+        public Difficulty GetDifficulty()
         {
             return new Hard();
         }
 
-        public bool isCompleted(GameboardStats stats)
+        public bool IsCompleted(GameboardStats stats)
         {
             if (stats.numberOfNukesFiredDuringActiveBulletTime >= 1)
             {
@@ -38,17 +38,17 @@ namespace Switch.GameObjects.Challenges.ChallengeObjects
             return false;
         }
 
-        public string getStatusText(GameboardStats stats)
+        public string GetStatusText(GameboardStats stats)
         {
             return "" + stats.numberOfNukesFiredDuringActiveBulletTime + " / 1\nNukes Fired";
         }
 
-        public int isSpeedUpEnabled()
+        public int IsSpeedUpEnabled()
         {
             return 0;
         }
 
-        public int startingPower()
+        public int StartingPower()
         {
             return 100;
         }

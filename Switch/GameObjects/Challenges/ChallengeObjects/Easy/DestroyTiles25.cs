@@ -9,26 +9,26 @@ using Switch.Utils.Difficulty;
 
 namespace Switch.GameObjects.Challenges.ChallengeObjects
 {
-    class DestroyTiles25 : Challenge
+    class DestroyTiles25 : IChallenge
     {
-        public string getName()
+        public string GetName()
         {
             return "Obliteration";
         }
 
-        public string getDescription()
+        public string GetDescription()
         {
             return "Destroy 25 tiles. You can do this in any manner. Nuke, match,\n" +
                    "laser or cap them. You shouldn't have any problem obliterating\n" +
                    "every last one of those poor defenseless tiles. You monster.";
         }
 
-        public Difficulty getDifficulty()
+        public Difficulty GetDifficulty()
         {
             return new Easy();
         }
 
-        public bool isCompleted(GameboardStats stats)
+        public bool IsCompleted(GameboardStats stats)
         {
             if (stats.numberOfBlocksDestroyed >= 25)
             {
@@ -38,17 +38,17 @@ namespace Switch.GameObjects.Challenges.ChallengeObjects
             return false;
         }
 
-        public string getStatusText(GameboardStats stats)
+        public string GetStatusText(GameboardStats stats)
         {
             return "" + stats.numberOfBlocksDestroyed + " / 25\nTiles Destroyed";
         }
 
-        public int isSpeedUpEnabled()
+        public int IsSpeedUpEnabled()
         {
             return 0;
         }
 
-        public int startingPower()
+        public int StartingPower()
         {
             return 25;
         }
