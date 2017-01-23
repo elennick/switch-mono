@@ -51,42 +51,42 @@ namespace SwitchGame.GameObjects.GameDisplays
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            this.setPower(this.gameBoard1.getPower(), PlayerIndex.One);
-            this.setPower(this.gameBoard2.getPower(), PlayerIndex.Two);
+            this.SetPower(this.gameBoard1.getPower(), PlayerIndex.One);
+            this.SetPower(this.gameBoard2.getPower(), PlayerIndex.Two);
 
             //draw the background scaffolding
             Rectangle scaffoldingRect = new Rectangle((int)this.position.X, (int)this.position.Y, 250, 675);
             spriteBatch.Draw(this.powerbarScaffolding, scaffoldingRect, Color.White);
 
             //draw stuff for gameboard 1
-            this.drawPowerBar(spriteBatch, this.power1, this.position, false);
-            this.drawPowerBar(spriteBatch, this.power2, new Vector2(this.position.X + 220, this.position.Y), true);
+            this.DrawPowerBar(spriteBatch, this.power1, this.position, false);
+            this.DrawPowerBar(spriteBatch, this.power2, new Vector2(this.position.X + 220, this.position.Y), true);
 
             //draw competition bar
-            this.drawCompetitionBar(spriteBatch, this.gameBoard1.getScore(), this.gameBoard2.getScore());
+            this.DrawCompetitionBar(spriteBatch, this.gameBoard1.getScore(), this.gameBoard2.getScore());
 
             //draw the bullet time power bar
-            this.drawBulletTimePowerBar(spriteBatch, this.position, this.gameBoard1, false);
-            this.drawBulletTimePowerBar(spriteBatch, new Vector2(this.position.X + 220, this.position.Y), this.gameBoard2, true);
+            this.DrawBulletTimePowerBar(spriteBatch, this.position, this.gameBoard1, false);
+            this.DrawBulletTimePowerBar(spriteBatch, new Vector2(this.position.X + 220, this.position.Y), this.gameBoard2, true);
 
             //draw the "someone is about to win" message (if necessary)
             if (this.playerOneAboutToWin || this.playerTwoAboutToWin)
             {
                 if (timeAgoWarningSoundWasLastPlayed >= 10000)
                 {
-                    SoundManager.Instance.playSound("2p-alarm");
+                    SoundManager.Instance.PlaySound("2p-alarm");
                     timeAgoWarningSoundWasLastPlayed = 0;
                 }
 
-                this.drawAboutToWinMessage(spriteBatch, gameTime);
+                this.DrawAboutToWinMessage(spriteBatch, gameTime);
             }
         }
 
-        public override void update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
+        public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
         {
- 	        base.update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
+ 	        base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
 
-            this.setMaxBulletTime(this.gameBoard.getMaxBulletTime());
+            this.maxBulletTime = this.gameBoard.getMaxBulletTime();
 
             float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
             float fadeSpeed = (float)gameTime.ElapsedGameTime.TotalSeconds * 4;
@@ -95,7 +95,7 @@ namespace SwitchGame.GameObjects.GameDisplays
             timeAgoWarningSoundWasLastPlayed += gameTime.ElapsedGameTime.Milliseconds;
         }
 
-        public void setPower(int power, PlayerIndex playerIndex)
+        public void SetPower(int power, PlayerIndex playerIndex)
         {
             if (playerIndex == PlayerIndex.One)
             {
@@ -106,18 +106,18 @@ namespace SwitchGame.GameObjects.GameDisplays
                 this.power2 = power;
             }
 
-            if (this.power1 >= MAX_POWER)
+            if (this.power1 >= MaxPower)
             {
-                this.power1 = MAX_POWER;
+                this.power1 = MaxPower;
             }
 
-            if (this.power2 >= MAX_POWER)
+            if (this.power2 >= MaxPower)
             {
-                this.power2 = MAX_POWER;
+                this.power2 = MaxPower;
             }
         }
 
-        private void drawBulletTimePowerBar(SpriteBatch spriteBatch, Vector2 thisPosition, GameBoard thisGameBoard, bool flipped)
+        private void DrawBulletTimePowerBar(SpriteBatch spriteBatch, Vector2 thisPosition, GameBoard thisGameBoard, bool flipped)
         {
             float scaleX = (float)thisGameBoard.getBulletTimeLeft() / (float)this.maxBulletTime;
 
@@ -142,7 +142,7 @@ namespace SwitchGame.GameObjects.GameDisplays
                              0);
         }
 
-        private void drawAboutToWinMessage(SpriteBatch spriteBatch, GameTime gameTime)
+        private void DrawAboutToWinMessage(SpriteBatch spriteBatch, GameTime gameTime)
         {
             String aboutToWinMessage = "";
             if (this.playerOneAboutToWin)
@@ -165,7 +165,7 @@ namespace SwitchGame.GameObjects.GameDisplays
             spriteBatch.DrawString(font, aboutToWinMessage, aboutToWinMsgPosition, Color.Yellow, 0, aboutToWinMsgOrigin, scale, SpriteEffects.None, 0);
         }
 
-        private void drawPowerBar(SpriteBatch spriteBatch, int powerLevel, Vector2 powerBarPosition, bool flipped)
+        private void DrawPowerBar(SpriteBatch spriteBatch, int powerLevel, Vector2 powerBarPosition, bool flipped)
         {
             int flippedOffset = 0;
             if (flipped)
@@ -175,7 +175,7 @@ namespace SwitchGame.GameObjects.GameDisplays
 
             //draw icons
             Rectangle nukeIconRect = new Rectangle((int)(powerBarPosition.X + 36 + flippedOffset), (int)(powerBarPosition.Y + 50), 38, 38);
-            if (powerLevel >= POWER_FOR_NUKE)
+            if (powerLevel >= PowerForNuke)
             {
                 spriteBatch.Draw(nukeReady, nukeIconRect, Color.White);
             }
@@ -185,7 +185,7 @@ namespace SwitchGame.GameObjects.GameDisplays
             }
 
             Rectangle laserIconRect = new Rectangle((int)(powerBarPosition.X + 36 + flippedOffset), (int)(powerBarPosition.Y + 347), 38, 38);
-            if (powerLevel >= POWER_FOR_LASERS)
+            if (powerLevel >= PowerForLasers)
             {
                 spriteBatch.Draw(laserReady, laserIconRect, Color.White);
             }
@@ -195,7 +195,7 @@ namespace SwitchGame.GameObjects.GameDisplays
             }
 
             Rectangle bulletTimeIconRect = new Rectangle((int)(powerBarPosition.X + 36 + flippedOffset), (int)(powerBarPosition.Y + 498), 38, 40);
-            if (powerLevel >= POWER_FOR_BULLET_TIME)
+            if (powerLevel >= PowerForBulletTime)
             {
                 spriteBatch.Draw(clockReady, bulletTimeIconRect, Color.White);
             }
@@ -266,7 +266,7 @@ namespace SwitchGame.GameObjects.GameDisplays
             spriteBatch.DrawString(tinyScoreFont, scoreString, scorePosition, Color.Yellow, 0, scoreOrigin, Vector2.One, SpriteEffects.None, 0);
         }
 
-        private void drawCompetitionBar(SpriteBatch spriteBatch, int powerPlayer1, int powerPlayer2)
+        private void DrawCompetitionBar(SpriteBatch spriteBatch, int powerPlayer1, int powerPlayer2)
         {
             //make sure the score bar hasn't gone too far to either side
             int powerDifference = (int)((powerPlayer2 - powerPlayer1) * .05);

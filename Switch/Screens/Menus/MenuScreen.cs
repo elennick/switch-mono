@@ -115,7 +115,7 @@ namespace Switch.Menus
             if (input.IsMenuUp(ControllingPlayer))
             {
                 selectedEntry--;
-                SoundManager.Instance.playSound("menu-select");
+                SoundManager.Instance.PlaySound("menu-select");
 
                 if (selectedEntry < 0)
                 {
@@ -127,7 +127,7 @@ namespace Switch.Menus
             if (input.IsMenuDown(ControllingPlayer))
             {
                 selectedEntry++;
-                SoundManager.Instance.playSound("menu-select");
+                SoundManager.Instance.PlaySound("menu-select");
 
                 if (selectedEntry >= menuEntries.Count)
                 {
@@ -144,12 +144,12 @@ namespace Switch.Menus
 
             if (input.IsMenuSelect(ControllingPlayer, out playerIndex))
             {
-                SoundManager.Instance.playSound("menu-select");
+                SoundManager.Instance.PlaySound("menu-select");
                 OnSelectEntry(selectedEntry, playerIndex);
             }
             else if (allowBack && input.IsMenuCancel(ControllingPlayer, out playerIndex))
             {
-                SoundManager.Instance.playSound("menu-select2");
+                SoundManager.Instance.PlaySound("menu-select2");
                 OnCancel(playerIndex);
             }
         }
@@ -198,9 +198,9 @@ namespace Switch.Menus
             }
 
             //start playing the menu music if it isn't already going
-            if (!SoundManager.Instance.isSongPlaying() && !SoundManager.Instance.isMusicPaused())
+            if (!SoundManager.Instance.IsSongPlaying() && !SoundManager.Instance.IsMusicPaused())
             {
-                SoundManager.Instance.playSong("menu-song");
+                SoundManager.Instance.PlaySong("menu-song");
             }
         }
 

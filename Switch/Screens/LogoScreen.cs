@@ -78,7 +78,7 @@ namespace Switch
 
             if (!logoSoundPlayed && elapsedTimeSinceLogoWasShown >= 2000)
             {
-                SoundManager.Instance.playSound("wombat-growl");
+                SoundManager.Instance.PlaySound("wombat-growl");
                 logoSoundPlayed = true;
             }
 

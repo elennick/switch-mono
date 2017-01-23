@@ -28,7 +28,8 @@ namespace Switch.GameObjects.GameDisplays
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            for(int i = 0; i < messageQueue.Count; i++) {
+            for (int i = 0; i < messageQueue.Count; i++)
+            {
                 int msgPosX = (int)(this.position.X + 10);
                 int msgPosY = (int)(this.position.Y + 10 + (i * 25));
                 Vector2 thisMsgPos = new Vector2(msgPosX, msgPosY);
@@ -41,12 +42,12 @@ namespace Switch.GameObjects.GameDisplays
             }
         }
 
-        public void addMessage(String message)
+        public void AddMessage(String message)
         {
-            addMessage(message, Color.Black);
+            AddMessage(message, Color.Black);
         }
 
-        public void addMessage(String message, Color color)
+        public void AddMessage(String message, Color color)
         {
             this.messageQueue.Add(new GameMessageBoxMessage(message, color));
 

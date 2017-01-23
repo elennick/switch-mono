@@ -58,7 +58,7 @@ namespace Switch
             SpriteFont scoreFont = content.Load<SpriteFont>("Fonts\\PhillySansFont");
 
             //create a new gameboard to use for 1p
-            GameBoard gameBoard = new GameBoard(new Vector2(480, 55), TileSet.loadAndGetDefaultTileset(content, challenge.GetDifficulty()),challenge.GetDifficulty(), 400, 564, (int)playerIndex1);
+            GameBoard gameBoard = new GameBoard(new Vector2(480, 55), TileSet.LoadAndGetDefaultTileset(content, challenge.GetDifficulty()),challenge.GetDifficulty(), 400, 564, (int)playerIndex1);
             gameBoard.setScaleTiles(true);
             gameBoard.getStats().power = this.challenge.StartingPower();
             this.addGameplayScreenObject(gameBoard);

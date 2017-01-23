@@ -69,7 +69,7 @@ namespace Switch.Menus
         {
             musicOn = !musicOn;
             SetMenuEntryText();
-            SoundManager.Instance.setMusicEnabled(musicOn);
+            SoundManager.Instance.SetMusicEnabled(musicOn);
         }
 
         void RumbleOnMenuEntrySelected(object sender, PlayerIndexEventArgs e)

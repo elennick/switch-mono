@@ -19,14 +19,14 @@ namespace Switch.GameObjects.GameDisplays
             this.scoreToDisplay = 0;
         }
 
-        public void updateScore(int score)
+        public void UpdateScore(int score)
         {
             this.scoreToDisplay = score;
         }
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            this.updateScore(this.gameBoard.getScore());
+            this.UpdateScore(this.gameBoard.getScore());
             String scoreLabel = "Score";
 
             Vector2 labelOrigin = Utils.Utils.Instance.getTextStringCenterOrigin(scoreLabel, this.font);

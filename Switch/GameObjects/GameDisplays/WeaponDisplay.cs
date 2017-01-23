@@ -11,11 +11,11 @@ namespace Switch.GameObjects.GameDisplays
 {
     class WeaponDisplay : GameDisplay
     {
-        private String fireText;
-        private String availableText;
-        private String unavailableText;
-        private Texture2D buttonSprite;
-        private bool available;
+        private String fireText { get; }
+        private String availableText { get; }
+        private String unavailableText { get; }
+        private Texture2D buttonSprite { get; }
+        private bool available { get; set; }
         private int availableAtPower;
 
         public WeaponDisplay(String fireText, String availableText, String unavailableText, Texture2D buttonSprite, int availableAtPower, Vector2 position, SpriteFont font, GameBoard gameBoard) 
@@ -27,36 +27,6 @@ namespace Switch.GameObjects.GameDisplays
             this.buttonSprite = buttonSprite;
             this.available = false;
             this.availableAtPower = availableAtPower;
-        }
-
-        public String getFireText()
-        {
-            return this.fireText;
-        }
-
-        public String getAvailabeText()
-        {
-            return this.availableText;
-        }
-
-        public String getUnavailableText()
-        {
-            return this.unavailableText;
-        }
-
-        public Texture2D getButtonSprite()
-        {
-            return this.buttonSprite;
-        }
-
-        public bool isAvailable()
-        {
-            return this.available;
-        }
-
-        public void setAvailable(bool available)
-        {
-            this.available = available;
         }
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)

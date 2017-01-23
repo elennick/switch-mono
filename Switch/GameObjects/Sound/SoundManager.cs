@@ -14,7 +14,7 @@ namespace Switch.GameObjects.Sound
         private static SoundManager instance;
         private Dictionary<String, SoundEffect> sounds;
         private Dictionary<String, Song> songs;
-        private ContentManager contentManager;
+        private ContentManager contentManager { get; set; }
         private bool songStarted;
         private bool contentLoaded;
         private bool musicEnabled;
@@ -45,16 +45,11 @@ namespace Switch.GameObjects.Sound
             }
         }
 
-        public void setContentManager(ContentManager contentManager)
-        {
-            this.contentManager = contentManager;
-        }
-
-        public void loadSoundMedia(ContentManager contentManager)
+        public void LoadSoundMedia(ContentManager contentManager)
         {
             if (!contentLoaded)
             {
-                setContentManager(contentManager);
+                this.contentManager = contentManager;
 
                 sounds.Add("flip", contentManager.Load<SoundEffect>("Sound\\Effects\\flip"));
                 sounds.Add("explode-tile", contentManager.Load<SoundEffect>("Sound\\Effects\\explode-tile"));
@@ -78,7 +73,7 @@ namespace Switch.GameObjects.Sound
             }
         }
          
-        public void playSound(String soundName) 
+        public void PlaySound(String soundName) 
         {
             if(sounds.ContainsKey(soundName)) {
                 //Console.WriteLine("playing sound " + sounds[soundName].Name);
@@ -86,7 +81,7 @@ namespace Switch.GameObjects.Sound
             }
         }
 
-        public void playSong(String songName)
+        public void PlaySong(String songName)
         {
             if ((!songStarted || songName != currentSong) && 
                 songs.ContainsKey(songName) && 
@@ -102,37 +97,37 @@ namespace Switch.GameObjects.Sound
             }
         }
 
-        public void stopSong()
+        public void StopSong()
         {
             MediaPlayer.Stop();
             songStarted = false;
         }
 
-        public bool isSongPlaying()
+        public bool IsSongPlaying()
         {
             return songStarted;
         }
 
-        public bool isMusicPaused()
+        public bool IsMusicPaused()
         {
             return musicPaused;
         }
 
-        public void setMusicEnabled(bool musicEnabled)
+        public void SetMusicEnabled(bool musicEnabled)
         {
             this.musicEnabled = musicEnabled;
-            if (!this.musicEnabled && isSongPlaying())
+            if (!this.musicEnabled && IsSongPlaying())
             {
-                stopSong();
+                StopSong();
             }
         }
 
-        public void setMusicPaused(bool musicPaused)
+        public void SetMusicPaused(bool musicPaused)
         {
             this.musicPaused = musicPaused;
-            if (this.musicPaused && isSongPlaying())
+            if (this.musicPaused && IsSongPlaying())
             {
-                stopSong();
+                StopSong();
             }
         }
     }

@@ -11,10 +11,10 @@ namespace Switch.GameObjects.GameDisplays
 {
     class ComplexPowerMeterDisplay : GameDisplay
     {
-        public static int MAX_POWER = 100;
-        public static int POWER_FOR_BULLET_TIME = 25;
-        public static int POWER_FOR_LASERS = 50;
-        public static int POWER_FOR_NUKE = 100;
+        public static int MaxPower = 100;
+        public static int PowerForBulletTime = 25;
+        public static int PowerForLasers = 50;
+        public static int PowerForNuke = 100;
         protected int power;
         protected Texture2D powerbarScaffolding;
         protected Texture2D clockReady;
@@ -32,8 +32,8 @@ namespace Switch.GameObjects.GameDisplays
         protected Texture2D bButtonTexture;
         protected SpriteEffects spriteEffect;
         protected bool reverseDraw;
-        protected int bulletTimeLeft; //milliseconds
-        protected int maxBulletTime; //milliseconds
+        protected int bulletTimeLeft { get; set; } //milliseconds
+        protected int maxBulletTime { get; set; } //milliseconds
         private float selectionFade;
 
         public ComplexPowerMeterDisplay(Vector2 position, ContentManager content, SpriteFont font, GameBoard gameBoard, bool reverseDraw)
@@ -68,9 +68,9 @@ namespace Switch.GameObjects.GameDisplays
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            this.setPower(this.gameBoard.getPower());
-            this.setMaxBulletTime(this.gameBoard.getMaxBulletTime());
-            this.setBulletTimeLeft(this.gameBoard.getBulletTimeLeft());
+            this.SetPower(this.gameBoard.getPower());
+            this.maxBulletTime = this.gameBoard.getMaxBulletTime();
+            this.bulletTimeLeft = this.gameBoard.getBulletTimeLeft();
 
             spriteBatch.Draw(powerbarScaffolding, 
                              this.position, 
@@ -84,7 +84,7 @@ namespace Switch.GameObjects.GameDisplays
 
             //draw stuff for the nuke icon and text
             Vector2 nukePosition = new Vector2(this.position.X + 49, this.position.Y + 46);
-            if (this.power >= POWER_FOR_NUKE)
+            if (this.power >= PowerForNuke)
             {
                 spriteBatch.Draw(nukeReady, nukePosition, Color.White);
 
@@ -107,7 +107,7 @@ namespace Switch.GameObjects.GameDisplays
 
             //draw stuff for the laser icon and text
             Vector2 laserPosition = new Vector2(this.position.X + 49, this.position.Y + 346);
-            if (this.power >= POWER_FOR_LASERS)
+            if (this.power >= PowerForLasers)
             {
                 spriteBatch.Draw(laserReady, laserPosition, Color.White);
 
@@ -130,7 +130,7 @@ namespace Switch.GameObjects.GameDisplays
 
             //stuff for the bullet time icon and text
             Vector2 btPosition = new Vector2(this.position.X + 49, this.position.Y + 490);
-            if (this.power >= POWER_FOR_BULLET_TIME)
+            if (this.power >= PowerForBulletTime)
             {
                 spriteBatch.Draw(clockReady, btPosition, Color.White);
 
@@ -224,32 +224,22 @@ namespace Switch.GameObjects.GameDisplays
             }
         }
 
-        public override void update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
+        public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
         {
-            base.update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
+            base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
 
             float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
             float fadeSpeed = (float)gameTime.ElapsedGameTime.TotalSeconds * 4;
             selectionFade = Math.Min(selectionFade + fadeSpeed, 1);
         }
 
-        protected void setPower(int power)
+        protected void SetPower(int power)
         {
             this.power = power;
-            if (this.power >= MAX_POWER)
+            if (this.power >= MaxPower)
             {
-                this.power = MAX_POWER;
+                this.power = MaxPower;
             }
-        }
-
-        protected void setBulletTimeLeft(int millisecondsLeft)
-        {
-            this.bulletTimeLeft = millisecondsLeft;
-        }
-
-        protected void setMaxBulletTime(int maxBulletTime)
-        {
-            this.maxBulletTime = maxBulletTime;
         }
     }
 }

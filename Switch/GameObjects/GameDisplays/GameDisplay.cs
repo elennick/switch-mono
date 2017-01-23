@@ -11,8 +11,8 @@ namespace Switch.GameObjects.GameDisplays
 {
     abstract class GameDisplay
     {
-        protected Vector2 position;
-        protected SpriteFont font;
+        protected Vector2 position { get; set; }
+        protected SpriteFont font { get; set; }
         protected GameBoard gameBoard;
 
         public GameDisplay(Vector2 position, SpriteFont font, GameBoard gameBoard)
@@ -24,29 +24,9 @@ namespace Switch.GameObjects.GameDisplays
 
         public abstract void Draw(SpriteBatch spriteBatch, GameTime gameTime);
 
-        public virtual void update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
+        public virtual void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
         {
 
-        }
-
-        public void setPosition(Vector2 position)
-        {
-            this.position = position;
-        }
-
-        public Vector2 getPosition()
-        {
-            return this.position;
-        }
-
-        public void setFont(SpriteFont font)
-        {
-            this.font = font;
-        }
-
-        public SpriteFont getFont()
-        {
-            return this.font;
         }
     }
 }

@@ -51,12 +51,12 @@ namespace Switch
 
             if (input.IsMenuCancel(null, out playerIndex))
             {
-                SoundManager.Instance.playSound("menu-select2");
+                SoundManager.Instance.PlaySound("menu-select2");
                 ExitScreen();
             }
             else if (input.IsMenuSelect(null, out playerIndex))
             {
-                SoundManager.Instance.playSound("menu-select");
+                SoundManager.Instance.PlaySound("menu-select");
                 this.nextPage();
             }
         }

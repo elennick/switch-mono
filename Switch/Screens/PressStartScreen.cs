@@ -120,7 +120,7 @@ namespace Switch
                 || input.IsNewButtonPress(Buttons.B, null, out playerIndex)
                 || input.IsNewButtonPress(Buttons.Start, null, out playerIndex))
             {
-                SoundManager.Instance.playSound("menu-select2");
+                SoundManager.Instance.PlaySound("menu-select2");
 
 #if XBOX
                 // get the save device
@@ -144,7 +144,7 @@ namespace Switch
             KeyboardState state = Keyboard.GetState();
             if(state.IsKeyDown(Keys.Enter))
             {
-                SoundManager.Instance.playSound("menu-select2");
+                SoundManager.Instance.PlaySound("menu-select2");
                 loadMainMenu(playerIndex);
             }
         }

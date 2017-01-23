@@ -90,7 +90,7 @@ namespace Switch.GameObjects
 
             foreach (Tile tile in column)
             {
-                if (tile.isSeated())
+                if (tile.seated)
                 {
                     tilesSeated++;
                 }
@@ -125,7 +125,7 @@ namespace Switch.GameObjects
             {
                 if (thisTile.Equals(tile))
                 {
-                    this.Remove(tile, tile.getGridX());
+                    this.Remove(tile, tile.X);
                 }
             }
         }
@@ -137,7 +137,7 @@ namespace Switch.GameObjects
         {
             foreach (Tile tile in getTilesAsList())
             {
-                if (!tile.isSeated())
+                if (!tile.seated)
                 {
                     return false;
                 }
@@ -171,7 +171,7 @@ namespace Switch.GameObjects
             bool tilesWillGetDropped = false;
             foreach (Tile tile in getTilesAsList())
             {
-                if (!tile.isSeated() && tile.getAge() >= ageThreshold)
+                if (!tile.seated && tile.age >= ageThreshold)
                 {
                     tilesWillGetDropped = true;
                 }
@@ -190,11 +190,11 @@ namespace Switch.GameObjects
             bool tilesGotDropped = false;
             foreach (Tile tile in getTilesAsList())
             {
-                if (!tile.isSeated() && tile.getAge() >= ageThreshold)
+                if (!tile.seated && tile.age >= ageThreshold)
                 {
-                    int newY = tile.getGridY() + 1;
-                    tile.setGridY(newY);
-                    tile.resetAge();
+                    int newY = tile.Y + 1;
+                    tile.SetY(newY);
+                    tile.ResetAge();
                     tilesGotDropped = true;
                 }
             }
@@ -211,9 +211,9 @@ namespace Switch.GameObjects
         {
             foreach (Tile tile in getTilesAsList())
             {
-                //if (!tile.isSeated())
+                //if (!tile.seated)
                 //{
-                    tile.bumpAge(ageIncrement);
+                tile.BumpAge(ageIncrement);
                 //}
             }
         }
@@ -228,9 +228,9 @@ namespace Switch.GameObjects
         {
             foreach (Tile tile in getTilesAsList())
             {
-                if (!tile.isSeated() && tile.getGridY() >= this.tileGridHeight - 1)
+                if (!tile.seated && tile.Y >= this.tileGridHeight - 1)
                 {
-                    tile.setSeated(true);
+                    tile.seated = true;
                 }
             }
         }
@@ -248,10 +248,10 @@ namespace Switch.GameObjects
             {
                 foreach (Tile tileB in allTiles)
                 {
-                    if (tileB.getGridY() == tileA.getGridY() + 1 && 
-                        tileB.getGridX() == tileA.getGridX())
+                    if (tileB.Y == tileA.Y + 1 &&
+                        tileB.X == tileA.X)
                     {
-                        tileA.setSeated(true);
+                        tileA.seated = true;
                         break;
                     }
                 }
@@ -284,9 +284,9 @@ namespace Switch.GameObjects
                 foreach (Tile tile in column)
                 {
                     //handle top capper tiles
-                    if (tile.getType() == Tile.tileType.TOP_CAPPER)
+                    if (tile.type == Tile.TileType.TopCapper)
                     {
-                        if (tile.isSeated())
+                        if (tile.seated)
                         {
                             Tile bottomCapper;
                             if ((bottomCapper = bottomCapperExistsBelow(tile)) != null)
@@ -296,20 +296,20 @@ namespace Switch.GameObjects
                             }
                             else
                             {
-                                tile.markForDeletion();
+                                tile.MarkForDeletion();
                                 stats.numberOfBlocksDestroyed++;
                             }
                         }
                     }
                     //handle multplier tiles
-                    else if (tile.getType() == Tile.tileType.MULTIPLIER)
+                    else if (tile.type == Tile.TileType.Multiplier)
                     {
-                        if (tile.isSeated())
+                        if (tile.seated)
                         {
                             Tile bottomCapper;
                             if ((bottomCapper = bottomCapperExistsBelow(tile)) == null)
                             {
-                                tile.markForDeletion();
+                                tile.MarkForDeletion();
                                 stats.numberOfBlocksDestroyed++;
                             }
                         }
@@ -319,19 +319,19 @@ namespace Switch.GameObjects
                     {
                         foreach (Tile tileToCompare in column)
                         {
-                            if ((tileToCompare.getGridY() == tile.getGridY() + 1 || tileToCompare.getGridY() == tile.getGridY() - 1)
+                            if ((tileToCompare.Y == tile.Y + 1 || tileToCompare.Y == tile.Y - 1)
                                 && tileToCompare.getStaticTexture() == tile.getStaticTexture()
-                                && tile.isSeated()
-                                && tileToCompare.isSeated()
-                                && !tile.isMarkedForDeletion()
-                                && !tileToCompare.isMarkedForDeletion())
+                                && tile.seated
+                                && tileToCompare.seated
+                                && !tile.markedForDeletion
+                                && !tileToCompare.markedForDeletion)
                             {
-                                tile.markForDeletion();
-                                tileToCompare.markForDeletion();
+                                tile.MarkForDeletion();
+                                tileToCompare.MarkForDeletion();
 
                                 stats.numberOfBlocksDestroyed += 2;
-                                stats.score += (Tile.BASE_SCORE_VALUE * 2);
-                                stats.power += (Tile.BASE_SCORE_VALUE / 8);
+                                stats.score += (Tile.BaseScoreValue * 2);
+                                stats.power += (Tile.BaseScoreValue / 8);
                             }
                         }
                     }
@@ -355,7 +355,7 @@ namespace Switch.GameObjects
                 for (int i = 0; i < columnArray.Length; i++)
                 {
                     Tile thisTile = columnArray[i];
-                    if (thisTile.isMarkedForDeletion())
+                    if (thisTile.markedForDeletion)
                     {
                         column.Remove(thisTile);
                         AnimationManager.Instance.startAnimation("tile-explode", 25, gameBoard.getTileRectangle(thisTile));
@@ -366,7 +366,7 @@ namespace Switch.GameObjects
 
             if (atLeastOneTileDeleted)
             {
-                SoundManager.Instance.playSound("explode-tile");
+                SoundManager.Instance.PlaySound("explode-tile");
             }
         }
 
@@ -376,12 +376,12 @@ namespace Switch.GameObjects
         public void moveTileIntoColumn(Tile tile, int newColumnIndex)
         {
             //first move its position in the tile list
-            int oldColumnIndex = tile.getGridX();
+            int oldColumnIndex = tile.X;
             tiles[oldColumnIndex].Remove(tile);
             tiles[newColumnIndex].Add(tile);
 
             //then set the tiles new position in the tile object itself
-            tile.setGridX(newColumnIndex);
+            tile.X = newColumnIndex;
         }
 
         /**
@@ -390,23 +390,23 @@ namespace Switch.GameObjects
         private Tile bottomCapperExistsBelow(Tile topCapper)
         {
             Tile bottomCapper = null;
-            int columnIndex = topCapper.getGridX();
+            int columnIndex = topCapper.X;
             List<Tile> bottomCappersInColumn = new List<Tile>();
 
             foreach (Tile tile in tiles[columnIndex])
             {
-                if (tile.getGridY() > topCapper.getGridY() && tile.getType() == Tile.tileType.BOTTOM_CAPPER)
+                if (tile.Y > topCapper.Y && tile.type == Tile.TileType.BottomCapper)
                 {
                     bottomCapper = tile;
                     bottomCappersInColumn.Add(tile);
                 }
             }
 
-            if(bottomCappersInColumn.Count > 1) 
+            if (bottomCappersInColumn.Count > 1)
             {
-                foreach(Tile tile in bottomCappersInColumn) 
+                foreach (Tile tile in bottomCappersInColumn)
                 {
-                    if(tile.getGridY() > bottomCapper.getGridY())
+                    if (tile.Y > bottomCapper.Y)
                     {
                         bottomCapper = tile;
                     }
@@ -421,41 +421,41 @@ namespace Switch.GameObjects
          */
         private void clearCappedTiles(Tile topCapper, Tile bottomCapper)
         {
-            if (topCapper.getGridX() != bottomCapper.getGridX())
+            if (topCapper.X != bottomCapper.X)
             {
                 return;
             }
 
-            int columnIndex = topCapper.getGridX();
+            int columnIndex = topCapper.X;
             int numberOfTilesDestroyed = 0;
             int multiplierValue = 1;
             bool regularTileExistsInSandwich = false;
 
             foreach (Tile tile in tiles[columnIndex])
             {
-                if (tile.getGridY() >= topCapper.getGridY() &&
-                    tile.getGridY() <= bottomCapper.getGridY() &&
-                    !tile.isMarkedForDeletion())
+                if (tile.Y >= topCapper.Y &&
+                    tile.Y <= bottomCapper.Y &&
+                    !tile.markedForDeletion)
                 {
                     tile.startAnimation("explode", 25);
-                    tile.markForDeletion();
+                    tile.MarkForDeletion();
 
                     numberOfTilesDestroyed++;
 
-                    if (tile.getType() == Tile.tileType.MULTIPLIER)
+                    if (tile.type == Tile.TileType.Multiplier)
                     {
                         stats.numberOfMultipliersCapped++;
 
-                        if (tile.getMultiplier() > multiplierValue)
+                        if (tile.multiplier > multiplierValue)
                         {
-                            multiplierValue = tile.getMultiplier();
+                            multiplierValue = tile.multiplier;
                         }
 
-                        if (tile.getMultiplier() == 2)
+                        if (tile.multiplier == 2)
                         {
                             stats.numberOf2xMulipliersCapped++;
                         }
-                        else if (tile.getMultiplier() == 3)
+                        else if (tile.multiplier == 3)
                         {
                             stats.numberOf3xMulipliersCapped++;
                         }
@@ -465,7 +465,7 @@ namespace Switch.GameObjects
                         }
                     }
 
-                    if (tile.getType() == Tile.tileType.NORMAL)
+                    if (tile.type == Tile.TileType.Normal)
                     {
                         regularTileExistsInSandwich = true;
                     }
@@ -477,8 +477,8 @@ namespace Switch.GameObjects
                 multiplierValue = 1;
             }
 
-            stats.score += (numberOfTilesDestroyed * Tile.BASE_SCORE_VALUE * multiplierValue);
-            stats.power += (numberOfTilesDestroyed * (Tile.BASE_SCORE_VALUE / 8));
+            stats.score += (numberOfTilesDestroyed * Tile.BaseScoreValue * multiplierValue);
+            stats.power += (numberOfTilesDestroyed * (Tile.BaseScoreValue / 8));
             stats.numberOfTilesDestroyedByCapping += numberOfTilesDestroyed;
             stats.numberOfBlocksDestroyed += numberOfTilesDestroyed;
         }
@@ -510,7 +510,7 @@ namespace Switch.GameObjects
             for (int i = 0; i < leftColumnArray.Length; i++)
             {
                 Tile thisTile = leftColumnArray[i];
-                if (thisTile.isSeated() || thisTile.getGridY() > tallestColumn)
+                if (thisTile.seated || thisTile.Y > tallestColumn)
                 {
                     this.moveTileIntoColumn(thisTile, colLeft + 1);
                 }
@@ -519,7 +519,7 @@ namespace Switch.GameObjects
             for (int i = 0; i < rightColumnArray.Length; i++)
             {
                 Tile thisTile = rightColumnArray[i];
-                if (thisTile.isSeated() || thisTile.getGridY() > tallestColumn)
+                if (thisTile.seated || thisTile.Y > tallestColumn)
                 {
                     this.moveTileIntoColumn(thisTile, colRight - 1);
                 }
@@ -533,10 +533,10 @@ namespace Switch.GameObjects
 
             foreach (Tile tile in column)
             {
-                tile.markForDeletion();
+                tile.MarkForDeletion();
                 tilesDestroyed++;
 
-                stats.score += Tile.BASE_SCORE_VALUE;
+                stats.score += Tile.BaseScoreValue;
             }
 
             return tilesDestroyed;
@@ -560,7 +560,7 @@ namespace Switch.GameObjects
 
             foreach (Tile tile in getTilesAsList())
             {
-                if (!tile.isSeated())
+                if (!tile.seated)
                 {
                     unseatedTiles.Add(tile);
                 }

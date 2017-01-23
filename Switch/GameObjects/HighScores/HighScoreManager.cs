@@ -10,8 +10,8 @@ namespace Switch.HighScores
     class HighScoreManager
     {
         private static HighScoreManager instance;
-        private List<HighScore> highScores;
-        public static int MAX_NUMBER_OF_HIGH_SCORES = 9;
+        private List<HighScore> highScores { get; set; }
+        public static int MaxNumberOfHighScores = 9;
 
         private HighScoreManager() 
         {
@@ -30,13 +30,13 @@ namespace Switch.HighScores
             }
         }
 
-        public List<HighScore> getHighScores(String difficulty) 
+        public List<HighScore> GetHighScores(String difficulty) 
         {
             List<HighScore> scoresOfSpecificDifficulty = new List<HighScore>();
 
             foreach (HighScore highScore in highScores)
             {
-                if (highScore.getDifficultyAsString().Equals(difficulty))
+                if (highScore.GetDifficultyAsString().Equals(difficulty))
                 {
                     scoresOfSpecificDifficulty.Add(highScore);
                 }
@@ -45,35 +45,25 @@ namespace Switch.HighScores
             return scoresOfSpecificDifficulty;
         }
 
-        public void addHighScore(HighScore highScore)
+        public void AddHighScore(HighScore highScore)
         {
             this.highScores.Add(highScore);
-            trimHighScoreList(highScore.getDifficultyAsString());
+            TrimHighScoreList(highScore.GetDifficultyAsString());
             //StorageManager.Instance.saveHighScores();
         }
 
-        public void setAllHighScores(List<HighScore> highScores)
-        {
-            this.highScores = highScores;
-        }
-
-        public List<HighScore> getAllHighScores()
-        {
-            return this.highScores;
-        }
-
-        private void trimHighScoreList(String difficulty)
+        private void TrimHighScoreList(String difficulty)
         {
             //sort the existing high scores
-            List<HighScore> highScoresOfThisDifficulty = getHighScores(difficulty);
+            List<HighScore> highScoresOfThisDifficulty = GetHighScores(difficulty);
             highScoresOfThisDifficulty.Sort();
 
             //remove any from the list that arent in the top max
-            if (highScoresOfThisDifficulty.Count > MAX_NUMBER_OF_HIGH_SCORES)
+            if (highScoresOfThisDifficulty.Count > MaxNumberOfHighScores)
             {
                 for (int i = 0; i < highScoresOfThisDifficulty.Count; i++)
                 {
-                    if (i >= MAX_NUMBER_OF_HIGH_SCORES)
+                    if (i >= MaxNumberOfHighScores)
                     {
                         highScores.Remove(highScoresOfThisDifficulty[i]);
                     }

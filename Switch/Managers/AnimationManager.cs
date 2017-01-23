@@ -84,11 +84,11 @@ namespace Switch
                 {
                     if (animation.getDestinationRect() == null)
                     {
-                        spriteBatch.Draw(animation.getTexture(), animation.getPosition(), animation.getCurrentCelRect(), Color.White);
+                        spriteBatch.Draw(animation.GetTexture(), animation.getPosition(), animation.getCurrentCelRect(), Color.White);
                     }
                     else
                     {
-                        spriteBatch.Draw(animation.getTexture(), animation.getDestinationRect(), animation.getCurrentCelRect(), Color.White);
+                        spriteBatch.Draw(animation.GetTexture(), animation.getDestinationRect(), animation.getCurrentCelRect(), Color.White);
                     }
                 }
             }

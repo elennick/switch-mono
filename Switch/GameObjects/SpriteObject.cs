@@ -78,7 +78,7 @@ namespace Switch.GameObjects
         }
 
 
-        public Texture2D getTexture()
+        public Texture2D GetTexture()
         {
             Texture2D textureToReturn;
 
@@ -99,7 +99,7 @@ namespace Switch.GameObjects
             this.backgroundTexture = texture;
         }
 
-        public Texture2D getBackgroundTexture()
+        public Texture2D GetBackgroundTexture()
         {
             return this.backgroundTexture;
         }
@@ -149,7 +149,7 @@ namespace Switch.GameObjects
             }
         }
 
-        public virtual void updateGameTime(int elapsedGameTime, int currentGameSpeed, int currentTilePixelHeight)
+        public virtual void UpdateGameTime(int elapsedGameTime, int currentGameSpeed, int currentTilePixelHeight)
         {
             this.updateGameTime(elapsedGameTime);
         }

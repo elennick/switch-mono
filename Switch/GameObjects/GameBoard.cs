@@ -58,11 +58,11 @@ namespace Switch.GameObjects
         /**
          * Constructor
          */
-        public GameBoard(Vector2 boardPosition, 
+        public GameBoard(Vector2 boardPosition,
                          TileSet tileSet,
                          Difficulty difficulty,
-                         int width, 
-                         int height, 
+                         int width,
+                         int height,
                          int playerIndex)
         {
             //set constructor params
@@ -102,7 +102,7 @@ namespace Switch.GameObjects
             this.fadeFromWhiteAlpha = 1;
             this.maxBulletTime = 15000; //bullet time is 15 seconds long by default
 
-            this.rotater = new Rotater(this.tileSet.getRotater(), 0, this.numTilesWidth - 2, 1);
+            this.rotater = new Rotater(this.tileSet.rotater, 0, this.numTilesWidth - 2, 1);
             this.animatableSprites.Add(this.rotater);
 
             int startingPower;
@@ -117,14 +117,14 @@ namespace Switch.GameObjects
             this.stats = new GameboardStats(startingPower);
             this.tiles = new TileList(numTilesWidth, numTilesHeight, stats);
 
-            this.gameBoardRect = new Rectangle((int)boardPosition.X, 
-                                               (int)boardPosition.Y, 
-                                               (int)(boardPosition.X + width), 
+            this.gameBoardRect = new Rectangle((int)boardPosition.X,
+                                               (int)boardPosition.Y,
+                                               (int)(boardPosition.X + width),
                                                (int)(boardPosition.Y + height));
 
-            boardBackgroundSpriteObject = new DetailedSpriteObject(tileSet.getBoardBackground(), new Rectangle((int)(boardPosition.X - 10), 0, width + 20, height + 111));
-            nukeSpriteObject = new DetailedSpriteObject(tileSet.getNukeImage(), new Rectangle((int)originalBoardPosition.X, (int)originalBoardPosition.Y, width, height));
-            blankWhiteSpritObject = new DetailedSpriteObject(tileSet.getBlankImage(), new Rectangle((int)originalBoardPosition.X, (int)originalBoardPosition.Y, width, height));
+            boardBackgroundSpriteObject = new DetailedSpriteObject(tileSet.boardBackground, new Rectangle((int)(boardPosition.X - 10), 0, width + 20, height + 111));
+            nukeSpriteObject = new DetailedSpriteObject(tileSet.nukeImage, new Rectangle((int)originalBoardPosition.X, (int)originalBoardPosition.Y, width, height));
+            blankWhiteSpritObject = new DetailedSpriteObject(tileSet.blankImage, new Rectangle((int)originalBoardPosition.X, (int)originalBoardPosition.Y, width, height));
         }
 
         public int getPlayerIndex()
@@ -146,7 +146,7 @@ namespace Switch.GameObjects
         {
             if (this.messageBox != null)
             {
-                this.messageBox.addMessage(message, color);
+                this.messageBox.AddMessage(message, color);
             }
         }
 
@@ -288,8 +288,8 @@ namespace Switch.GameObjects
 
         public Rectangle getTileRectangle(Tile tile)
         {
-            int thisTilePosX = (int)(this.getPosition().X + (this.getTilePixelWidth() * tile.getGridX()));
-            int thisTilePosY = (int)(this.getPosition().Y + (this.getTilePixelHeight() * tile.getGridY()));
+            int thisTilePosX = (int)(this.getPosition().X + (this.getTilePixelWidth() * tile.X));
+            int thisTilePosY = (int)(this.getPosition().Y + (this.getTilePixelHeight() * tile.Y));
             Vector2 thisTilesPosition = new Vector2(thisTilePosX, thisTilePosY);
 
             return new Rectangle(thisTilePosX, thisTilePosY, (int)getTilePixelWidth(), (int)getTilePixelHeight());
@@ -308,8 +308,9 @@ namespace Switch.GameObjects
 
             //drop them into different columns
             List<int> columnsToDropIn = new List<int>();
-            
-            while(true) {
+
+            while (true)
+            {
                 int columnToDropIn = random.Next(numTilesWidth);
 
                 if (!columnsToDropIn.Contains(columnToDropIn))
@@ -339,8 +340,8 @@ namespace Switch.GameObjects
             //update the tile grid with the new tiles
             for (int i = 0; i < columnsToDropIn.Count; i++)
             {
-                tilesToDrop[i].setGridX(columnsToDropIn[i]);
-                tilesToDrop[i].setGridY(0);
+                tilesToDrop[i].X = columnsToDropIn[i];
+                tilesToDrop[i].SetY(0);
                 tiles.Add(tilesToDrop[i], columnsToDropIn[i]);
             }
         }
@@ -363,7 +364,7 @@ namespace Switch.GameObjects
             this.timeSinceLastSpeedUp = 0;
             addMessageBoxMessage("Level Up!", Color.Silver);
             this.stats.level++;
-            SoundManager.Instance.playSound("levelup");
+            SoundManager.Instance.PlaySound("levelup");
         }
 
         /**
@@ -378,13 +379,14 @@ namespace Switch.GameObjects
             this.timeSinceLastSpeedUp += elapsedTime;
 
             //let all sprite objects know the current elapsed game time in case they need to update a frame
-            foreach(SpriteObject sprite in animatableSprites) {
+            foreach (SpriteObject sprite in animatableSprites)
+            {
                 sprite.updateGameTime(elapsedTime);
             }
 
-            foreach(Tile sprite in tiles.getTilesAsList())
+            foreach (Tile sprite in tiles.getTilesAsList())
             {
-                sprite.updateGameTime(elapsedTime, this.getCurrentSpeed(), (int)this.getTilePixelHeight());
+                sprite.UpdateGameTime(elapsedTime, this.getCurrentSpeed(), (int)this.getTilePixelHeight());
             }
 
             AnimationManager.Instance.updateGameTime(elapsedTime);
@@ -404,7 +406,7 @@ namespace Switch.GameObjects
                     setPaused(false);
                     this.boardPosition = this.originalBoardPosition;
                 }
-                else if(this.timeSinceLastShake >= 75)
+                else if (this.timeSinceLastShake >= 75)
                 {
                     this.timeSinceLastShake = 0;
                     int xVariation = random.Next(20) - 10;
@@ -482,25 +484,25 @@ namespace Switch.GameObjects
         public void draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             //draw the board background
-            spriteBatch.Draw(boardBackgroundSpriteObject.getTexture(), boardBackgroundSpriteObject.getDestinationRect(), Color.White);
+            spriteBatch.Draw(boardBackgroundSpriteObject.GetTexture(), boardBackgroundSpriteObject.getDestinationRect(), Color.White);
 
             //draw the nuke image if the board is currently shaking due to a nuke
             if (this.isShaking)
             {
-                spriteBatch.Draw(nukeSpriteObject.getTexture(), nukeSpriteObject.getDestinationRect(), Color.White);
+                spriteBatch.Draw(nukeSpriteObject.GetTexture(), nukeSpriteObject.getDestinationRect(), Color.White);
             }
 
             //if scaling is turned on, figure out the scale size
             Vector2 scale = new Vector2(1, 1);
             Vector2 centerImageScale = new Vector2(1, 1);
-            Tile referenceTile = this.getTileSet().getRefTile();
+            Tile referenceTile = this.getTileSet().GetRefTile();
 
             if (this.isScaleTiles())
             {
                 try
                 {
-                    float scaleX = this.getTilePixelWidth() / referenceTile.getTexture().Width;
-                    float scaleY = this.getTilePixelHeight() / referenceTile.getTexture().Height;
+                    float scaleX = this.getTilePixelWidth() / referenceTile.GetTexture().Width;
+                    float scaleY = this.getTilePixelHeight() / referenceTile.GetTexture().Height;
                     scale = new Vector2(scaleX, scaleY);
 
                     if (scaleX <= scaleY)
@@ -512,7 +514,8 @@ namespace Switch.GameObjects
                         centerImageScale = new Vector2(scaleY, scaleY);
                     }
                 }
-                catch (Exception e) {
+                catch (Exception e)
+                {
                     System.Diagnostics.Debug.WriteLine(e.StackTrace);
                 }
             }
@@ -522,37 +525,37 @@ namespace Switch.GameObjects
             foreach (Tile tile in tilesToDraw)
             {
                 //figure out where on the screen to draw the tile background
-                int thisTilePosX = (int)(this.getPosition().X + (this.getTilePixelWidth() * tile.getGridX()));
-                int thisTilePosY = (int)(this.getPosition().Y + (this.getTilePixelHeight() * tile.getGridY()));
+                int thisTilePosX = (int)(this.getPosition().X + (this.getTilePixelWidth() * tile.X));
+                int thisTilePosY = (int)(this.getPosition().Y + (this.getTilePixelHeight() * tile.Y));
                 //int thisTilePosY = (int)(this.getPosition().Y + (this.getTilePixelHeight() * tile.getGridY()) + tile.getBoostY());
 
                 Vector2 thisTilesPosition = new Vector2(thisTilePosX, thisTilePosY);
 
                 //draw the background if necessary
-                if (tile.getBackgroundTexture() != null)
-                {                
+                if (tile.GetBackgroundTexture() != null)
+                {
                     //draw the background sprite
-                    spriteBatch.Draw(tile.getBackgroundTexture(), thisTilesPosition, null, Color.White, 0, Vector2.Zero, scale, SpriteEffects.None, 0);
+                    spriteBatch.Draw(tile.GetBackgroundTexture(), thisTilesPosition, null, Color.White, 0, Vector2.Zero, scale, SpriteEffects.None, 0);
                 }
 
                 //figure out where on screen to draw the tile foreground image
-                Vector2 thisTilesCenterOrigin = new Vector2(tile.getTexture().Width / 2, tile.getTexture().Height / 2);
+                Vector2 thisTilesCenterOrigin = new Vector2(tile.GetTexture().Width / 2, tile.GetTexture().Height / 2);
                 Vector2 thisTilesCenterPosition = new Vector2(thisTilePosX + (this.getTilePixelWidth() / 2), thisTilePosY + (this.getTilePixelHeight() / 2));
                 Vector2 thisTilesCenterOriginDuringIdleAnimation = new Vector2(tile.getCurrentCelRect().Width / 2, tile.getCurrentCelRect().Height / 2);
 
                 //finally, draw the foreground of the tile
                 if (tile.isAnimating() && tile.getCurrentAnimation() == "idle")
                 {
-                    spriteBatch.Draw(tile.getTexture(), thisTilesCenterPosition, tile.getCurrentCelRect(), Color.White, 0,
+                    spriteBatch.Draw(tile.GetTexture(), thisTilesCenterPosition, tile.getCurrentCelRect(), Color.White, 0,
                                      thisTilesCenterOriginDuringIdleAnimation, centerImageScale, SpriteEffects.None, 0);
                 }
                 else if (tile.isAnimating())
                 {
-                    spriteBatch.Draw(tile.getTexture(), thisTilesPosition, tile.getCurrentCelRect(), Color.White, 0, Vector2.Zero, scale, SpriteEffects.None, 0);
+                    spriteBatch.Draw(tile.GetTexture(), thisTilesPosition, tile.getCurrentCelRect(), Color.White, 0, Vector2.Zero, scale, SpriteEffects.None, 0);
                 }
                 else
                 {
-                    spriteBatch.Draw(tile.getTexture(), thisTilesCenterPosition, tile.getCurrentCelRect(), Color.White, 0, thisTilesCenterOrigin, centerImageScale, SpriteEffects.None, 0);
+                    spriteBatch.Draw(tile.GetTexture(), thisTilesCenterPosition, tile.getCurrentCelRect(), Color.White, 0, thisTilesCenterOrigin, centerImageScale, SpriteEffects.None, 0);
                 }
             }
 
@@ -560,20 +563,20 @@ namespace Switch.GameObjects
             if (this.isShaking)
             {
                 Color color = new Color(255, 255, 255) * (float)MathHelper.Clamp(fadeFromWhiteAlpha, 0f, 1f);
-                spriteBatch.Draw(blankWhiteSpritObject.getTexture(), blankWhiteSpritObject.getDestinationRect(), color);
+                spriteBatch.Draw(blankWhiteSpritObject.GetTexture(), blankWhiteSpritObject.getDestinationRect(), color);
             }
 
             //draw the rotater
             startRotaterIdleAnimation();
 
             int rotaterYOffset = 12;
-            int rotaterPosX = (int)(this.getPosition().X + (this.getTilePixelWidth() * rotater.getHorizontalPosition()));
+            int rotaterPosX = (int)(this.getPosition().X + (this.getTilePixelWidth() * rotater.horizontalPosition));
             int rotaterPosY = (int)(this.boardPosition.Y + this.height + rotaterYOffset);
 
             Vector2 rotaterPosition = new Vector2(rotaterPosX, rotaterPosY);
             Vector2 rotaterScale = new Vector2(scale.X * 2, 1.15f);
 
-            spriteBatch.Draw(rotater.getTexture(), rotaterPosition, rotater.getCurrentCelRect(), Color.White, 0, Vector2.Zero, rotaterScale, SpriteEffects.None, 0);
+            spriteBatch.Draw(rotater.GetTexture(), rotaterPosition, rotater.getCurrentCelRect(), Color.White, 0, Vector2.Zero, rotaterScale, SpriteEffects.None, 0);
 
             //draw any animations that are going
             AnimationManager.Instance.drawAnimations(spriteBatch);
@@ -587,20 +590,20 @@ namespace Switch.GameObjects
 
             if (gamePadState.ThumbSticks.Left.X < -0.3 && previousGamePadState.ThumbSticks.Left.X >= -0.3)
             {
-                rotater.moveLeft();
+                rotater.MoveLeft();
             }
             if (gamePadState.ThumbSticks.Left.X > 0.3 && previousGamePadState.ThumbSticks.Left.X <= 0.3)
             {
-                rotater.moveRight();
+                rotater.MoveRight();
             }
 
             if (gamePadState.DPad.Left == ButtonState.Pressed && previousGamePadState.DPad.Left == ButtonState.Released)
             {
-                rotater.moveLeft();
+                rotater.MoveLeft();
             }
             if (gamePadState.DPad.Right == ButtonState.Pressed && previousGamePadState.DPad.Right == ButtonState.Released)
             {
-                rotater.moveRight();
+                rotater.MoveRight();
             }
 
             if (gamePadState.IsButtonDown(Buttons.A) && previousGamePadState.IsButtonUp(Buttons.A))
@@ -613,7 +616,7 @@ namespace Switch.GameObjects
             }
             if (gamePadState.IsButtonDown(Buttons.Y) && previousGamePadState.IsButtonUp(Buttons.Y))
             {
-                fireDaLasersLawl(rotater.getHorizontalPosition(), rotater.getHorizontalPosition() + 1);
+                fireDaLasersLawl(rotater.horizontalPosition, rotater.horizontalPosition + 1);
             }
             if (gamePadState.IsButtonDown(Buttons.B) && previousGamePadState.IsButtonUp(Buttons.B))
             {
@@ -626,11 +629,11 @@ namespace Switch.GameObjects
 
             if (keyboardState.IsKeyDown(Keys.Left) && previousKeyboardState.IsKeyUp(Keys.Left))
             {
-                rotater.moveLeft();
+                rotater.MoveLeft();
             }
             if (keyboardState.IsKeyDown(Keys.Right) && previousKeyboardState.IsKeyUp(Keys.Right))
             {
-                rotater.moveRight();
+                rotater.MoveRight();
             }
 
             if (keyboardState.IsKeyDown(Keys.Space) && previousKeyboardState.IsKeyUp(Keys.Space))
@@ -643,7 +646,7 @@ namespace Switch.GameObjects
             }
             if (keyboardState.IsKeyDown(Keys.Y) && previousKeyboardState.IsKeyUp(Keys.Y))
             {
-                fireDaLasersLawl(rotater.getHorizontalPosition(), rotater.getHorizontalPosition() + 1);
+                fireDaLasersLawl(rotater.horizontalPosition, rotater.horizontalPosition + 1);
             }
             if (keyboardState.IsKeyDown(Keys.B) && previousKeyboardState.IsKeyUp(Keys.B))
             {
@@ -669,7 +672,7 @@ namespace Switch.GameObjects
 
             foreach (Tile tile in tiles.getUnseatedTiles())
             {
-                tilesToBlur.Add(new DetailedSpriteObject(tile.getBackgroundTexture(),
+                tilesToBlur.Add(new DetailedSpriteObject(tile.GetBackgroundTexture(),
                                                          this.getTileRectangle(tile)));
             }
 
@@ -679,8 +682,8 @@ namespace Switch.GameObjects
         private void swapColumns()
         {
             rotater.startAnimation("rotate", 80);
-            SoundManager.Instance.playSound("flip");
-            tiles.swapColumns(rotater.getHorizontalPosition(), rotater.getHorizontalPosition() + 1);
+            SoundManager.Instance.PlaySound("flip");
+            tiles.swapColumns(rotater.horizontalPosition, rotater.horizontalPosition + 1);
         }
 
         private void engageBulletTime()
@@ -688,7 +691,7 @@ namespace Switch.GameObjects
             if (!this.bulletTimeActive && this.stats.power >= 25)
             {
                 addMessageBoxMessage("Bullet Time Engaged!", Color.Blue);
-                SoundManager.Instance.playSound("bullettime");
+                SoundManager.Instance.PlaySound("bullettime");
 
                 this.bulletTimeActive = true;
                 this.bulletTimeLeft += 15000;
@@ -728,10 +731,10 @@ namespace Switch.GameObjects
                 this.stats.numberOfLasersFired++;
                 this.stats.score += 50;
                 addMessageBoxMessage("Laser Fired!", Color.Yellow);
-                SoundManager.Instance.playSound("laser");
+                SoundManager.Instance.PlaySound("laser");
 
-                Rectangle animationRect = new Rectangle((int)(getPosition().X + (leftMostColumnToBlastWithALaserLawl * getTilePixelWidth())), 
-                                                        (int)getPosition().Y, 
+                Rectangle animationRect = new Rectangle((int)(getPosition().X + (leftMostColumnToBlastWithALaserLawl * getTilePixelWidth())),
+                                                        (int)getPosition().Y,
                                                         (int)(getTilePixelWidth() * 2),
                                                         getHeight());
                 AnimationManager.Instance.startAnimation("laser", 50, animationRect);
@@ -760,7 +763,7 @@ namespace Switch.GameObjects
 
                 this.stats.numberOfNukesFired++;
                 addMessageBoxMessage("Nuke Dropped!!!", Color.Red);
-                SoundManager.Instance.playSound("nuke-explode");
+                SoundManager.Instance.PlaySound("nuke-explode");
 
                 Rectangle animationRect = new Rectangle((int)getPosition().X,
                                                         (int)getPosition().Y,
@@ -781,19 +784,18 @@ namespace Switch.GameObjects
          **/
         private Tile[] getRandomTiles(int numOfTiles)
         {
-            Tile[] allTiles = tileSet.toArray();
+            Tile[] allTiles = tileSet.ToArray();
 
             List<Tile> tilePool = new List<Tile>();
             foreach (Tile tile in allTiles)
             {
                 int probabilityCounter;
 
-                if (tile.getType() == Tile.tileType.NORMAL)
+                if (tile.type == Tile.TileType.Normal)
                 {
                     probabilityCounter = 6;
                 }
-                else if (tile.getType() == Tile.tileType.BOTTOM_CAPPER ||
-                    tile.getType() == Tile.tileType.TOP_CAPPER)
+                else if (tile.type == Tile.TileType.BottomCapper || tile.type == Tile.TileType.TopCapper)
                 {
                     probabilityCounter = 6;
                 }

@@ -49,7 +49,7 @@ namespace Switch
             playerIndex1 = null;
             playerIndex2 = null;
 
-            SoundManager.Instance.setMusicPaused(true);
+            SoundManager.Instance.SetMusicPaused(true);
         }
 
         abstract public GameMode getGameMode();
@@ -117,8 +117,8 @@ namespace Switch
 
         public void startGameplay()
         {
-            SoundManager.Instance.setMusicPaused(false);
-            SoundManager.Instance.playSong("gameplay-song");
+            SoundManager.Instance.SetMusicPaused(false);
+            SoundManager.Instance.PlaySong("gameplay-song");
 
             foreach (GameBoard gameBoard in gameBoards)
             {
@@ -130,7 +130,7 @@ namespace Switch
 
         public override void UnloadContent()
         {
-            SoundManager.Instance.stopSong();
+            SoundManager.Instance.StopSong();
             AnimationManager.Instance.clearAllAnimations();
             VibrationManager.Instance.cancelAllVibrations();
 
@@ -176,11 +176,11 @@ namespace Switch
                     currentCountDownState++;
                     
                     if(currentCountDownState == CountDownState.READY || currentCountDownState == CountDownState.SET) {
-                        SoundManager.Instance.playSound("readySet");
+                        SoundManager.Instance.PlaySound("readySet");
                     }
                     else if (currentCountDownState == CountDownState.GO)
                     {
-                        SoundManager.Instance.playSound("go");
+                        SoundManager.Instance.PlaySound("go");
                     }
                 }
             }
@@ -211,7 +211,7 @@ namespace Switch
                             //}
 
                             HighScore highScore = new HighScore(name, score, diff);
-                            HighScoreManager.Instance.addHighScore(highScore);
+                            HighScoreManager.Instance.AddHighScore(highScore);
                         }
 
                         if (this.getGameMode() != GameMode.BATTLE_MODE)
@@ -251,7 +251,7 @@ namespace Switch
                         && !gameBoard.isGameOver())
                     {
                         VibrationManager.Instance.cancelAllVibrations();
-                        SoundManager.Instance.playSound("player-select");
+                        SoundManager.Instance.PlaySound("player-select");
 
                         ChallengeManager challengeManager = ChallengeManager.Instance;
                         if (!challengeManager.GetChallengeStatus(this.challenge.GetName()))
@@ -270,7 +270,7 @@ namespace Switch
 
                 foreach (GameDisplay gameDisplay in gameDisplays)
                 {
-                    gameDisplay.update(gameTime, false, false);
+                    gameDisplay.Update(gameTime, false, false);
                 }
             }
         }
@@ -292,7 +292,7 @@ namespace Switch
             //draw background images
             foreach (DetailedSpriteObject sprite in spriteObjects)
             {
-                spriteBatch.Draw(sprite.getTexture(), sprite.getDestinationRect(), Color.White);
+                spriteBatch.Draw(sprite.GetTexture(), sprite.getDestinationRect(), Color.White);
             }
 
             foreach (GameBoard gameBoard in gameBoards)

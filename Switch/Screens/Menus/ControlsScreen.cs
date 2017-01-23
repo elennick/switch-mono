@@ -72,7 +72,7 @@ namespace Switch
 
             if (input.IsMenuSelect(null, out playerIndex) || input.IsMenuCancel(null, out playerIndex))
             {
-                SoundManager.Instance.playSound("menu-select2");
+                SoundManager.Instance.PlaySound("menu-select2");
                 ExitScreen();
             }
         }

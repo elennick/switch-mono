@@ -10,7 +10,7 @@ namespace Switch.GameObjects.Tiles
 {
     class Rotater : SpriteObject
     {
-        private int horizontalPosition;
+        public int horizontalPosition { get; set; }
         private int minHorPos;
         private int maxHorPos;
 
@@ -23,7 +23,7 @@ namespace Switch.GameObjects.Tiles
                        int minimumHorizontalPosition, 
                        int maximumHorizontalPosition,
                        int initHorizontalPosition)
-                            : base(rotater.getTexture())
+                            : base(rotater.GetTexture())
         {
             this.minHorPos = minimumHorizontalPosition;
             this.maxHorPos = maximumHorizontalPosition;
@@ -31,17 +31,7 @@ namespace Switch.GameObjects.Tiles
             this.setSpriteSheetDictionary(rotater.getSpriteSheetDictionary());
         }
 
-        public int getHorizontalPosition()
-        {
-            return this.horizontalPosition;
-        }
-
-        public void setHorizontalPosition(int horizontalPosition)
-        {
-            this.horizontalPosition = horizontalPosition;
-        }
-
-        public void moveRight()
+        public void MoveRight()
         {
             if (this.horizontalPosition < this.maxHorPos)
             {
@@ -49,7 +39,7 @@ namespace Switch.GameObjects.Tiles
             }
         }
 
-        public void moveLeft()
+        public void MoveLeft()
         {
             if (this.horizontalPosition > this.minHorPos)
             {

@@ -11,10 +11,10 @@ namespace Switch.GameObjects.GameDisplays
 {
     class PowerMeterDisplay : GameDisplay
     {
-        public static int MAX_POWER = 100;
-        public static int POWER_FOR_BULLET_TIME = 25;
-        public static int POWER_FOR_LASERS = 50;
-        public static int POWER_FOR_NUKE = 100;
+        public static int MaxPower = 100;
+        public static int PowerForBulletTime = 25;
+        public static int PowerForLasers = 50;
+        public static int PowerForNuke = 100;
         private int power;
         protected Vector2 position;
         private Texture2D powerbarTexture;
@@ -43,7 +43,7 @@ namespace Switch.GameObjects.GameDisplays
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            this.setPower(this.gameBoard.getPower());
+            this.SetPower(this.gameBoard.getPower());
             float scaleX = (float)this.power / 100;
 
             //draw power bar outline and the power bar itself
@@ -55,35 +55,35 @@ namespace Switch.GameObjects.GameDisplays
                                                  (int)this.position.Y + 45, 
                                                  30, 
                                                  30);
-            spriteBatch.Draw(getBulletTimeIcon(), btIconRect, Color.White);
+            spriteBatch.Draw(GetBulletTimeIcon(), btIconRect, Color.White);
 
             //draw laser icon
             Rectangle laserIconRect = new Rectangle((int)this.position.X + 74,
                                                  (int)this.position.Y + 45,
                                                  30,
                                                  30);
-            spriteBatch.Draw(getLaserIcon(), laserIconRect, Color.White);
+            spriteBatch.Draw(GetLaserIcon(), laserIconRect, Color.White);
 
             //draw nuke icon
             Rectangle nukeIconRect = new Rectangle((int)this.position.X + 180,
                                                  (int)this.position.Y + 45,
                                                  30,
                                                  30);
-            spriteBatch.Draw(getNukeIcon(), nukeIconRect, Color.White);
+            spriteBatch.Draw(GetNukeIcon(), nukeIconRect, Color.White);
         }
 
-        public void setPower(int power)
+        public void SetPower(int power)
         {
             this.power = power;
-            if (this.power >= MAX_POWER)
+            if (this.power >= MaxPower)
             {
-                this.power = MAX_POWER;
+                this.power = MaxPower;
             }
         }
 
-        private Texture2D getBulletTimeIcon()
+        private Texture2D GetBulletTimeIcon()
         {
-            if (this.power >= POWER_FOR_BULLET_TIME)
+            if (this.power >= PowerForBulletTime)
             {
                 return this.clockReady;
             }
@@ -91,9 +91,9 @@ namespace Switch.GameObjects.GameDisplays
             return this.clockDisabled;
         }
 
-        private Texture2D getLaserIcon()
+        private Texture2D GetLaserIcon()
         {
-            if (this.power >= POWER_FOR_LASERS)
+            if (this.power >= PowerForLasers)
             {
                 return this.laserReady;
             }
@@ -101,9 +101,9 @@ namespace Switch.GameObjects.GameDisplays
             return this.laserDisabled;
         }
 
-        private Texture2D getNukeIcon()
+        private Texture2D GetNukeIcon()
         {
-            if (this.power >= POWER_FOR_NUKE)
+            if (this.power >= PowerForNuke)
             {
                 return this.nukeReady;
             }

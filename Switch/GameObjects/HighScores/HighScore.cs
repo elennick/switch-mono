@@ -43,7 +43,7 @@ namespace Switch.HighScores
             }
         }
 
-        public String getDifficultyAsString()
+        public String GetDifficultyAsString()
         {
             return difficulty.getName();
         }
