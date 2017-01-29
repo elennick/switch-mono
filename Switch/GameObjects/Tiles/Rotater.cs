@@ -28,7 +28,7 @@ namespace Switch.GameObjects.Tiles
             this.minHorPos = minimumHorizontalPosition;
             this.maxHorPos = maximumHorizontalPosition;
             this.horizontalPosition = initHorizontalPosition;
-            this.setSpriteSheetDictionary(rotater.getSpriteSheetDictionary());
+            this.SetSpriteSheetDictionary(rotater.GetSpriteSheetDictionary());
         }
 
         public void MoveRight()

@@ -10,8 +10,8 @@ namespace Switch.GameObjects
 {
     class DetailedSpriteObject : SpriteObject
     {
-        private Vector2 position;
-        protected Rectangle destRect;
+        public Vector2 position { get; set; }
+        public Rectangle destRect { get; set; }
 
         public DetailedSpriteObject(Texture2D texture, Vector2 position)
             : base(texture)
@@ -23,26 +23,6 @@ namespace Switch.GameObjects
             : base(texture)
         {
             this.destRect = destRect;
-        }
-
-        public void setPosition(Vector2 position)
-        {
-            this.position = position;
-        }
-
-        public Vector2 getPosition()
-        {
-            return this.position;
-        }
-
-        public void setDestinationRect(Rectangle rect)
-        {
-            this.destRect = rect;
-        }
-
-        public Rectangle getDestinationRect()
-        {
-            return this.destRect;
         }
     }
 }

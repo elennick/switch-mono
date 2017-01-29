@@ -153,7 +153,7 @@ namespace Switch.GameObjects
         {
             foreach (Tile tile in getTilesAsList())
             {
-                if (tile.isAnimating())
+                if (tile.IsAnimating())
                 {
                     return false;
                 }
@@ -320,7 +320,7 @@ namespace Switch.GameObjects
                         foreach (Tile tileToCompare in column)
                         {
                             if ((tileToCompare.Y == tile.Y + 1 || tileToCompare.Y == tile.Y - 1)
-                                && tileToCompare.getStaticTexture() == tile.getStaticTexture()
+                                && tileToCompare.GetStaticTexture() == tile.GetStaticTexture()
                                 && tile.seated
                                 && tileToCompare.seated
                                 && !tile.markedForDeletion
@@ -358,7 +358,7 @@ namespace Switch.GameObjects
                     if (thisTile.markedForDeletion)
                     {
                         column.Remove(thisTile);
-                        AnimationManager.Instance.startAnimation("tile-explode", 25, gameBoard.getTileRectangle(thisTile));
+                        AnimationManager.Instance.startAnimation("tile-explode", 25, gameBoard.GetTileRectangle(thisTile));
                         atLeastOneTileDeleted = true;
                     }
                 }
@@ -437,7 +437,7 @@ namespace Switch.GameObjects
                     tile.Y <= bottomCapper.Y &&
                     !tile.markedForDeletion)
                 {
-                    tile.startAnimation("explode", 25);
+                    tile.StartAnimation("explode", 25);
                     tile.MarkForDeletion();
 
                     numberOfTilesDestroyed++;

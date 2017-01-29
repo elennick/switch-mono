@@ -59,20 +59,20 @@ namespace Switch
 
             //create a new gameboard to use for 1p
             GameBoard gameBoard = new GameBoard(new Vector2(480, 55), TileSet.LoadAndGetDefaultTileset(content, challenge.GetDifficulty()),challenge.GetDifficulty(), 400, 564, (int)playerIndex1);
-            gameBoard.setScaleTiles(true);
-            gameBoard.getStats().power = this.challenge.StartingPower();
+            gameBoard.SetScaleTiles(true);
+            gameBoard.GetStats().power = this.challenge.StartingPower();
             this.addGameplayScreenObject(gameBoard);
 
             //check to see if this challenge wants the board to speed up or stay constant speed
             int speedUpTime = challenge.IsSpeedUpEnabled();
             if (speedUpTime > 0)
             {
-                gameBoard.setSpeedUpEnabled(true);
-                gameBoard.setSpeedUpTimer(speedUpTime);
+                gameBoard.SetSpeedUpEnabled(true);
+                gameBoard.SetSpeedUpTimer(speedUpTime);
             }
             else
             {
-                gameBoard.setSpeedUpEnabled(false);
+                gameBoard.SetSpeedUpEnabled(false);
             }
             
 

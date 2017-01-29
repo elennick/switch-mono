@@ -12,16 +12,16 @@ namespace Switch.GameObjects
     class SpriteObject
     {
         private Texture2D texture;
-        private Texture2D backgroundTexture;
+        public Texture2D backgroundTexture { get; set; }
         private Dictionary<String, SpriteSheet> animations;
         private SpriteSheet activeAnimation;
         private String activeAnimationName;
         private int activeAnimationFrameChangeTime;
         private int timeSinceLastFrameUpdate;
         private int currentFrame;
-        private Rectangle destinationRect;
+        public Rectangle destinationRect { get; set; }
         private bool loopCurrentAnimation;
-        private Color color;
+        public Color color { get; set; }
 
         public SpriteObject(Texture2D texture)
         {
@@ -42,37 +42,17 @@ namespace Switch.GameObjects
             color = Color.White;
         }
 
-        public Color getColor()
-        {
-            return this.color;
-        }
-
-        public void setColor(Color color)
-        {
-            this.color = color;
-        }
-
-        public String getCurrentAnimation()
+        public String GetCurrentAnimation()
         {
             return activeAnimationName;
         }
 
-        public Rectangle getDestinationRect()
-        {
-            return this.destinationRect;
-        }
-
-        public void setDestinationRect(Rectangle rect)
-        {
-            this.destinationRect = rect;
-        }
-
-        public void setTexture(Texture2D texture)
+        public void SetTexture(Texture2D texture)
         {
             this.texture = texture;
         }
 
-        public Texture2D getStaticTexture()
+        public Texture2D GetStaticTexture()
         {
             return this.texture;
         }
@@ -94,22 +74,12 @@ namespace Switch.GameObjects
             return textureToReturn;
         }
 
-        public void setBackgroundTexture(Texture2D texture)
-        {
-            this.backgroundTexture = texture;
-        }
-
-        public Texture2D GetBackgroundTexture()
-        {
-            return this.backgroundTexture;
-        }
-
-        public void addAnimation(String animationName, SpriteSheet spriteSheet)
+        public void AddAnimation(String animationName, SpriteSheet spriteSheet)
         {
             animations.Add(animationName, spriteSheet);
         }
 
-        public void startAnimation(String animationName, int framesPerSecond, bool looping)
+        public void StartAnimation(String animationName, int framesPerSecond, bool looping)
         {
             if (animations.ContainsKey(animationName))
             {
@@ -122,12 +92,12 @@ namespace Switch.GameObjects
             }
         }
 
-        public void startAnimation(String animationName, int framesPerSecond)
+        public void StartAnimation(String animationName, int framesPerSecond)
         {
-            this.startAnimation(animationName, framesPerSecond, false);
+            this.StartAnimation(animationName, framesPerSecond, false);
         }
 
-        public virtual void updateGameTime(int elapsedGameTime)
+        public virtual void UpdateGameTime(int elapsedGameTime)
         {
             timeSinceLastFrameUpdate += elapsedGameTime;
 
@@ -151,24 +121,24 @@ namespace Switch.GameObjects
 
         public virtual void UpdateGameTime(int elapsedGameTime, int currentGameSpeed, int currentTilePixelHeight)
         {
-            this.updateGameTime(elapsedGameTime);
+            this.UpdateGameTime(elapsedGameTime);
         }
 
-        public void setSpriteSheetDictionary(Dictionary<String, SpriteSheet> animations)
+        public void SetSpriteSheetDictionary(Dictionary<String, SpriteSheet> animations)
         {
             this.animations = animations;
         }
 
-        public Dictionary<String, SpriteSheet> getSpriteSheetDictionary()
+        public Dictionary<String, SpriteSheet> GetSpriteSheetDictionary()
         {
             return this.animations;
         }
 
-        public Rectangle getCurrentCelRect()
+        public Rectangle GetCurrentCelRect()
         {
             Rectangle rect;
 
-            if (!this.isAnimating())
+            if (!this.IsAnimating())
             {
                 rect = new Rectangle(0, 0, this.texture.Width, this.texture.Height);
             }
@@ -181,14 +151,9 @@ namespace Switch.GameObjects
             return rect;
         }
 
-        public bool isAnimating()
+        public bool IsAnimating()
         {
-            if (activeAnimation == null)
-            {
-                return false;
-            }
-
-            return true;
+            return activeAnimation != null;
         }
     }
 }

@@ -122,7 +122,7 @@ namespace Switch
 
             foreach (GameBoard gameBoard in gameBoards)
             {
-                gameBoard.startGame();
+                gameBoard.StartGame();
             }
 
             this.gameStarted = true;
@@ -189,7 +189,7 @@ namespace Switch
             {
                 foreach (GameBoard gameBoard in gameBoards)
                 {
-                    if (gameBoard.isGameOver()
+                    if (gameBoard.IsGameOver()
                         && !AnimationManager.Instance.areAnyAnimationsActive()
                         && !gameboardIsFiringNuke())
                     {
@@ -197,8 +197,8 @@ namespace Switch
 
                         if (this.getGameMode() == GameMode.SCORE_ATTACK)
                         {
-                            int score = gameBoard.getScore();
-                            Difficulty diff = gameBoard.getDifficulty();
+                            int score = gameBoard.GetScore();
+                            Difficulty diff = gameBoard.GetDifficulty();
 
                             String name;
                             //try
@@ -225,7 +225,7 @@ namespace Switch
                         {
                             //TODO - THIS WHOLE CHUNK OF CODE IS BROKEN FIX IT
                             String playerIndex;
-                            if (gameBoard.getPlayerIndex() == 0)
+                            if (gameBoard.GetPlayerIndex() == 0)
                             {
                                 //player 1 lost, so the winner is player 2
                                 playerIndex = "2";
@@ -245,10 +245,10 @@ namespace Switch
                     }
 
                     if (this.challenge != null 
-                        && this.challenge.IsCompleted(gameBoard.getStats())
+                        && this.challenge.IsCompleted(gameBoard.GetStats())
                         && !AnimationManager.Instance.areAnyAnimationsActive()
                         && !gameboardIsFiringNuke()
-                        && !gameBoard.isGameOver())
+                        && !gameBoard.IsGameOver())
                     {
                         VibrationManager.Instance.cancelAllVibrations();
                         SoundManager.Instance.PlaySound("player-select");
@@ -265,7 +265,7 @@ namespace Switch
                         ScreenManager.AddScreen(challengeCompleteScreen, null);
                     }
 
-                    gameBoard.update(gameTime);
+                    gameBoard.Update(gameTime);
                 }
 
                 foreach (GameDisplay gameDisplay in gameDisplays)
@@ -292,13 +292,13 @@ namespace Switch
             //draw background images
             foreach (DetailedSpriteObject sprite in spriteObjects)
             {
-                spriteBatch.Draw(sprite.GetTexture(), sprite.getDestinationRect(), Color.White);
+                spriteBatch.Draw(sprite.GetTexture(), sprite.destRect, Color.White);
             }
 
             foreach (GameBoard gameBoard in gameBoards)
             {
                 //draw the gameboard (tiles, rotater, etc)
-                gameBoard.draw(spriteBatch, gameTime);
+                gameBoard.Draw(spriteBatch, gameTime);
 
                 //draw game displays (score, power meters, etc)
                 foreach (GameDisplay display in gameDisplays)
@@ -372,7 +372,7 @@ namespace Switch
             {
                 foreach (GameBoard gameBoard in gameBoards)
                 {
-                    gameBoard.handleInput(input);
+                    gameBoard.HandleInput(input);
                 }
             }
 
@@ -382,7 +382,7 @@ namespace Switch
         {
             foreach (GameBoard gameBoard in gameBoards)
             {
-                if (gameBoard.isNukeAnimationOn())
+                if (gameBoard.IsNukeAnimationOn())
                 {
                     return true;
                 }
@@ -398,14 +398,14 @@ namespace Switch
                 GameboardStats consolidatedStats = new GameboardStats();
                 foreach (GameBoard gameBoardToSaveStatsFor in gameBoards)
                 {
-                    consolidatedStats.addStats(gameBoardToSaveStatsFor.getStats());
+                    consolidatedStats.addStats(gameBoardToSaveStatsFor.GetStats());
                 }
 
                 StorageManager.Instance.AddStatsData(consolidatedStats);
             }
             else
             {
-                StorageManager.Instance.AddStatsData(gameBoards[0].getStats());
+                StorageManager.Instance.AddStatsData(gameBoards[0].GetStats());
             }
         }
 

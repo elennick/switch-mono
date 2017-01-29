@@ -62,7 +62,7 @@ namespace Switch
 
             //create a new gameboard to use for 1p
             GameBoard gameBoard = new GameBoard(new Vector2(480, 55), TileSet.LoadAndGetDefaultTileset(content, difficulty), difficulty, 400, 564, (int)playerIndex1);
-            gameBoard.setScaleTiles(true);
+            gameBoard.SetScaleTiles(true);
             this.addGameplayScreenObject(gameBoard);
 
             //load all the background imagery

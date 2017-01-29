@@ -46,10 +46,10 @@ namespace Switch
             {
                 SpriteSheet spriteSheet = animations[animationName];
                 DetailedSpriteObject animation = new DetailedSpriteObject(spriteSheet.getSpriteSheet(), new Vector2(rect.X, rect.Y));
-                animation.setDestinationRect(rect);
+                animation.destRect = rect;
 
-                animation.addAnimation(animationName, spriteSheet);
-                animation.startAnimation(animationName, framesPerSecond);
+                animation.AddAnimation(animationName, spriteSheet);
+                animation.StartAnimation(animationName, framesPerSecond);
                 activeAnimations.Add(animation);
             }
         }
@@ -61,8 +61,8 @@ namespace Switch
                 SpriteSheet spriteSheet = animations[animationName];
                 DetailedSpriteObject animation = new DetailedSpriteObject(spriteSheet.getSpriteSheet(), position);
 
-                animation.addAnimation(animationName, spriteSheet);
-                animation.startAnimation(animationName, framesPerSecond);
+                animation.AddAnimation(animationName, spriteSheet);
+                animation.StartAnimation(animationName, framesPerSecond);
                 activeAnimations.Add(animation);
             }
         }
@@ -71,7 +71,7 @@ namespace Switch
         {
             foreach (DetailedSpriteObject animation in activeAnimations)
             {
-                animation.updateGameTime(elapsedGameTime);
+                animation.UpdateGameTime(elapsedGameTime);
             }
         }
 
@@ -80,15 +80,15 @@ namespace Switch
             //draw any animations that are still going
             foreach (DetailedSpriteObject animation in activeAnimations)
             {
-                if (animation.isAnimating())
+                if (animation.IsAnimating())
                 {
-                    if (animation.getDestinationRect() == null)
+                    if (animation.destRect == null)
                     {
-                        spriteBatch.Draw(animation.GetTexture(), animation.getPosition(), animation.getCurrentCelRect(), Color.White);
+                        spriteBatch.Draw(animation.GetTexture(), animation.position, animation.GetCurrentCelRect(), Color.White);
                     }
                     else
                     {
-                        spriteBatch.Draw(animation.GetTexture(), animation.getDestinationRect(), animation.getCurrentCelRect(), Color.White);
+                        spriteBatch.Draw(animation.GetTexture(), animation.destRect, animation.GetCurrentCelRect(), Color.White);
                     }
                 }
             }
@@ -97,7 +97,7 @@ namespace Switch
             DetailedSpriteObject[] activeAnimationsArray = activeAnimations.ToArray();
             for (int i = 0; i < activeAnimationsArray.Length; i++)
             {
-                if (!activeAnimationsArray[i].isAnimating())
+                if (!activeAnimationsArray[i].IsAnimating())
                 {
                     activeAnimations.Remove(activeAnimationsArray[i]);
                 }

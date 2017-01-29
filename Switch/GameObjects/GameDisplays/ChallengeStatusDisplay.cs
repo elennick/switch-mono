@@ -25,7 +25,7 @@ namespace Switch.GameObjects.GameDisplays
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             spriteBatch.DrawString(font,
-                challenge.GetStatusText(gameBoard.getStats()),
+                challenge.GetStatusText(gameBoard.GetStats()),
                 position,
                 new Color(217, 217, 217));
         }

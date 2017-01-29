@@ -51,8 +51,8 @@ namespace SwitchGame.GameObjects.GameDisplays
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            this.SetPower(this.gameBoard1.getPower(), PlayerIndex.One);
-            this.SetPower(this.gameBoard2.getPower(), PlayerIndex.Two);
+            this.SetPower(this.gameBoard1.GetPower(), PlayerIndex.One);
+            this.SetPower(this.gameBoard2.GetPower(), PlayerIndex.Two);
 
             //draw the background scaffolding
             Rectangle scaffoldingRect = new Rectangle((int)this.position.X, (int)this.position.Y, 250, 675);
@@ -63,7 +63,7 @@ namespace SwitchGame.GameObjects.GameDisplays
             this.DrawPowerBar(spriteBatch, this.power2, new Vector2(this.position.X + 220, this.position.Y), true);
 
             //draw competition bar
-            this.DrawCompetitionBar(spriteBatch, this.gameBoard1.getScore(), this.gameBoard2.getScore());
+            this.DrawCompetitionBar(spriteBatch, this.gameBoard1.GetScore(), this.gameBoard2.GetScore());
 
             //draw the bullet time power bar
             this.DrawBulletTimePowerBar(spriteBatch, this.position, this.gameBoard1, false);
@@ -86,7 +86,7 @@ namespace SwitchGame.GameObjects.GameDisplays
         {
  	        base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
 
-            this.maxBulletTime = this.gameBoard.getMaxBulletTime();
+            this.maxBulletTime = this.gameBoard.GetMaxBulletTime();
 
             float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
             float fadeSpeed = (float)gameTime.ElapsedGameTime.TotalSeconds * 4;
@@ -119,7 +119,7 @@ namespace SwitchGame.GameObjects.GameDisplays
 
         private void DrawBulletTimePowerBar(SpriteBatch spriteBatch, Vector2 thisPosition, GameBoard thisGameBoard, bool flipped)
         {
-            float scaleX = (float)thisGameBoard.getBulletTimeLeft() / (float)this.maxBulletTime;
+            float scaleX = (float)thisGameBoard.GetBulletTimeLeft() / (float)this.maxBulletTime;
 
             Vector2 barPosition;
             if (!flipped)
@@ -252,13 +252,13 @@ namespace SwitchGame.GameObjects.GameDisplays
 
             if (!flipped)
             {
-                scoreString = gameBoard1.getScore().ToString();
+                scoreString = gameBoard1.GetScore().ToString();
                 scorePosition = new Vector2(powerBarPosition.X + 50, powerBarPosition.Y + 605);
                 scoreOrigin = Utils.Instance.getTextStringLeftOrigin(scoreString, tinyScoreFont);
             }
             else
             {
-                scoreString = gameBoard2.getScore().ToString();
+                scoreString = gameBoard2.GetScore().ToString();
                 scoreOrigin = Utils.Instance.getTextStringRightOrigin(scoreString, tinyScoreFont);
                 scorePosition = new Vector2(powerBarPosition.X - 20, powerBarPosition.Y + 605);
             }

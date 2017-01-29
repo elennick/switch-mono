@@ -109,8 +109,8 @@ namespace Switch.GameObjects.Tiles
             Tile crescentTile = new Tile(content.Load<Texture2D>("Sprites\\Tiles\\TileSet1\\Objects\\crescent"),
                 content.Load<Texture2D>("Sprites\\Tiles\\TileSet1\\Backgrounds\\blue"),
                 Tile.TileType.Normal);
-            crescentTile.addAnimation("explode", tileExplosionSpriteSheet);
-            crescentTile.addAnimation("idle", idleCrescentSpriteSheet);
+            crescentTile.AddAnimation("explode", tileExplosionSpriteSheet);
+            crescentTile.AddAnimation("idle", idleCrescentSpriteSheet);
             tileSet.AddNormalTile(crescentTile);
 
             if (tileSet.GetNumberOfNormalTilesInTileSet() < difficulty.getSizeOfTileSet())
@@ -118,8 +118,8 @@ namespace Switch.GameObjects.Tiles
                 Tile diamondTile = new Tile(content.Load<Texture2D>("Sprites\\Tiles\\TileSet1\\Objects\\diamond"),
                     content.Load<Texture2D>("Sprites\\Tiles\\TileSet1\\Backgrounds\\green"),
                     Tile.TileType.Normal);
-                diamondTile.addAnimation("explode", tileExplosionSpriteSheet);
-                diamondTile.addAnimation("idle", idleDiamondSpriteSheet);
+                diamondTile.AddAnimation("explode", tileExplosionSpriteSheet);
+                diamondTile.AddAnimation("idle", idleDiamondSpriteSheet);
                 tileSet.AddNormalTile(diamondTile);
             }
 
@@ -128,8 +128,8 @@ namespace Switch.GameObjects.Tiles
                 Tile dropTile = new Tile(content.Load<Texture2D>("Sprites\\Tiles\\TileSet1\\Objects\\drop"),
                     content.Load<Texture2D>("Sprites\\Tiles\\TileSet1\\Backgrounds\\orange"),
                     Tile.TileType.Normal);
-                dropTile.addAnimation("explode", tileExplosionSpriteSheet);
-                dropTile.addAnimation("idle", idleDropSpriteSheet);
+                dropTile.AddAnimation("explode", tileExplosionSpriteSheet);
+                dropTile.AddAnimation("idle", idleDropSpriteSheet);
                 tileSet.AddNormalTile(dropTile);
             }
 
@@ -138,8 +138,8 @@ namespace Switch.GameObjects.Tiles
                 Tile triangleTile = new Tile(content.Load<Texture2D>("Sprites\\Tiles\\TileSet1\\Objects\\triangle"),
                     content.Load<Texture2D>("Sprites\\Tiles\\TileSet1\\Backgrounds\\red"),
                     Tile.TileType.Normal);
-                triangleTile.addAnimation("explode", tileExplosionSpriteSheet);
-                triangleTile.addAnimation("idle", idleTriangleSpriteSheet);
+                triangleTile.AddAnimation("explode", tileExplosionSpriteSheet);
+                triangleTile.AddAnimation("idle", idleTriangleSpriteSheet);
                 tileSet.AddNormalTile(triangleTile);
             }
 
@@ -148,8 +148,8 @@ namespace Switch.GameObjects.Tiles
                 Tile octagonTile = new Tile(content.Load<Texture2D>("Sprites\\Tiles\\TileSet1\\Objects\\octagon"),
                     content.Load<Texture2D>("Sprites\\Tiles\\TileSet1\\Backgrounds\\purple"),
                     Tile.TileType.Normal);
-                octagonTile.addAnimation("explode", tileExplosionSpriteSheet);
-                octagonTile.addAnimation("idle", idleOctagonSpriteSheet);
+                octagonTile.AddAnimation("explode", tileExplosionSpriteSheet);
+                octagonTile.AddAnimation("idle", idleOctagonSpriteSheet);
                 tileSet.AddNormalTile(octagonTile);
             }
 
@@ -158,47 +158,47 @@ namespace Switch.GameObjects.Tiles
                 Tile wingTile = new Tile(content.Load<Texture2D>("Sprites\\Tiles\\TileSet1\\Objects\\wing_triangle"),
                     content.Load<Texture2D>("Sprites\\Tiles\\TileSet1\\Backgrounds\\teal"),
                     Tile.TileType.Normal);
-                wingTile.addAnimation("explode", tileExplosionSpriteSheet);
-                wingTile.addAnimation("idle", idleWingSpriteSheet);
+                wingTile.AddAnimation("explode", tileExplosionSpriteSheet);
+                wingTile.AddAnimation("idle", idleWingSpriteSheet);
                 tileSet.AddNormalTile(wingTile);
             }
 
             //add capper tiles
             Tile topCapper = new Tile(content.Load<Texture2D>("Sprites\\Tiles\\TileSet1\\Objects\\cap_top"), Tile.TileType.TopCapper);
-            topCapper.addAnimation("explode", tileExplosionSpriteSheet);
-            topCapper.addAnimation("idle", idleTopCapperSpriteSheet);
+            topCapper.AddAnimation("explode", tileExplosionSpriteSheet);
+            topCapper.AddAnimation("idle", idleTopCapperSpriteSheet);
             tileSet.topCapper = topCapper;
 
             Tile bottomCapper = new Tile(content.Load<Texture2D>("Sprites\\Tiles\\TileSet1\\Objects\\cap_bottom"), Tile.TileType.BottomCapper);
-            bottomCapper.addAnimation("explode", tileExplosionSpriteSheet);
-            bottomCapper.addAnimation("idle", idleBottomCapperSpriteSheet);
+            bottomCapper.AddAnimation("explode", tileExplosionSpriteSheet);
+            bottomCapper.AddAnimation("idle", idleBottomCapperSpriteSheet);
             tileSet.bottomCapper = bottomCapper;
 
             //add rotater
             Rotater rotater = new Rotater(content.Load<Texture2D>("Sprites\\Tiles\\TileSet1\\rotater-idle"));
-            rotater.addAnimation("rotate", rotateSpriteSheet);
-            rotater.addAnimation("idle", idleRotaterSpriteSheet);
+            rotater.AddAnimation("rotate", rotateSpriteSheet);
+            rotater.AddAnimation("idle", idleRotaterSpriteSheet);
             tileSet.rotater = rotater;
 
             //add multiplier tiles
             Tile multiplierTile2X = new Tile(content.Load<Texture2D>("Sprites\\Tiles\\TileSet1\\Objects\\2x"),
                 content.Load<Texture2D>("Sprites\\Tiles\\TileSet1\\Backgrounds\\mult_bronze"),
                 Tile.TileType.Multiplier);
-            multiplierTile2X.addAnimation("explode", tileExplosionSpriteSheet);
+            multiplierTile2X.AddAnimation("explode", tileExplosionSpriteSheet);
             multiplierTile2X.multiplier = 2;
             tileSet.AddMultiplierTile(multiplierTile2X);
 
             Tile mutliplierTile3X = new Tile(content.Load<Texture2D>("Sprites\\Tiles\\TileSet1\\Objects\\3x"),
                 content.Load<Texture2D>("Sprites\\Tiles\\TileSet1\\Backgrounds\\mult_silver"),
                 Tile.TileType.Multiplier);
-            mutliplierTile3X.addAnimation("explode", tileExplosionSpriteSheet);
+            mutliplierTile3X.AddAnimation("explode", tileExplosionSpriteSheet);
             mutliplierTile3X.multiplier = 3;
             tileSet.AddMultiplierTile(mutliplierTile3X);
 
             Tile multiplierTile4X = new Tile(content.Load<Texture2D>("Sprites\\Tiles\\TileSet1\\Objects\\4x"),
                 content.Load<Texture2D>("Sprites\\Tiles\\TileSet1\\Backgrounds\\mult_gold"),
                 Tile.TileType.Multiplier);
-            multiplierTile4X.addAnimation("explode", tileExplosionSpriteSheet);
+            multiplierTile4X.AddAnimation("explode", tileExplosionSpriteSheet);
             multiplierTile4X.multiplier = 4;
             tileSet.AddMultiplierTile(multiplierTile4X);
 

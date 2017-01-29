@@ -43,7 +43,7 @@ namespace Switch.GameObjects.GameDisplays
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            this.SetPower(this.gameBoard.getPower());
+            this.SetPower(this.gameBoard.GetPower());
             float scaleX = (float)this.power / 100;
 
             //draw power bar outline and the power bar itself

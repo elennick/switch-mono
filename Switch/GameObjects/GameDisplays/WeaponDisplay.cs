@@ -48,7 +48,7 @@ namespace Switch.GameObjects.GameDisplays
                 fireTextPosition,
                 Color.Black);
 
-            if (gameBoard.getPower() < this.availableAtPower)
+            if (gameBoard.GetPower() < this.availableAtPower)
             {
                 this.available = false;
                 spriteBatch.DrawString(font,

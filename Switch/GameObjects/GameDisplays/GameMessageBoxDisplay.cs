@@ -22,7 +22,7 @@ namespace Switch.GameObjects.GameDisplays
             this.pixelWidth = pixelWidth;
             this.pixelHeight = pixelHeight;
             this.messageQueue = new List<GameMessageBoxMessage>();
-            this.gameBoard.setMessageBoxDisplay(this);
+            this.gameBoard.SetMessageBoxDisplay(this);
             this.maxNumOfMessages = maxNumOfMessages;
         }
 

@@ -68,9 +68,9 @@ namespace Switch.GameObjects.GameDisplays
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            this.SetPower(this.gameBoard.getPower());
-            this.maxBulletTime = this.gameBoard.getMaxBulletTime();
-            this.bulletTimeLeft = this.gameBoard.getBulletTimeLeft();
+            this.SetPower(this.gameBoard.GetPower());
+            this.maxBulletTime = this.gameBoard.GetMaxBulletTime();
+            this.bulletTimeLeft = this.gameBoard.GetBulletTimeLeft();
 
             spriteBatch.Draw(powerbarScaffolding, 
                              this.position, 
@@ -202,7 +202,7 @@ namespace Switch.GameObjects.GameDisplays
                              0);
 
             //draw the bullet time is active message
-            if (this.gameBoard.isBulletTimeOn())
+            if (this.gameBoard.IsBulletTimeOn())
             {
                 String bulletTimeIsActiveString = "Bullet Time Engaged!";
                 Vector2 bulletTimeIsActiveOrigin = Utils.Utils.Instance.getTextStringCenterOrigin(bulletTimeIsActiveString, font);

@@ -16,15 +16,15 @@ namespace Switch.GameObjects
 {
     class GameBoard
     {
-        private Vector2 boardPosition; //top left corner of the board, might vary if we are utilizing effects such as the board shaking
-        private Vector2 originalBoardPosition; //top left corner of the board, should always stay the same after init
+        private Vector2 position { get; set; } //top left corner of the board, might vary if we are utilizing effects such as the board shaking
+        private Vector2 originalPosition; //top left corner of the board, should always stay the same after init
         private TileSet tileSet; //a set of tiles for this gameboard to utilize
         private Rectangle gameBoardRect; //a Rectangle object representing the size of the board
         private Rotater rotater; //the object at the bottom of the board that swaps rows
         private GameMessageBoxDisplay messageBox;
         private List<SpriteObject> animatableSprites;
-        private int height; //height of the board in pixels
-        private int width; //width of the board in pixels
+        private int height { get; } //height of the board in pixels
+        private int width { get; } //width of the board in pixels
         private int numTilesHeight; //number of tiles high that this board has as a max
         private int numTilesWidth; //number of tiles across that this board has as a max
         private int startingSpeed; //the number of milliseconds to wait before moving tiles down initially
@@ -66,8 +66,8 @@ namespace Switch.GameObjects
                          int playerIndex)
         {
             //set constructor params
-            this.boardPosition = boardPosition;
-            this.originalBoardPosition = boardPosition;
+            this.position = boardPosition;
+            this.originalPosition = boardPosition;
             this.difficulty = difficulty;
             this.height = height;
             this.width = width;
@@ -123,26 +123,26 @@ namespace Switch.GameObjects
                                                (int)(boardPosition.Y + height));
 
             boardBackgroundSpriteObject = new DetailedSpriteObject(tileSet.boardBackground, new Rectangle((int)(boardPosition.X - 10), 0, width + 20, height + 111));
-            nukeSpriteObject = new DetailedSpriteObject(tileSet.nukeImage, new Rectangle((int)originalBoardPosition.X, (int)originalBoardPosition.Y, width, height));
-            blankWhiteSpritObject = new DetailedSpriteObject(tileSet.blankImage, new Rectangle((int)originalBoardPosition.X, (int)originalBoardPosition.Y, width, height));
+            nukeSpriteObject = new DetailedSpriteObject(tileSet.nukeImage, new Rectangle((int)originalPosition.X, (int)originalPosition.Y, width, height));
+            blankWhiteSpritObject = new DetailedSpriteObject(tileSet.blankImage, new Rectangle((int)originalPosition.X, (int)originalPosition.Y, width, height));
         }
 
-        public int getPlayerIndex()
+        public int GetPlayerIndex()
         {
             return this.playerIndex;
         }
 
-        public Difficulty getDifficulty()
+        public Difficulty GetDifficulty()
         {
             return this.difficulty;
         }
 
-        public void setMessageBoxDisplay(GameMessageBoxDisplay messageBox)
+        public void SetMessageBoxDisplay(GameMessageBoxDisplay messageBox)
         {
             this.messageBox = messageBox;
         }
 
-        public void addMessageBoxMessage(String message, Color color)
+        public void AddMessageBoxMessage(String message, Color color)
         {
             if (this.messageBox != null)
             {
@@ -150,127 +150,112 @@ namespace Switch.GameObjects
             }
         }
 
-        public void addMessageBoxMessage(String message)
+        public void AddMessageBoxMessage(String message)
         {
-            addMessageBoxMessage(message, new Color(217, 217, 217));
+            AddMessageBoxMessage(message, new Color(217, 217, 217));
         }
 
-        public GameboardStats getStats()
+        public GameboardStats GetStats()
         {
             return this.stats;
         }
 
-        public int getMaxBulletTime()
+        public int GetMaxBulletTime()
         {
             return this.maxBulletTime;
         }
 
-        public Rectangle getRect()
+        public Rectangle GetRect()
         {
             return this.gameBoardRect;
         }
 
-        public void setSpeedUpTimer(int milliseconds)
+        public void SetSpeedUpTimer(int milliseconds)
         {
             timeBeforeSpeedUp = milliseconds;
         }
 
-        public void setSpeedUpEnabled(bool enabled)
+        public void SetSpeedUpEnabled(bool enabled)
         {
             this.speedupEnabled = enabled;
         }
 
-        public bool isSpeedUpEnabled()
+        public bool IsSpeedUpEnabled()
         {
             return this.speedupEnabled;
         }
 
-        public TileSet getTileSet()
+        public TileSet GetTileSet()
         {
             return this.tileSet;
         }
 
-        public Vector2 getPosition()
-        {
-            return this.boardPosition;
-        }
-
-        public int getHeight()
-        {
-            return this.height;
-        }
-
-        public int getWidth()
-        {
-            return this.width;
-        }
-
-        public float getTilePixelWidth()
+        public float GetTilePixelWidth()
         {
             return this.width / this.numTilesWidth;
         }
 
-        public float getTilePixelHeight()
+        public float GetTilePixelHeight()
         {
             return this.height / this.numTilesHeight;
         }
 
-        public void setScaleTiles(bool scaleTiles)
+        public void SetScaleTiles(bool scaleTiles)
         {
             this.scaleTiles = scaleTiles;
         }
 
-        public bool isScaleTiles()
+        public bool IsScaleTiles()
         {
             return this.scaleTiles;
         }
 
-        public void setPaused(bool paused)
+        public void SetPaused(bool paused)
         {
             this.paused = paused;
         }
 
-        public int getNumTilesToDrop()
+        public int GetNumTilesToDrop()
         {
             return this.numTilesToDrop;
         }
 
-        public void setNumTilesToDrop(int num)
+        public void SetNumTilesToDrop(int num)
         {
             this.numTilesToDrop = num;
         }
 
-        public int getScore()
+        public int GetScore()
         {
             return this.stats.score;
         }
 
-        public int getPower()
+        public int GetPower()
         {
             return this.stats.power;
         }
 
-        public int getBulletTimeLeft()
+        public int GetBulletTimeLeft()
         {
             return this.bulletTimeLeft;
         }
 
-        public bool isGameOver()
+        public bool IsGameOver()
         {
             return this.gameOver;
         }
 
-        public bool isBulletTimeOn()
+        public bool IsBulletTimeOn()
         {
             return this.bulletTimeActive;
         }
 
-        public bool isNukeAnimationOn()
+        public bool IsNukeAnimationOn()
         {
             return this.isShaking;
         }
 
-        public int getCurrentSpeed()
+        public int GetCurrentSpeed()
         {
             int speed = this.currentSpeed;
 
@@ -286,17 +271,17 @@ namespace Switch.GameObjects
             return speed;
         }
 
-        public Rectangle getTileRectangle(Tile tile)
+        public Rectangle GetTileRectangle(Tile tile)
         {
-            int thisTilePosX = (int)(this.getPosition().X + (this.getTilePixelWidth() * tile.X));
-            int thisTilePosY = (int)(this.getPosition().Y + (this.getTilePixelHeight() * tile.Y));
+            int thisTilePosX = (int)(this.position.X + (this.GetTilePixelWidth() * tile.X));
+            int thisTilePosY = (int)(this.position.Y + (this.GetTilePixelHeight() * tile.Y));
             Vector2 thisTilesPosition = new Vector2(thisTilePosX, thisTilePosY);
 
-            return new Rectangle(thisTilePosX, thisTilePosY, (int)getTilePixelWidth(), (int)getTilePixelHeight());
+            return new Rectangle(thisTilePosX, thisTilePosY, (int)GetTilePixelWidth(), (int)GetTilePixelHeight());
         }
 
         //this method is really ineffecient, needs to be refactored badly
-        public void dropNewTileSet(int numTiles)
+        public void DropNewTileSet(int numTiles)
         {
             if (numTiles >= this.numTilesWidth)
             {
@@ -304,7 +289,7 @@ namespace Switch.GameObjects
             }
 
             //get random tile types to drop
-            Tile[] tilesToDrop = this.getRandomTiles(numTiles);
+            Tile[] tilesToDrop = this.GetRandomTiles(numTiles);
 
             //drop them into different columns
             List<int> columnsToDropIn = new List<int>();
@@ -346,23 +331,23 @@ namespace Switch.GameObjects
             }
         }
 
-        public void shakeBoard(int millisToShakeFor)
+        public void ShakeBoard(int millisToShakeFor)
         {
             if (!this.isShaking)
             {
                 this.isShaking = true;
                 this.timeLeftShaking = millisToShakeFor;
                 this.timeSinceLastShake = 0;
-                this.setPaused(true);
+                this.SetPaused(true);
                 this.fadeFromWhiteAlpha = 1;
             }
         }
 
-        public void levelUp()
+        public void LevelUp()
         {
             this.currentSpeed = (int)MathHelper.Clamp(this.currentSpeed - this.speedUpIncrement, this.minGameSpeed, this.startingSpeed);
             this.timeSinceLastSpeedUp = 0;
-            addMessageBoxMessage("Level Up!", Color.Silver);
+            AddMessageBoxMessage("Level Up!", Color.Silver);
             this.stats.level++;
             SoundManager.Instance.PlaySound("levelup");
         }
@@ -370,7 +355,7 @@ namespace Switch.GameObjects
         /**
          * Called by the screen that is utilizing this board during every Update() cycle
          */
-        public void update(GameTime gameTime)
+        public void Update(GameTime gameTime)
         {
             int elapsedTime = gameTime.ElapsedGameTime.Milliseconds;
 
@@ -381,12 +366,12 @@ namespace Switch.GameObjects
             //let all sprite objects know the current elapsed game time in case they need to update a frame
             foreach (SpriteObject sprite in animatableSprites)
             {
-                sprite.updateGameTime(elapsedTime);
+                sprite.UpdateGameTime(elapsedTime);
             }
 
             foreach (Tile sprite in tiles.getTilesAsList())
             {
-                sprite.UpdateGameTime(elapsedTime, this.getCurrentSpeed(), (int)this.getTilePixelHeight());
+                sprite.UpdateGameTime(elapsedTime, this.GetCurrentSpeed(), (int)this.GetTilePixelHeight());
             }
 
             AnimationManager.Instance.updateGameTime(elapsedTime);
@@ -403,8 +388,8 @@ namespace Switch.GameObjects
                 if (this.timeLeftShaking <= 0)
                 {
                     this.isShaking = false;
-                    setPaused(false);
-                    this.boardPosition = this.originalBoardPosition;
+                    SetPaused(false);
+                    this.position = this.originalPosition;
                 }
                 else if (this.timeSinceLastShake >= 75)
                 {
@@ -412,8 +397,8 @@ namespace Switch.GameObjects
                     int xVariation = random.Next(20) - 10;
                     int YVariation = random.Next(20) - 10;
 
-                    this.boardPosition = new Vector2(this.originalBoardPosition.X + xVariation,
-                                                     this.originalBoardPosition.Y + YVariation);
+                    this.position = new Vector2(this.originalPosition.X + xVariation,
+                                                     this.originalPosition.Y + YVariation);
                 }
 
                 this.fadeFromWhiteAlpha -= 0.005f;
@@ -427,7 +412,7 @@ namespace Switch.GameObjects
                 this.bulletTimeLeft -= elapsedTime;
                 if (this.bulletTimeLeft <= 0)
                 {
-                    this.stopBulletTime();
+                    this.StopBulletTime();
                 }
             }
 
@@ -436,11 +421,11 @@ namespace Switch.GameObjects
             {
                 if (tiles.areAllTilesSeated())
                 {
-                    dropNewTileSet(this.numTilesToDrop);
+                    DropNewTileSet(this.numTilesToDrop);
                 }
                 else
                 {
-                    if (tiles.willTilesGetDropped(getCurrentSpeed()))
+                    if (tiles.willTilesGetDropped(GetCurrentSpeed()))
                     {
                         tiles.seatTilesOnTopOfOtherTiles();
                         tiles.seatTilesAtFloor();
@@ -448,14 +433,14 @@ namespace Switch.GameObjects
                         if (this.timeSinceLastSpeedUp >= this.timeBeforeSpeedUp
                             && this.speedupEnabled)
                         {
-                            levelUp();
+                            LevelUp();
                         }
 
-                        tiles.dropTilesOlderThanAge(getCurrentSpeed());
+                        tiles.dropTilesOlderThanAge(GetCurrentSpeed());
 
                         int scoreBeforeTileDeletion = stats.score;
                         stats = tiles.markTilesForDeletion();
-                        pointsGained(stats.score - scoreBeforeTileDeletion);
+                        PointsGained(stats.score - scoreBeforeTileDeletion);
                     }
 
                     tiles.deleteTilesMarkedForDeletion(this);
@@ -465,44 +450,44 @@ namespace Switch.GameObjects
             }
         }
 
-        public void startGame()
+        public void StartGame()
         {
-            addMessageBoxMessage("Game Start!", Color.GreenYellow);
-            setPaused(false);
-            dropNewTileSet(this.numTilesToDrop);
-            startRotaterIdleAnimation();
+            AddMessageBoxMessage("Game Start!", Color.GreenYellow);
+            SetPaused(false);
+            DropNewTileSet(this.numTilesToDrop);
+            StartRotaterIdleAnimation();
         }
 
-        public void startRotaterIdleAnimation()
+        public void StartRotaterIdleAnimation()
         {
-            if (!this.rotater.isAnimating())
+            if (!this.rotater.IsAnimating())
             {
-                this.rotater.startAnimation("idle", 2, true);
+                this.rotater.StartAnimation("idle", 2, true);
             }
         }
 
-        public void draw(SpriteBatch spriteBatch, GameTime gameTime)
+        public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             //draw the board background
-            spriteBatch.Draw(boardBackgroundSpriteObject.GetTexture(), boardBackgroundSpriteObject.getDestinationRect(), Color.White);
+            spriteBatch.Draw(boardBackgroundSpriteObject.GetTexture(), boardBackgroundSpriteObject.destRect, Color.White);
 
             //draw the nuke image if the board is currently shaking due to a nuke
             if (this.isShaking)
             {
-                spriteBatch.Draw(nukeSpriteObject.GetTexture(), nukeSpriteObject.getDestinationRect(), Color.White);
+                spriteBatch.Draw(nukeSpriteObject.GetTexture(), nukeSpriteObject.destRect, Color.White);
             }
 
             //if scaling is turned on, figure out the scale size
             Vector2 scale = new Vector2(1, 1);
             Vector2 centerImageScale = new Vector2(1, 1);
-            Tile referenceTile = this.getTileSet().GetRefTile();
+            Tile referenceTile = this.GetTileSet().GetRefTile();
 
-            if (this.isScaleTiles())
+            if (this.IsScaleTiles())
             {
                 try
                 {
-                    float scaleX = this.getTilePixelWidth() / referenceTile.GetTexture().Width;
-                    float scaleY = this.getTilePixelHeight() / referenceTile.GetTexture().Height;
+                    float scaleX = this.GetTilePixelWidth() / referenceTile.GetTexture().Width;
+                    float scaleY = this.GetTilePixelHeight() / referenceTile.GetTexture().Height;
                     scale = new Vector2(scaleX, scaleY);
 
                     if (scaleX <= scaleY)
@@ -525,37 +510,37 @@ namespace Switch.GameObjects
             foreach (Tile tile in tilesToDraw)
             {
                 //figure out where on the screen to draw the tile background
-                int thisTilePosX = (int)(this.getPosition().X + (this.getTilePixelWidth() * tile.X));
-                int thisTilePosY = (int)(this.getPosition().Y + (this.getTilePixelHeight() * tile.Y));
+                int thisTilePosX = (int)(this.position.X + (this.GetTilePixelWidth() * tile.X));
+                int thisTilePosY = (int)(this.position.Y + (this.GetTilePixelHeight() * tile.Y));
                 //int thisTilePosY = (int)(this.getPosition().Y + (this.getTilePixelHeight() * tile.getGridY()) + tile.getBoostY());
 
                 Vector2 thisTilesPosition = new Vector2(thisTilePosX, thisTilePosY);
 
                 //draw the background if necessary
-                if (tile.GetBackgroundTexture() != null)
+                if (tile.backgroundTexture != null)
                 {
                     //draw the background sprite
-                    spriteBatch.Draw(tile.GetBackgroundTexture(), thisTilesPosition, null, Color.White, 0, Vector2.Zero, scale, SpriteEffects.None, 0);
+                    spriteBatch.Draw(tile.backgroundTexture, thisTilesPosition, null, Color.White, 0, Vector2.Zero, scale, SpriteEffects.None, 0);
                 }
 
                 //figure out where on screen to draw the tile foreground image
                 Vector2 thisTilesCenterOrigin = new Vector2(tile.GetTexture().Width / 2, tile.GetTexture().Height / 2);
-                Vector2 thisTilesCenterPosition = new Vector2(thisTilePosX + (this.getTilePixelWidth() / 2), thisTilePosY + (this.getTilePixelHeight() / 2));
-                Vector2 thisTilesCenterOriginDuringIdleAnimation = new Vector2(tile.getCurrentCelRect().Width / 2, tile.getCurrentCelRect().Height / 2);
+                Vector2 thisTilesCenterPosition = new Vector2(thisTilePosX + (this.GetTilePixelWidth() / 2), thisTilePosY + (this.GetTilePixelHeight() / 2));
+                Vector2 thisTilesCenterOriginDuringIdleAnimation = new Vector2(tile.GetCurrentCelRect().Width / 2, tile.GetCurrentCelRect().Height / 2);
 
                 //finally, draw the foreground of the tile
-                if (tile.isAnimating() && tile.getCurrentAnimation() == "idle")
+                if (tile.IsAnimating() && tile.GetCurrentAnimation() == "idle")
                 {
-                    spriteBatch.Draw(tile.GetTexture(), thisTilesCenterPosition, tile.getCurrentCelRect(), Color.White, 0,
+                    spriteBatch.Draw(tile.GetTexture(), thisTilesCenterPosition, tile.GetCurrentCelRect(), Color.White, 0,
                                      thisTilesCenterOriginDuringIdleAnimation, centerImageScale, SpriteEffects.None, 0);
                 }
-                else if (tile.isAnimating())
+                else if (tile.IsAnimating())
                 {
-                    spriteBatch.Draw(tile.GetTexture(), thisTilesPosition, tile.getCurrentCelRect(), Color.White, 0, Vector2.Zero, scale, SpriteEffects.None, 0);
+                    spriteBatch.Draw(tile.GetTexture(), thisTilesPosition, tile.GetCurrentCelRect(), Color.White, 0, Vector2.Zero, scale, SpriteEffects.None, 0);
                 }
                 else
                 {
-                    spriteBatch.Draw(tile.GetTexture(), thisTilesCenterPosition, tile.getCurrentCelRect(), Color.White, 0, thisTilesCenterOrigin, centerImageScale, SpriteEffects.None, 0);
+                    spriteBatch.Draw(tile.GetTexture(), thisTilesCenterPosition, tile.GetCurrentCelRect(), Color.White, 0, thisTilesCenterOrigin, centerImageScale, SpriteEffects.None, 0);
                 }
             }
 
@@ -563,26 +548,26 @@ namespace Switch.GameObjects
             if (this.isShaking)
             {
                 Color color = new Color(255, 255, 255) * (float)MathHelper.Clamp(fadeFromWhiteAlpha, 0f, 1f);
-                spriteBatch.Draw(blankWhiteSpritObject.GetTexture(), blankWhiteSpritObject.getDestinationRect(), color);
+                spriteBatch.Draw(blankWhiteSpritObject.GetTexture(), blankWhiteSpritObject.destRect, color);
             }
 
             //draw the rotater
-            startRotaterIdleAnimation();
+            StartRotaterIdleAnimation();
 
             int rotaterYOffset = 12;
-            int rotaterPosX = (int)(this.getPosition().X + (this.getTilePixelWidth() * rotater.horizontalPosition));
-            int rotaterPosY = (int)(this.boardPosition.Y + this.height + rotaterYOffset);
+            int rotaterPosX = (int)(this.position.X + (this.GetTilePixelWidth() * rotater.horizontalPosition));
+            int rotaterPosY = (int)(this.position.Y + this.height + rotaterYOffset);
 
             Vector2 rotaterPosition = new Vector2(rotaterPosX, rotaterPosY);
             Vector2 rotaterScale = new Vector2(scale.X * 2, 1.15f);
 
-            spriteBatch.Draw(rotater.GetTexture(), rotaterPosition, rotater.getCurrentCelRect(), Color.White, 0, Vector2.Zero, rotaterScale, SpriteEffects.None, 0);
+            spriteBatch.Draw(rotater.GetTexture(), rotaterPosition, rotater.GetCurrentCelRect(), Color.White, 0, Vector2.Zero, rotaterScale, SpriteEffects.None, 0);
 
             //draw any animations that are going
             AnimationManager.Instance.drawAnimations(spriteBatch);
         }
 
-        public void handleInput(InputState input)
+        public void HandleInput(InputState input)
         {
             //game controller stuff
             GamePadState gamePadState = input.CurrentGamePadStates[this.playerIndex];
@@ -608,19 +593,19 @@ namespace Switch.GameObjects
 
             if (gamePadState.IsButtonDown(Buttons.A) && previousGamePadState.IsButtonUp(Buttons.A))
             {
-                swapColumns();
+                SwapColumns();
             }
             if (gamePadState.IsButtonDown(Buttons.X) && previousGamePadState.IsButtonUp(Buttons.X))
             {
-                engageBulletTime();
+                EngageBulletTime();
             }
             if (gamePadState.IsButtonDown(Buttons.Y) && previousGamePadState.IsButtonUp(Buttons.Y))
             {
-                fireDaLasersLawl(rotater.horizontalPosition, rotater.horizontalPosition + 1);
+                FireTheLasers(rotater.horizontalPosition, rotater.horizontalPosition + 1);
             }
             if (gamePadState.IsButtonDown(Buttons.B) && previousGamePadState.IsButtonUp(Buttons.B))
             {
-                fireNuke();
+                FireNuke();
             }
 
             //keyboard stuff
@@ -638,19 +623,19 @@ namespace Switch.GameObjects
 
             if (keyboardState.IsKeyDown(Keys.Space) && previousKeyboardState.IsKeyUp(Keys.Space))
             {
-                swapColumns();
+                SwapColumns();
             }
             if (keyboardState.IsKeyDown(Keys.X) && previousKeyboardState.IsKeyUp(Keys.X))
             {
-                engageBulletTime();
+                EngageBulletTime();
             }
             if (keyboardState.IsKeyDown(Keys.Y) && previousKeyboardState.IsKeyUp(Keys.Y))
             {
-                fireDaLasersLawl(rotater.horizontalPosition, rotater.horizontalPosition + 1);
+                FireTheLasers(rotater.horizontalPosition, rotater.horizontalPosition + 1);
             }
             if (keyboardState.IsKeyDown(Keys.B) && previousKeyboardState.IsKeyUp(Keys.B))
             {
-                fireNuke();
+                FireNuke();
             }
 
             //easy shortcut to quit the entire game if we're running in dev/debug mode
@@ -666,31 +651,31 @@ namespace Switch.GameObjects
             }
         }
 
-        public List<DetailedSpriteObject> getSpritesToBlur()
+        public List<DetailedSpriteObject> GetSpritesToBlur()
         {
             List<DetailedSpriteObject> tilesToBlur = new List<DetailedSpriteObject>();
 
             foreach (Tile tile in tiles.getUnseatedTiles())
             {
-                tilesToBlur.Add(new DetailedSpriteObject(tile.GetBackgroundTexture(),
-                                                         this.getTileRectangle(tile)));
+                tilesToBlur.Add(new DetailedSpriteObject(tile.backgroundTexture,
+                                                         this.GetTileRectangle(tile)));
             }
 
             return tilesToBlur;
         }
 
-        private void swapColumns()
+        private void SwapColumns()
         {
-            rotater.startAnimation("rotate", 80);
+            rotater.StartAnimation("rotate", 80);
             SoundManager.Instance.PlaySound("flip");
             tiles.swapColumns(rotater.horizontalPosition, rotater.horizontalPosition + 1);
         }
 
-        private void engageBulletTime()
+        private void EngageBulletTime()
         {
             if (!this.bulletTimeActive && this.stats.power >= 25)
             {
-                addMessageBoxMessage("Bullet Time Engaged!", Color.Blue);
+                AddMessageBoxMessage("Bullet Time Engaged!", Color.Blue);
                 SoundManager.Instance.PlaySound("bullettime");
 
                 this.bulletTimeActive = true;
@@ -706,22 +691,22 @@ namespace Switch.GameObjects
             }
         }
 
-        private void stopBulletTime()
+        private void StopBulletTime()
         {
             if (this.bulletTimeActive)
             {
-                addMessageBoxMessage("Bullet Time Over!", Color.Blue);
+                AddMessageBoxMessage("Bullet Time Over!", Color.Blue);
 
                 this.bulletTimeActive = false;
                 this.bulletTimeLeft = 0;
             }
         }
 
-        private void fireDaLasersLawl(int leftMostColumnToBlastWithALaserLawl, int rightMostColumnToBlastWithALaserLawl)
+        private void FireTheLasers(int leftMostColumnToBlast, int rightMostColumnToBlast)
         {
             if (this.stats.power >= 50)
             {
-                for (int i = leftMostColumnToBlastWithALaserLawl; i <= rightMostColumnToBlastWithALaserLawl; i++)
+                for (int i = leftMostColumnToBlast; i <= rightMostColumnToBlast; i++)
                 {
                     int numTilesDestroyed = tiles.clearColumn(i); //todo - update this to give points for stuff destroyed
                     stats.numberOfBlocksDestroyed += numTilesDestroyed;
@@ -730,13 +715,13 @@ namespace Switch.GameObjects
 
                 this.stats.numberOfLasersFired++;
                 this.stats.score += 50;
-                addMessageBoxMessage("Laser Fired!", Color.Yellow);
+                AddMessageBoxMessage("Laser Fired!", Color.Yellow);
                 SoundManager.Instance.PlaySound("laser");
 
-                Rectangle animationRect = new Rectangle((int)(getPosition().X + (leftMostColumnToBlastWithALaserLawl * getTilePixelWidth())),
-                                                        (int)getPosition().Y,
-                                                        (int)(getTilePixelWidth() * 2),
-                                                        getHeight());
+                Rectangle animationRect = new Rectangle((int)(position.X + (leftMostColumnToBlast * GetTilePixelWidth())),
+                                                        (int)position.Y,
+                                                        (int)(GetTilePixelWidth() * 2),
+                                                        height);
                 AnimationManager.Instance.startAnimation("laser", 50, animationRect);
                 VibrationManager.Instance.vibrateController((PlayerIndex)this.playerIndex, 300);
 
@@ -747,7 +732,7 @@ namespace Switch.GameObjects
             }
         }
 
-        private void fireNuke()
+        private void FireNuke()
         {
             if (this.stats.power >= 100)
             {
@@ -762,15 +747,15 @@ namespace Switch.GameObjects
                 }
 
                 this.stats.numberOfNukesFired++;
-                addMessageBoxMessage("Nuke Dropped!!!", Color.Red);
+                AddMessageBoxMessage("Nuke Dropped!!!", Color.Red);
                 SoundManager.Instance.PlaySound("nuke-explode");
 
-                Rectangle animationRect = new Rectangle((int)getPosition().X,
-                                                        (int)getPosition().Y,
-                                                        getWidth(),
-                                                        getHeight());
+                Rectangle animationRect = new Rectangle((int)position.X,
+                                                        (int)position.Y,
+                                                        width,
+                                                        height);
 
-                this.shakeBoard(1250);
+                this.ShakeBoard(1250);
 
                 if (!SwitchGame.DEBUG_MODE)
                 {
@@ -782,7 +767,7 @@ namespace Switch.GameObjects
         /**
          * Returns an array of tiles, randomly chosen from the TileSet. Duplicates are a possibility.
          **/
-        private Tile[] getRandomTiles(int numOfTiles)
+        private Tile[] GetRandomTiles(int numOfTiles)
         {
             Tile[] allTiles = tileSet.ToArray();
 
@@ -821,27 +806,27 @@ namespace Switch.GameObjects
             return randomTileArray;
         }
 
-        private void pointsGained(int pointsGained)
+        private void PointsGained(int pointsGained)
         {
             if (pointsGained > 0 && pointsGained <= 100)
             {
-                addMessageBoxMessage("Good! +" + pointsGained + " Points!");
+                AddMessageBoxMessage("Good! +" + pointsGained + " Points!");
             }
             else if (pointsGained > 100 && pointsGained <= 250)
             {
-                addMessageBoxMessage("Nice One! +" + pointsGained + " Points!", Color.Gold);
+                AddMessageBoxMessage("Nice One! +" + pointsGained + " Points!", Color.Gold);
             }
             else if (pointsGained > 250 && pointsGained <= 500)
             {
-                addMessageBoxMessage("Stupendous! +" + pointsGained + " Points!", Color.Gold);
+                AddMessageBoxMessage("Stupendous! +" + pointsGained + " Points!", Color.Gold);
             }
             else if (pointsGained > 500 && pointsGained <= 1000)
             {
-                addMessageBoxMessage("Spectacular! +" + pointsGained + " Points!", Color.Gold);
+                AddMessageBoxMessage("Spectacular! +" + pointsGained + " Points!", Color.Gold);
             }
             else if (pointsGained > 1000)
             {
-                addMessageBoxMessage("Incredible! +" + pointsGained + " Points!", Color.Gold);
+                AddMessageBoxMessage("Incredible! +" + pointsGained + " Points!", Color.Gold);
             }
         }
     }

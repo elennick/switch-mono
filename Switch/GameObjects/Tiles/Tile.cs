@@ -27,14 +27,14 @@ namespace Switch.GameObjects.Tiles
         public int X { get; set; }
         public int Y { get; set; }
 
-        public Tile(Tile tile) : base(tile.GetTexture(), tile.GetBackgroundTexture())
+        public Tile(Tile tile) : base(tile.GetTexture(), tile.backgroundTexture)
         {      
             this.seated = false;
             this.age = 0;
             this.markedForDeletion = false;
             this.type = tile.type;
             this.multiplier = tile.multiplier;
-            this.setSpriteSheetDictionary(tile.getSpriteSheetDictionary());
+            this.SetSpriteSheetDictionary(tile.GetSpriteSheetDictionary());
             ResetIdleTimer();
         }
 
@@ -108,7 +108,7 @@ namespace Switch.GameObjects.Tiles
 
             if (this.idleTimer <= 0)
             {
-                this.startAnimation("idle", 5);
+                this.StartAnimation("idle", 5);
                 ResetIdleTimer();
             }
         }

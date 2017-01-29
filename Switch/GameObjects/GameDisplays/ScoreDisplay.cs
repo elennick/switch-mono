@@ -26,7 +26,7 @@ namespace Switch.GameObjects.GameDisplays
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            this.UpdateScore(this.gameBoard.getScore());
+            this.UpdateScore(this.gameBoard.GetScore());
             String scoreLabel = "Score";
 
             Vector2 labelOrigin = Utils.Utils.Instance.getTextStringCenterOrigin(scoreLabel, this.font);
