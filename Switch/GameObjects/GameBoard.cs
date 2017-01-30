@@ -315,7 +315,7 @@ namespace Switch.GameObjects
             //check to see if any of the columns we dropped into are already full
             for (int i = 0; i < columnsToDropIn.Count; i++)
             {
-                if (tiles.isColumnFull(columnsToDropIn[i]))
+                if (tiles.IsColumnFull(columnsToDropIn[i]))
                 {
                     this.paused = true;
                     this.gameOver = true;
@@ -369,13 +369,13 @@ namespace Switch.GameObjects
                 sprite.UpdateGameTime(elapsedTime);
             }
 
-            foreach (Tile sprite in tiles.getTilesAsList())
+            foreach (Tile sprite in tiles.GetTilesAsList())
             {
                 sprite.UpdateGameTime(elapsedTime, this.GetCurrentSpeed(), (int)this.GetTilePixelHeight());
             }
 
-            AnimationManager.Instance.updateGameTime(elapsedTime);
-            VibrationManager.Instance.update(elapsedTime);
+            AnimationManager.Instance.UpdateGameTime(elapsedTime);
+            VibrationManager.Instance.Update(elapsedTime);
 
             //make sure the power level isnt over max
             this.stats.power = (int)MathHelper.Clamp(this.stats.power, 0, 100);
@@ -383,7 +383,7 @@ namespace Switch.GameObjects
             //shake the board if shaking is enabled
             if (this.isShaking)
             {
-                VibrationManager.Instance.vibrateController((PlayerIndex)this.playerIndex, 200);
+                VibrationManager.Instance.VibrateController((PlayerIndex)this.playerIndex, 200);
 
                 if (this.timeLeftShaking <= 0)
                 {
@@ -419,16 +419,16 @@ namespace Switch.GameObjects
             //this is the core logic that defines gameplay
             if (!this.paused)
             {
-                if (tiles.areAllTilesSeated())
+                if (tiles.AreAllTilesSeated())
                 {
                     DropNewTileSet(this.numTilesToDrop);
                 }
                 else
                 {
-                    if (tiles.willTilesGetDropped(GetCurrentSpeed()))
+                    if (tiles.WillTilesGetDropped(GetCurrentSpeed()))
                     {
-                        tiles.seatTilesOnTopOfOtherTiles();
-                        tiles.seatTilesAtFloor();
+                        tiles.SeatTilesOnTopOfOtherTiles();
+                        tiles.SeatTilesAtFloor();
 
                         if (this.timeSinceLastSpeedUp >= this.timeBeforeSpeedUp
                             && this.speedupEnabled)
@@ -436,17 +436,17 @@ namespace Switch.GameObjects
                             LevelUp();
                         }
 
-                        tiles.dropTilesOlderThanAge(GetCurrentSpeed());
+                        tiles.DropTilesOlderThanAge(GetCurrentSpeed());
 
                         int scoreBeforeTileDeletion = stats.score;
-                        stats = tiles.markTilesForDeletion();
+                        stats = tiles.MarkTilesForDeletion();
                         PointsGained(stats.score - scoreBeforeTileDeletion);
                     }
 
-                    tiles.deleteTilesMarkedForDeletion(this);
+                    tiles.DeleteTilesMarkedForDeletion(this);
                 }
 
-                tiles.ageTiles(elapsedTime);
+                tiles.AgeTiles(elapsedTime);
             }
         }
 
@@ -506,7 +506,7 @@ namespace Switch.GameObjects
             }
 
             //draw the tiles
-            List<Tile> tilesToDraw = tiles.getTilesAsList();
+            List<Tile> tilesToDraw = tiles.GetTilesAsList();
             foreach (Tile tile in tilesToDraw)
             {
                 //figure out where on the screen to draw the tile background
@@ -564,7 +564,7 @@ namespace Switch.GameObjects
             spriteBatch.Draw(rotater.GetTexture(), rotaterPosition, rotater.GetCurrentCelRect(), Color.White, 0, Vector2.Zero, rotaterScale, SpriteEffects.None, 0);
 
             //draw any animations that are going
-            AnimationManager.Instance.drawAnimations(spriteBatch);
+            AnimationManager.Instance.DrawAnimations(spriteBatch);
         }
 
         public void HandleInput(InputState input)
@@ -655,7 +655,7 @@ namespace Switch.GameObjects
         {
             List<DetailedSpriteObject> tilesToBlur = new List<DetailedSpriteObject>();
 
-            foreach (Tile tile in tiles.getUnseatedTiles())
+            foreach (Tile tile in tiles.GetUnseatedTiles())
             {
                 tilesToBlur.Add(new DetailedSpriteObject(tile.backgroundTexture,
                                                          this.GetTileRectangle(tile)));
@@ -668,7 +668,7 @@ namespace Switch.GameObjects
         {
             rotater.StartAnimation("rotate", 80);
             SoundManager.Instance.PlaySound("flip");
-            tiles.swapColumns(rotater.horizontalPosition, rotater.horizontalPosition + 1);
+            tiles.SwapColumns(rotater.horizontalPosition, rotater.horizontalPosition + 1);
         }
 
         private void EngageBulletTime()
@@ -708,7 +708,7 @@ namespace Switch.GameObjects
             {
                 for (int i = leftMostColumnToBlast; i <= rightMostColumnToBlast; i++)
                 {
-                    int numTilesDestroyed = tiles.clearColumn(i); //todo - update this to give points for stuff destroyed
+                    int numTilesDestroyed = tiles.ClearColumn(i); //todo - update this to give points for stuff destroyed
                     stats.numberOfBlocksDestroyed += numTilesDestroyed;
                     stats.numberOfBlocksDestroyedByLaser += numTilesDestroyed;
                 }
@@ -722,8 +722,8 @@ namespace Switch.GameObjects
                                                         (int)position.Y,
                                                         (int)(GetTilePixelWidth() * 2),
                                                         height);
-                AnimationManager.Instance.startAnimation("laser", 50, animationRect);
-                VibrationManager.Instance.vibrateController((PlayerIndex)this.playerIndex, 300);
+                AnimationManager.Instance.StartAnimation("laser", 50, animationRect);
+                VibrationManager.Instance.VibrateController((PlayerIndex)this.playerIndex, 300);
 
                 if (!SwitchGame.DEBUG_MODE)
                 {
@@ -736,7 +736,7 @@ namespace Switch.GameObjects
         {
             if (this.stats.power >= 100)
             {
-                int numTilesDestroyed = tiles.clearBoard(); //todo - update this to give points for stuff destroyed
+                int numTilesDestroyed = tiles.ClearBoard(); //todo - update this to give points for stuff destroyed
                 stats.numberOfBlocksDestroyed += numTilesDestroyed;
                 stats.numberOfBlocksDestroyedByNuke += numTilesDestroyed;
                 stats.score += 100;

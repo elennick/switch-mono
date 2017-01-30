@@ -50,7 +50,7 @@ namespace Switch.GameObjects
         public int numberOfMultipliersCapped { get; set; }
         public int numberOfNukesFiredDuringActiveBulletTime { get; set; }
 
-        public List<StatValue> getValuesForStatsScreen()
+        public List<StatValue> SetValuesForStatsScreen()
         {
             List<StatValue> statValues = new List<StatValue>();
 
@@ -66,7 +66,7 @@ namespace Switch.GameObjects
             return statValues;
         }
 
-        public void addStats(GameboardStats statsToAdd)
+        public void AddStats(GameboardStats statsToAdd)
         {
             score += statsToAdd.score;
             power += statsToAdd.power;

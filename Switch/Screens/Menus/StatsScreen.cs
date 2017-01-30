@@ -73,7 +73,7 @@ namespace Switch
             spriteBatch.DrawString(font, titleString, titlePosition, yellowColor, 0, titleOrigin, titleScale, SpriteEffects.None, 0);
 
             //draw stats
-            List<GameboardStats.StatValue> statValues = stats.getValuesForStatsScreen();
+            List<GameboardStats.StatValue> statValues = stats.SetValuesForStatsScreen();
 
             int i = 0;
             foreach (GameboardStats.StatValue statValue in statValues)

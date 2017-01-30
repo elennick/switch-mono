@@ -131,8 +131,8 @@ namespace Switch
         public override void UnloadContent()
         {
             SoundManager.Instance.StopSong();
-            AnimationManager.Instance.clearAllAnimations();
-            VibrationManager.Instance.cancelAllVibrations();
+            AnimationManager.Instance.ClearAllAnimations();
+            VibrationManager.Instance.CancelAllVibrations();
 
             try
             {
@@ -190,10 +190,10 @@ namespace Switch
                 foreach (GameBoard gameBoard in gameBoards)
                 {
                     if (gameBoard.IsGameOver()
-                        && !AnimationManager.Instance.areAnyAnimationsActive()
+                        && !AnimationManager.Instance.AreAnyAnimationsActive()
                         && !gameboardIsFiringNuke())
                     {
-                        VibrationManager.Instance.cancelAllVibrations();
+                        VibrationManager.Instance.CancelAllVibrations();
 
                         if (this.getGameMode() == GameMode.SCORE_ATTACK)
                         {
@@ -246,11 +246,11 @@ namespace Switch
 
                     if (this.challenge != null 
                         && this.challenge.IsCompleted(gameBoard.GetStats())
-                        && !AnimationManager.Instance.areAnyAnimationsActive()
+                        && !AnimationManager.Instance.AreAnyAnimationsActive()
                         && !gameboardIsFiringNuke()
                         && !gameBoard.IsGameOver())
                     {
-                        VibrationManager.Instance.cancelAllVibrations();
+                        VibrationManager.Instance.CancelAllVibrations();
                         SoundManager.Instance.PlaySound("player-select");
 
                         ChallengeManager challengeManager = ChallengeManager.Instance;
@@ -398,7 +398,7 @@ namespace Switch
                 GameboardStats consolidatedStats = new GameboardStats();
                 foreach (GameBoard gameBoardToSaveStatsFor in gameBoards)
                 {
-                    consolidatedStats.addStats(gameBoardToSaveStatsFor.GetStats());
+                    consolidatedStats.AddStats(gameBoardToSaveStatsFor.GetStats());
                 }
 
                 StorageManager.Instance.AddStatsData(consolidatedStats);
@@ -413,7 +413,7 @@ namespace Switch
         {
             if (this.currentCountDownState == CountDownState.DONE)
             {
-                VibrationManager.Instance.cancelAllVibrations();
+                VibrationManager.Instance.CancelAllVibrations();
                 if (this.getGameMode() == GameMode.CHALLENGE_MODE)
                 {
                     ScreenManager.AddScreen(new PauseMenuScreen(this.challenge), playerIndexThatPaused);

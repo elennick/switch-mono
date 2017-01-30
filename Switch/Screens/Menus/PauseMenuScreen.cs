@@ -22,7 +22,7 @@ namespace Switch.Menus
         {
             // Flag that there is no need for the game to transition
             // off when the pause menu is on top of it.
-            VibrationManager.Instance.cancelAllVibrations();
+            VibrationManager.Instance.CancelAllVibrations();
             IsPopup = true;
             this.challenge = challenge;
             this.setShowBackgroundColor(false);

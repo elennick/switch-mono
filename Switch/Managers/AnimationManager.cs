@@ -35,17 +35,17 @@ namespace Switch
             }
         }
 
-        public void addAnimation(String animationName, SpriteSheet spriteSheet)
+        public void AddAnimation(String animationName, SpriteSheet spriteSheet)
         {
             animations.Add(animationName, spriteSheet);
         }
 
-        public void startAnimation(String animationName, int framesPerSecond, Rectangle rect)
+        public void StartAnimation(String animationName, int framesPerSecond, Rectangle rect)
         {
             if (animations.ContainsKey(animationName))
             {
                 SpriteSheet spriteSheet = animations[animationName];
-                DetailedSpriteObject animation = new DetailedSpriteObject(spriteSheet.getSpriteSheet(), new Vector2(rect.X, rect.Y));
+                DetailedSpriteObject animation = new DetailedSpriteObject(spriteSheet.spriteSheet, new Vector2(rect.X, rect.Y));
                 animation.destRect = rect;
 
                 animation.AddAnimation(animationName, spriteSheet);
@@ -54,12 +54,12 @@ namespace Switch
             }
         }
 
-        public void startAnimation(String animationName, int framesPerSecond, Vector2 position)
+        public void StartAnimation(String animationName, int framesPerSecond, Vector2 position)
         {
             if (animations.ContainsKey(animationName))
             {
                 SpriteSheet spriteSheet = animations[animationName];
-                DetailedSpriteObject animation = new DetailedSpriteObject(spriteSheet.getSpriteSheet(), position);
+                DetailedSpriteObject animation = new DetailedSpriteObject(spriteSheet.spriteSheet, position);
 
                 animation.AddAnimation(animationName, spriteSheet);
                 animation.StartAnimation(animationName, framesPerSecond);
@@ -67,7 +67,7 @@ namespace Switch
             }
         }
 
-        public void updateGameTime(int elapsedGameTime)
+        public void UpdateGameTime(int elapsedGameTime)
         {
             foreach (DetailedSpriteObject animation in activeAnimations)
             {
@@ -75,7 +75,7 @@ namespace Switch
             }
         }
 
-        public void drawAnimations(SpriteBatch spriteBatch)
+        public void DrawAnimations(SpriteBatch spriteBatch)
         {
             //draw any animations that are still going
             foreach (DetailedSpriteObject animation in activeAnimations)
@@ -104,23 +104,23 @@ namespace Switch
             }
         }
 
-        public void loadAnimations(ContentManager content)
+        public void LoadAnimations(ContentManager content)
         {
             if (!animationsLoaded)
             {
-                this.addAnimation("laser", new SpriteSheet(content.Load<Texture2D>("Sprites\\Tiles\\TileSet1\\laser-spritesheet"), 9));
-                this.addAnimation("tile-explode", new SpriteSheet(content.Load<Texture2D>("Sprites\\Tiles\\TileSet1\\explosion-spritesheet"), 6));
+                this.AddAnimation("laser", new SpriteSheet(content.Load<Texture2D>("Sprites\\Tiles\\TileSet1\\laser-spritesheet"), 9));
+                this.AddAnimation("tile-explode", new SpriteSheet(content.Load<Texture2D>("Sprites\\Tiles\\TileSet1\\explosion-spritesheet"), 6));
 
                 animationsLoaded = true;
             }
         }
 
-        public void clearAllAnimations()
+        public void ClearAllAnimations()
         {
             activeAnimations.Clear();
         }
 
-        public bool areAnyAnimationsActive()
+        public bool AreAnyAnimationsActive()
         {
             if (activeAnimations.Count > 0)
             {

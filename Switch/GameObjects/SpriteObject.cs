@@ -68,7 +68,7 @@ namespace Switch.GameObjects
             }
             else
             {
-                textureToReturn = this.activeAnimation.getSpriteSheet();
+                textureToReturn = this.activeAnimation.spriteSheet;
             }
 
             return textureToReturn;
@@ -105,7 +105,7 @@ namespace Switch.GameObjects
             {
                 currentFrame++;
                 timeSinceLastFrameUpdate = 0;
-                if (currentFrame >= activeAnimation.getNumberOfFrames())
+                if (currentFrame >= activeAnimation.numberOfFrames)
                 {
                     if (!loopCurrentAnimation)
                     {
@@ -144,7 +144,7 @@ namespace Switch.GameObjects
             }
             else
             {
-                int widthOfFrame = activeAnimation.getSpriteSheet().Width / activeAnimation.getNumberOfFrames();
+                int widthOfFrame = activeAnimation.spriteSheet.Width / activeAnimation.numberOfFrames;
                 rect = new Rectangle(currentFrame * widthOfFrame, 0, widthOfFrame, this.texture.Height);
             }
 

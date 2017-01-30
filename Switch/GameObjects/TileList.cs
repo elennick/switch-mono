@@ -47,7 +47,7 @@ namespace Switch.GameObjects
         /**
          * Turn the preview row on or off.
          */
-        public void setPreviewRowEnabled(bool enabled)
+        public void SetPreviewRowEnabled(bool enabled)
         {
             this.previewRowEnabled = enabled;
         }
@@ -57,7 +57,7 @@ namespace Switch.GameObjects
          * Tile objects containing every tile on the board regardless of state or column
          * location.
          */
-        public List<Tile> getTilesAsList()
+        public List<Tile> GetTilesAsList()
         {
             List<Tile> allTiles = new List<Tile>();
 
@@ -75,7 +75,7 @@ namespace Switch.GameObjects
         /**
          * Returns all the tiles in one of the columns.
          */
-        public List<Tile> getTilesInColumn(int columnIndex)
+        public List<Tile> GetTilesInColumn(int columnIndex)
         {
             return tiles[columnIndex];
         }
@@ -83,7 +83,7 @@ namespace Switch.GameObjects
         /**
          * Returns all the tiles in one of the columns that are currently seated and not dropping.
          */
-        public int getSeatedColumnHeight(int columnIndex)
+        public int GetSeatedColumnHeight(int columnIndex)
         {
             List<Tile> column = tiles[columnIndex];
             int tilesSeated = 0;
@@ -121,7 +121,7 @@ namespace Switch.GameObjects
          */
         public void Remove(Tile tile)
         {
-            foreach (Tile thisTile in getTilesAsList())
+            foreach (Tile thisTile in GetTilesAsList())
             {
                 if (thisTile.Equals(tile))
                 {
@@ -133,9 +133,9 @@ namespace Switch.GameObjects
         /**
          * Checks to see if any tiles are still floating or if they've all become seated.
          */
-        public bool areAllTilesSeated()
+        public bool AreAllTilesSeated()
         {
-            foreach (Tile tile in getTilesAsList())
+            foreach (Tile tile in GetTilesAsList())
             {
                 if (!tile.seated)
                 {
@@ -149,9 +149,9 @@ namespace Switch.GameObjects
         /**
          * Checks to see if any tiles are still in the middle of an animation or not.
          */
-        public bool areAllTilesDoneAnimating()
+        public bool AreAllTilesDoneAnimating()
         {
-            foreach (Tile tile in getTilesAsList())
+            foreach (Tile tile in GetTilesAsList())
             {
                 if (tile.IsAnimating())
                 {
@@ -166,10 +166,10 @@ namespace Switch.GameObjects
          * Checks to see if any tiles will be dropped based on the current game time. Same the
          * dropTilesOlderThanAge() function but does not drop any tiles.
          */
-        public bool willTilesGetDropped(int ageThreshold)
+        public bool WillTilesGetDropped(int ageThreshold)
         {
             bool tilesWillGetDropped = false;
-            foreach (Tile tile in getTilesAsList())
+            foreach (Tile tile in GetTilesAsList())
             {
                 if (!tile.seated && tile.age >= ageThreshold)
                 {
@@ -185,10 +185,10 @@ namespace Switch.GameObjects
          * passed in will be "dropped" (moved one spot lower on the Y grid). Passes back a flag that indicates
          * whether or not any tiles were dropped during this check.
          */
-        public bool dropTilesOlderThanAge(int ageThreshold)
+        public bool DropTilesOlderThanAge(int ageThreshold)
         {
             bool tilesGotDropped = false;
-            foreach (Tile tile in getTilesAsList())
+            foreach (Tile tile in GetTilesAsList())
             {
                 if (!tile.seated && tile.age >= ageThreshold)
                 {
@@ -207,9 +207,9 @@ namespace Switch.GameObjects
          * "age" is represented in milliseconds and represents how long the Tile has
          * remained in it's current spot on the grid.
          */
-        public void ageTiles(int ageIncrement)
+        public void AgeTiles(int ageIncrement)
         {
-            foreach (Tile tile in getTilesAsList())
+            foreach (Tile tile in GetTilesAsList())
             {
                 //if (!tile.seated)
                 //{
@@ -224,9 +224,9 @@ namespace Switch.GameObjects
          * so that the game logic will be able to tell when all Tiles are seated and it is
          * time to drop a new set.
          */
-        public void seatTilesAtFloor()
+        public void SeatTilesAtFloor()
         {
-            foreach (Tile tile in getTilesAsList())
+            foreach (Tile tile in GetTilesAsList())
             {
                 if (!tile.seated && tile.Y >= this.tileGridHeight - 1)
                 {
@@ -240,9 +240,9 @@ namespace Switch.GameObjects
          * as it can go no further down. This tile will be checked to see if the tile below
          * is a match or if it should be destroyed for any reason in another call.
          */
-        public void seatTilesOnTopOfOtherTiles()
+        public void SeatTilesOnTopOfOtherTiles()
         {
-            List<Tile> allTiles = getTilesAsList();
+            List<Tile> allTiles = GetTilesAsList();
 
             foreach (Tile tileA in allTiles)
             {
@@ -261,7 +261,7 @@ namespace Switch.GameObjects
         /**
          * Returns true if the column specified is completely full of tiles height-wise.
          */
-        public bool isColumnFull(int columnIndex)
+        public bool IsColumnFull(int columnIndex)
         {
             if (tiles[columnIndex].Count >= this.tileGridHeight)
             {
@@ -275,7 +275,7 @@ namespace Switch.GameObjects
          * Check all the tiles to see if any of them match a condition that requires they be
          * destroyed (depends on the tile type when it get destroyed).
          */
-        public GameboardStats markTilesForDeletion()
+        public GameboardStats MarkTilesForDeletion()
         {
             //iterate through all the columns
             foreach (List<Tile> column in tiles)
@@ -289,9 +289,9 @@ namespace Switch.GameObjects
                         if (tile.seated)
                         {
                             Tile bottomCapper;
-                            if ((bottomCapper = bottomCapperExistsBelow(tile)) != null)
+                            if ((bottomCapper = BottomCapperExistsBelow(tile)) != null)
                             {
-                                clearCappedTiles(tile, bottomCapper);
+                                ClearCappedTiles(tile, bottomCapper);
                                 stats.numberOfCapsCompleted++;
                             }
                             else
@@ -307,7 +307,7 @@ namespace Switch.GameObjects
                         if (tile.seated)
                         {
                             Tile bottomCapper;
-                            if ((bottomCapper = bottomCapperExistsBelow(tile)) == null)
+                            if ((bottomCapper = BottomCapperExistsBelow(tile)) == null)
                             {
                                 tile.MarkForDeletion();
                                 stats.numberOfBlocksDestroyed++;
@@ -345,7 +345,7 @@ namespace Switch.GameObjects
          * Check every tile to see if any are marked for deletion. If so, remove them from the tile list. We do this separately
          * from the check above because we can't remove objects from the List while in the middle of iterating through it.
          */
-        public void deleteTilesMarkedForDeletion(GameBoard gameBoard)
+        public void DeleteTilesMarkedForDeletion(GameBoard gameBoard)
         {
             bool atLeastOneTileDeleted = false;
 
@@ -358,7 +358,7 @@ namespace Switch.GameObjects
                     if (thisTile.markedForDeletion)
                     {
                         column.Remove(thisTile);
-                        AnimationManager.Instance.startAnimation("tile-explode", 25, gameBoard.GetTileRectangle(thisTile));
+                        AnimationManager.Instance.StartAnimation("tile-explode", 25, gameBoard.GetTileRectangle(thisTile));
                         atLeastOneTileDeleted = true;
                     }
                 }
@@ -373,7 +373,7 @@ namespace Switch.GameObjects
         /**
          * 
          */
-        public void moveTileIntoColumn(Tile tile, int newColumnIndex)
+        public void MoveTileIntoColumn(Tile tile, int newColumnIndex)
         {
             //first move its position in the tile list
             int oldColumnIndex = tile.X;
@@ -387,7 +387,7 @@ namespace Switch.GameObjects
         /**
          * 
          */
-        private Tile bottomCapperExistsBelow(Tile topCapper)
+        private Tile BottomCapperExistsBelow(Tile topCapper)
         {
             Tile bottomCapper = null;
             int columnIndex = topCapper.X;
@@ -419,7 +419,7 @@ namespace Switch.GameObjects
         /**
          * 
          */
-        private void clearCappedTiles(Tile topCapper, Tile bottomCapper)
+        private void ClearCappedTiles(Tile topCapper, Tile bottomCapper)
         {
             if (topCapper.X != bottomCapper.X)
             {
@@ -486,13 +486,13 @@ namespace Switch.GameObjects
         /**
          * Swaps the tiles in two columns. Usually called when the player requests the rotater to spin so that stacks get swapped.
          **/
-        public void swapColumns(int colLeft, int colRight)
+        public void SwapColumns(int colLeft, int colRight)
         {
-            List<Tile> leftColumn = this.getTilesInColumn(colLeft);
-            List<Tile> rightColumn = this.getTilesInColumn(colRight);
+            List<Tile> leftColumn = this.GetTilesInColumn(colLeft);
+            List<Tile> rightColumn = this.GetTilesInColumn(colRight);
 
-            int leftColumnHeight = this.getSeatedColumnHeight(colLeft);
-            int rightColumnHeight = this.getSeatedColumnHeight(colRight);
+            int leftColumnHeight = this.GetSeatedColumnHeight(colLeft);
+            int rightColumnHeight = this.GetSeatedColumnHeight(colRight);
             int tallestColumn;
 
             if (leftColumnHeight >= rightColumnHeight)
@@ -512,7 +512,7 @@ namespace Switch.GameObjects
                 Tile thisTile = leftColumnArray[i];
                 if (thisTile.seated || thisTile.Y > tallestColumn)
                 {
-                    this.moveTileIntoColumn(thisTile, colLeft + 1);
+                    this.MoveTileIntoColumn(thisTile, colLeft + 1);
                 }
             }
 
@@ -521,12 +521,12 @@ namespace Switch.GameObjects
                 Tile thisTile = rightColumnArray[i];
                 if (thisTile.seated || thisTile.Y > tallestColumn)
                 {
-                    this.moveTileIntoColumn(thisTile, colRight - 1);
+                    this.MoveTileIntoColumn(thisTile, colRight - 1);
                 }
             }
         }
 
-        public int clearColumn(int columnIndex)
+        public int ClearColumn(int columnIndex)
         {
             int tilesDestroyed = 0;
             List<Tile> column = tiles[columnIndex];
@@ -542,23 +542,23 @@ namespace Switch.GameObjects
             return tilesDestroyed;
         }
 
-        public int clearBoard()
+        public int ClearBoard()
         {
-            int tilesDestroyed = getTilesAsList().Count;
+            int tilesDestroyed = GetTilesAsList().Count;
 
             for (int i = 0; i < tiles.Count; i++)
             {
-                clearColumn(i);
+                ClearColumn(i);
             }
 
             return tilesDestroyed;
         }
 
-        public List<Tile> getUnseatedTiles()
+        public List<Tile> GetUnseatedTiles()
         {
             List<Tile> unseatedTiles = new List<Tile>();
 
-            foreach (Tile tile in getTilesAsList())
+            foreach (Tile tile in GetTilesAsList())
             {
                 if (!tile.seated)
                 {

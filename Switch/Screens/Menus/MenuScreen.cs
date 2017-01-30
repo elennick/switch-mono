@@ -44,7 +44,7 @@ namespace Switch.Menus
         public MenuScreen(String menuTitle)
         {
             this.menuTitle = menuTitle;
-            VibrationManager.Instance.cancelAllVibrations();
+            VibrationManager.Instance.CancelAllVibrations();
 
             TransitionOnTime = TimeSpan.FromSeconds(0.5);
             TransitionOffTime = TimeSpan.FromSeconds(0.5);

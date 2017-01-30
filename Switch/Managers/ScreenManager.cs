@@ -126,8 +126,7 @@ namespace Switch
 
             //** re-enable this stuff **//
             SoundManager.Instance.LoadSoundMedia(content);
-            AnimationManager.Instance.loadAnimations(content);
-            EffectsManager.Instance.loadEffects(content);
+            AnimationManager.Instance.LoadAnimations(content);
             //StorageManager sm = StorageManager.Instance;
         }
 

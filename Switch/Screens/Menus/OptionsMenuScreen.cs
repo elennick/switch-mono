@@ -76,7 +76,7 @@ namespace Switch.Menus
         {
             rumbleOn = !rumbleOn;
             SetMenuEntryText();
-            VibrationManager.Instance.setVibrationEnabled(rumbleOn);
+            VibrationManager.Instance.SetVibrationEnabled(rumbleOn);
         }
 
         void FullScreenEntrySelected(object sender, PlayerIndexEventArgs e)

@@ -117,7 +117,6 @@
     <Compile Include="GameObjects\Tiles\Tile.cs" />
     <Compile Include="GameObjects\Tiles\TileSet.cs" />
     <Compile Include="Managers\AnimationManager.cs" />
-    <Compile Include="Managers\EffectsManager.cs" />
     <Compile Include="Managers\GameScreen.cs" />
     <Compile Include="Managers\InputState.cs" />
     <Compile Include="Managers\ScreenManager.cs" />

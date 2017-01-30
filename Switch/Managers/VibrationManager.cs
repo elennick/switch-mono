@@ -35,12 +35,12 @@ namespace Switch
             }
         }
 
-        public void setVibrationEnabled(bool vibeEnabled)
+        public void SetVibrationEnabled(bool vibeEnabled)
         {
             this.vibeEnabled = vibeEnabled;
         }
 
-        public void vibrateController(PlayerIndex playerIndex, int millisecondsToVibeFor)
+        public void VibrateController(PlayerIndex playerIndex, int millisecondsToVibeFor)
         {
             if (currentVibrations.ContainsKey(playerIndex))
             {
@@ -52,7 +52,7 @@ namespace Switch
             }
         }
 
-        public void cancelAllVibrations()
+        public void CancelAllVibrations()
         {
             currentVibrations.Clear();
             foreach (PlayerIndex playerIndex in playerIndexes)
@@ -61,7 +61,7 @@ namespace Switch
             }
         }
 
-        public void update(int timeElapsed)
+        public void Update(int timeElapsed)
         {
             if (!vibeEnabled)
             {
