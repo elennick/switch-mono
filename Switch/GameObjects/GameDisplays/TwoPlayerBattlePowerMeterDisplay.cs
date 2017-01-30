@@ -161,7 +161,7 @@ namespace SwitchGame.GameObjects.GameDisplays
             float scale = 0.8f + pulsate * 0.05f * selectionFade;
 
             Vector2 aboutToWinMsgPosition = new Vector2(640, 175);
-            Vector2 aboutToWinMsgOrigin = Utils.Instance.getTextStringCenterOrigin(aboutToWinMessage, font);
+            Vector2 aboutToWinMsgOrigin = Utils.Instance.GetTextStringCenterOrigin(aboutToWinMessage, font);
             spriteBatch.DrawString(font, aboutToWinMessage, aboutToWinMsgPosition, Color.Yellow, 0, aboutToWinMsgOrigin, scale, SpriteEffects.None, 0);
         }
 
@@ -254,12 +254,12 @@ namespace SwitchGame.GameObjects.GameDisplays
             {
                 scoreString = gameBoard1.GetScore().ToString();
                 scorePosition = new Vector2(powerBarPosition.X + 50, powerBarPosition.Y + 605);
-                scoreOrigin = Utils.Instance.getTextStringLeftOrigin(scoreString, tinyScoreFont);
+                scoreOrigin = Utils.Instance.GetTextStringLeftOrigin(scoreString, tinyScoreFont);
             }
             else
             {
                 scoreString = gameBoard2.GetScore().ToString();
-                scoreOrigin = Utils.Instance.getTextStringRightOrigin(scoreString, tinyScoreFont);
+                scoreOrigin = Utils.Instance.GetTextStringRightOrigin(scoreString, tinyScoreFont);
                 scorePosition = new Vector2(powerBarPosition.X - 20, powerBarPosition.Y + 605);
             }
 

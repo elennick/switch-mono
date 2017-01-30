@@ -8,7 +8,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Switch.Menus;
 using Microsoft.Xna.Framework.Content;
 using Switch.GameObjects.Sound;
-//using EasyStorage;
 using System.Diagnostics;
 
 namespace Switch
@@ -101,7 +100,7 @@ namespace Switch
 
 
             Vector2 stringPosition = new Vector2(viewport.Width / 2, viewport.Height / 2);
-            Vector2 stringOrigin = Utils.Utils.Instance.getTextStringCenterOrigin(pressStartString, bigFont);
+            Vector2 stringOrigin = Utils.Utils.Instance.GetTextStringCenterOrigin(pressStartString, bigFont);
             spriteBatch.DrawString(bigFont, pressStartString, new Vector2(stringPosition.X + position.X, stringPosition.Y), titleColor, 0, stringOrigin, scale, SpriteEffects.None, 0);
              
             spriteBatch.End();
@@ -145,43 +144,11 @@ namespace Switch
             if(state.IsKeyDown(Keys.Enter))
             {
                 SoundManager.Instance.PlaySound("menu-select2");
-                loadMainMenu(playerIndex);
+                LoadMainMenu(playerIndex);
             }
         }
 
-        /**
-        private void promptForSaveDevice(PlayerIndex playerIndex)
-        {
-            SharedSaveDevice sharedSaveDevice = new SharedSaveDevice();
-            ScreenManager.Game.Components.Add(sharedSaveDevice);
-
-            // hook an event for when the device is selected
-            sharedSaveDevice.DeviceSelected += (s, e) =>
-            {
-                StorageManager.SaveDevice = (SaveDevice)s;
-
-                //this.loading = true;
-                //System.Threading.Thread.Sleep(1500);
-                StorageManager.Instance.initialize(playerIndex);
-                loadMainMenu(playerIndex);
-            };
-
-            // hook two event handlers to force the user to choose a new device if they cancel the
-            // device selector or if they disconnect the storage device after selecting it
-            sharedSaveDevice.DeviceSelectorCanceled +=
-                (s, e) => e.Response = SaveDeviceEventResponse.Force;
-            sharedSaveDevice.DeviceDisconnected +=
-                (s, e) => e.Response = SaveDeviceEventResponse.Force;
-
-            // prompt for a device on the next Update
-            sharedSaveDevice.PromptForDevice();
-
-            // make sure we hold on to the device
-            StorageManager.SaveDevice = sharedSaveDevice;
-        }
-        **/
-
-        private void loadMainMenu(PlayerIndex playerIndex)
+        private void LoadMainMenu(PlayerIndex playerIndex)
         {
             this.ExitScreen();
             ScreenManager.AddScreen(new MainMenuScreen(), null);

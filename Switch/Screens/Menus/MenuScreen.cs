@@ -79,32 +79,32 @@ namespace Switch.Menus
             titleBackgroundImage = content.Load<Texture2D>("Sprites\\Help\\menu_title_background");
         }
 
-        public void setMenuTitleImage(Texture2D texture)
+        public void SetMenuTitleImage(Texture2D texture)
         {
             this.menuTitleImage = texture;
         }
 
-        public void setMenuTitleIconImage(Texture2D texture)
+        public void SetMenuTitleIconImage(Texture2D texture)
         {
             this.iconImage = texture;
         }
 
-        public void setSubMenuTitleText(String text)
+        public void SetSubMenuTitleText(String text)
         {
             this.subMenuTitleText = text;
         }
 
-        public void setAllowBack(bool allowBack)
+        public void SetAllowBack(bool allowBack)
         {
             this.allowBack = allowBack;
         }
 
-        public void setShowBackgroundColor(bool showBackgroundColor)
+        public void SetShowBackgroundColor(bool showBackgroundColor)
         {
             this.showBackgroundColor = showBackgroundColor;
         }
 
-        public void setShowBackgroundDecoration(bool showBackgroundDecoration)
+        public void SetShowBackgroundDecoration(bool showBackgroundDecoration)
         {
             this.showBackgroundDecoration = showBackgroundDecoration;
         }
@@ -281,7 +281,7 @@ namespace Switch.Menus
                 if (this.subMenuTitleText != null)
                 {
                     Vector2 subTitleTextPosition = new Vector2(titlePosition.X, titlePosition.Y + 50);
-                    Vector2 subTitleTextOrigin = Utils.Utils.Instance.getTextStringCenterOrigin(subMenuTitleText, littleFont);
+                    Vector2 subTitleTextOrigin = Utils.Utils.Instance.GetTextStringCenterOrigin(subMenuTitleText, littleFont);
                     spriteBatch.DrawString(littleFont, subMenuTitleText, subTitleTextPosition, greenColor, 0,
                        subTitleTextOrigin, 1, SpriteEffects.None, 0);
                 }

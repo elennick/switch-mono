@@ -39,7 +39,7 @@ namespace Switch.Menus
             SpriteBatch spriteBatch = screenManager.SpriteBatch;
             SpriteFont font = screenManager.Font;
 
-            Vector2 origin = Utils.Utils.Instance.getTextStringCenterOrigin(text, font);
+            Vector2 origin = Utils.Utils.Instance.GetTextStringCenterOrigin(text, font);
             Vector2 loweredPosition = new Vector2(position.X, position.Y + 25);
 
             spriteBatch.DrawString(font, text, loweredPosition, color, 0,

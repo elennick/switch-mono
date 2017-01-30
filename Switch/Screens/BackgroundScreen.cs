@@ -40,7 +40,7 @@ namespace Switch
 
         public BackgroundScreen() : this(false, false) { }
 
-        public void setShowBackgroundFloaters(bool showBackgroundFloaters)
+        public void SetShowBackgroundFloaters(bool showBackgroundFloaters)
         {
             this.showBackgroundFloaters = showBackgroundFloaters;
         }
@@ -129,7 +129,7 @@ namespace Switch
             {
                 foreach (BlurredBackgroundTile tile in backgroundTiles)
                 {
-                    tile.update(gameTime.ElapsedGameTime.Milliseconds, this.tilesAreStatic);
+                    tile.Update(gameTime.ElapsedGameTime.Milliseconds, this.tilesAreStatic);
                 }
             }
 
@@ -171,7 +171,7 @@ namespace Switch
             {
                 foreach (BlurredBackgroundTile tile in backgroundTiles)
                 {
-                    tile.draw(spriteBatch);
+                    tile.Draw(spriteBatch);
                 }
             }
 

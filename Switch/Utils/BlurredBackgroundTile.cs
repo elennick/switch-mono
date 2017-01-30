@@ -39,12 +39,12 @@ namespace Switch.Utils
             movementDirection.Y = random.Next(2);
         }
 
-        public Vector2 getOrigin()
+        public Vector2 GetOrigin()
         {
             return new Vector2(texture.Width / 2, texture.Height / 2);
         }
 
-        public void update(long milliseconds, bool tileIsStatic)
+        public void Update(long milliseconds, bool tileIsStatic)
         {
             if (!tileIsStatic)
             {
@@ -52,7 +52,7 @@ namespace Switch.Utils
                 if (millisecondsSinceLastUpdate >= movementSpeed)
                 {
                     millisecondsSinceLastUpdate = 0;
-                    updatePosition();
+                    UpdatePosition();
                 }
 
                 if (spinDirection > 0)
@@ -66,12 +66,12 @@ namespace Switch.Utils
             }
         }
 
-        public void draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, position, null, Color.White, rotation, getOrigin(), currentScale, SpriteEffects.None, 0);
+            spriteBatch.Draw(texture, position, null, Color.White, rotation, GetOrigin(), currentScale, SpriteEffects.None, 0);
         }
 
-        private void updatePosition()
+        private void UpdatePosition()
         {
             position = new Vector2(position.X + movementDirection.X, position.Y + movementDirection.Y);
 

@@ -20,12 +20,12 @@ namespace Switch.GameObjects.GameDisplays
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             String lvlLabel = "Level";
-            Vector2 labelOrigin = Utils.Utils.Instance.getTextStringCenterOrigin(lvlLabel, this.font);
+            Vector2 labelOrigin = Utils.Utils.Instance.GetTextStringCenterOrigin(lvlLabel, this.font);
             spriteBatch.DrawString(this.font, lvlLabel, this.position, new Color(217, 217, 217), 0,
                                    labelOrigin, Vector2.One, SpriteEffects.None, 0);
 
             String lvlValueString = "" + this.gameBoard.GetStats().level;
-            Vector2 lvlValueStringOrigin = Utils.Utils.Instance.getTextStringCenterOrigin(lvlValueString, this.font);
+            Vector2 lvlValueStringOrigin = Utils.Utils.Instance.GetTextStringCenterOrigin(lvlValueString, this.font);
             Vector2 lvlvalueStringPosition = new Vector2(this.position.X, this.position.Y + font.LineSpacing - 10);
             spriteBatch.DrawString(this.font, lvlValueString, lvlvalueStringPosition, new Color(217, 217, 217), 0,
                                    lvlValueStringOrigin, Vector2.One, SpriteEffects.None, 0);

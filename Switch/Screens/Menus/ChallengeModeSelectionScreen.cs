@@ -19,7 +19,7 @@ namespace Switch.Menus
         public ChallengeModeSelectionScreen(Switch.GameObjects.Challenges.ChallengeManager.ChallengeLevel level)
             : base("Select A Challenge!")
         {
-            this.setSubMenuTitleText("Challenges " + ChallengeManager.Instance.GetPercentOfChallengesCompleted() + "% Completed");
+            this.SetSubMenuTitleText("Challenges " + ChallengeManager.Instance.GetPercentOfChallengesCompleted() + "% Completed");
 
             List<IChallenge> challenges = ChallengeManager.Instance.GetChallenges(level);
             foreach (IChallenge challenge in challenges)
@@ -27,7 +27,7 @@ namespace Switch.Menus
                 ChallengeModeMenuEntry menuEntry = new ChallengeModeMenuEntry(challenge.GetName(), 
                                                                               challenge.GetDescription(), 
                                                                               ChallengeManager.Instance.GetChallengeStatus(challenge.GetName()));
-                menuEntry.Selected += challengeEntrySelected;
+                menuEntry.Selected += ChallengeEntrySelected;
                 MenuEntries.Add(menuEntry);
             }
 
@@ -52,13 +52,13 @@ namespace Switch.Menus
                 try
                 {
                     ChallengeModeMenuEntry cMenuEntry = (ChallengeModeMenuEntry)menuEntry;
-                    if (cMenuEntry.isChallengeCompleted())
+                    if (cMenuEntry.IsChallengeCompleted())
                     {
-                        cMenuEntry.setImage(checkedCheckbox);
+                        cMenuEntry.SetImage(checkedCheckbox);
                     }
                     else
                     {
-                        cMenuEntry.setImage(uncheckedCheckbox);
+                        cMenuEntry.SetImage(uncheckedCheckbox);
                     }
                 }
                 catch (InvalidCastException ice)
@@ -69,7 +69,7 @@ namespace Switch.Menus
             }
         }
 
-        void challengeEntrySelected(object sender, PlayerIndexEventArgs e)
+        void ChallengeEntrySelected(object sender, PlayerIndexEventArgs e)
         {
             string challengeName = ((MenuEntry)sender).Text;
             currentlySelectedChallenge = ChallengeManager.Instance.GetChallengeByName(challengeName);

@@ -113,7 +113,7 @@ namespace Switch.GameObjects.Tiles
             crescentTile.AddAnimation("idle", idleCrescentSpriteSheet);
             tileSet.AddNormalTile(crescentTile);
 
-            if (tileSet.GetNumberOfNormalTilesInTileSet() < difficulty.getSizeOfTileSet())
+            if (tileSet.GetNumberOfNormalTilesInTileSet() < difficulty.GetSizeOfTileSet())
             {
                 Tile diamondTile = new Tile(content.Load<Texture2D>("Sprites\\Tiles\\TileSet1\\Objects\\diamond"),
                     content.Load<Texture2D>("Sprites\\Tiles\\TileSet1\\Backgrounds\\green"),
@@ -123,7 +123,7 @@ namespace Switch.GameObjects.Tiles
                 tileSet.AddNormalTile(diamondTile);
             }
 
-            if (tileSet.GetNumberOfNormalTilesInTileSet() < difficulty.getSizeOfTileSet())
+            if (tileSet.GetNumberOfNormalTilesInTileSet() < difficulty.GetSizeOfTileSet())
             {
                 Tile dropTile = new Tile(content.Load<Texture2D>("Sprites\\Tiles\\TileSet1\\Objects\\drop"),
                     content.Load<Texture2D>("Sprites\\Tiles\\TileSet1\\Backgrounds\\orange"),
@@ -133,7 +133,7 @@ namespace Switch.GameObjects.Tiles
                 tileSet.AddNormalTile(dropTile);
             }
 
-            if (tileSet.GetNumberOfNormalTilesInTileSet() < difficulty.getSizeOfTileSet())
+            if (tileSet.GetNumberOfNormalTilesInTileSet() < difficulty.GetSizeOfTileSet())
             {
                 Tile triangleTile = new Tile(content.Load<Texture2D>("Sprites\\Tiles\\TileSet1\\Objects\\triangle"),
                     content.Load<Texture2D>("Sprites\\Tiles\\TileSet1\\Backgrounds\\red"),
@@ -143,7 +143,7 @@ namespace Switch.GameObjects.Tiles
                 tileSet.AddNormalTile(triangleTile);
             }
 
-            if (tileSet.GetNumberOfNormalTilesInTileSet() < difficulty.getSizeOfTileSet())
+            if (tileSet.GetNumberOfNormalTilesInTileSet() < difficulty.GetSizeOfTileSet())
             {
                 Tile octagonTile = new Tile(content.Load<Texture2D>("Sprites\\Tiles\\TileSet1\\Objects\\octagon"),
                     content.Load<Texture2D>("Sprites\\Tiles\\TileSet1\\Backgrounds\\purple"),
@@ -153,7 +153,7 @@ namespace Switch.GameObjects.Tiles
                 tileSet.AddNormalTile(octagonTile);
             }
 
-            if (tileSet.GetNumberOfNormalTilesInTileSet() < difficulty.getSizeOfTileSet())
+            if (tileSet.GetNumberOfNormalTilesInTileSet() < difficulty.GetSizeOfTileSet())
             {
                 Tile wingTile = new Tile(content.Load<Texture2D>("Sprites\\Tiles\\TileSet1\\Objects\\wing_triangle"),
                     content.Load<Texture2D>("Sprites\\Tiles\\TileSet1\\Backgrounds\\teal"),

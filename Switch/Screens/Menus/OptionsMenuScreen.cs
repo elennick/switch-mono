@@ -23,7 +23,7 @@ namespace Switch.Menus
         public OptionsMenuScreen()
             : base("Help & Options")
         {
-            this.setSubMenuTitleText("Configure Your Junk!");
+            this.SetSubMenuTitleText("Configure Your Junk!");
 
             fullscreenOn = SwitchGame.Instance.Graphics.IsFullScreen;
 

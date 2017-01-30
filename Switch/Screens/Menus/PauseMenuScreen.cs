@@ -25,8 +25,8 @@ namespace Switch.Menus
             VibrationManager.Instance.CancelAllVibrations();
             IsPopup = true;
             this.challenge = challenge;
-            this.setShowBackgroundColor(false);
-            this.setShowBackgroundDecoration(false);
+            this.SetShowBackgroundColor(false);
+            this.SetShowBackgroundDecoration(false);
 
             // Create our menu entries.
             MenuEntry resumeGameMenuEntry = new MenuEntry("Resume Game");
@@ -62,7 +62,7 @@ namespace Switch.Menus
                 content = new ContentManager(ScreenManager.Game.Services, "Content");
             }
 
-            this.setMenuTitleImage(content.Load<Texture2D>("Sprites\\Title\\paused"));
+            this.SetMenuTitleImage(content.Load<Texture2D>("Sprites\\Title\\paused"));
         }
 
         void ChallengeInfoEntrySelected(object sender, PlayerIndexEventArgs e)

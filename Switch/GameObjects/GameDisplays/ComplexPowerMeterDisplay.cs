@@ -205,7 +205,7 @@ namespace Switch.GameObjects.GameDisplays
             if (this.gameBoard.IsBulletTimeOn())
             {
                 String bulletTimeIsActiveString = "Bullet Time Engaged!";
-                Vector2 bulletTimeIsActiveOrigin = Utils.Utils.Instance.getTextStringCenterOrigin(bulletTimeIsActiveString, font);
+                Vector2 bulletTimeIsActiveOrigin = Utils.Utils.Instance.GetTextStringCenterOrigin(bulletTimeIsActiveString, font);
                 Vector2 bulletTimeIsActivePosition = new Vector2(this.position.X + 176, this.position.Y + 575);
 
                 double time = gameTime.TotalGameTime.TotalSeconds;

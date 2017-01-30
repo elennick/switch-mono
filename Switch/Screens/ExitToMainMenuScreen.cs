@@ -13,8 +13,8 @@ namespace Switch.Menus
             : base(menuTitleString)
         {
             IsPopup = true;
-            this.setShowBackgroundColor(false);
-            this.setShowBackgroundDecoration(false);
+            this.SetShowBackgroundColor(false);
+            this.SetShowBackgroundDecoration(false);
 
             MenuEntry quitGameMenuEntry = new MenuEntry("Yes");
             MenuEntry nevermindGameMenuEntry = new MenuEntry("No");

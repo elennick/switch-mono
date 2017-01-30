@@ -29,12 +29,12 @@ namespace Switch.GameObjects.GameDisplays
             this.UpdateScore(this.gameBoard.GetScore());
             String scoreLabel = "Score";
 
-            Vector2 labelOrigin = Utils.Utils.Instance.getTextStringCenterOrigin(scoreLabel, this.font);
+            Vector2 labelOrigin = Utils.Utils.Instance.GetTextStringCenterOrigin(scoreLabel, this.font);
             spriteBatch.DrawString(this.font, scoreLabel, this.position, new Color(217, 217, 217), 0,
                                    labelOrigin, Vector2.One, SpriteEffects.None, 0);
 
             String scoreString = "" + scoreToDisplay;
-            Vector2 scoreOrigin = Utils.Utils.Instance.getTextStringCenterOrigin(scoreString, this.font);
+            Vector2 scoreOrigin = Utils.Utils.Instance.GetTextStringCenterOrigin(scoreString, this.font);
             Vector2 scoreStringPosition = new Vector2(this.position.X, this.position.Y + font.LineSpacing - 10);
             spriteBatch.DrawString(this.font, scoreString, scoreStringPosition, new Color(217, 217, 217), 0,
                                    scoreOrigin, Vector2.One, SpriteEffects.None, 0);

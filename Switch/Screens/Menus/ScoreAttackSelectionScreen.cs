@@ -17,7 +17,7 @@ namespace Switch.Menus
         public ScoreAttackSelectionScreen()
             : base("Score Attack Difficulty")
         {
-            this.setSubMenuTitleText("Go For The High Score!");
+            this.SetSubMenuTitleText("Go For The High Score!");
 
             easyEntry = new MenuEntry("Easy");
             normalEntry = new MenuEntry("Normal");
@@ -25,10 +25,10 @@ namespace Switch.Menus
             impossibleEntry = new MenuEntry("Impossible");
             backMenuEntry = new ExitOrBackMenuEntry("Back To Main Menu...");
 
-            easyEntry.Selected += easyEntrySelected;
-            normalEntry.Selected += normalEntrySelected;
-            hardEntry.Selected += hardEntrySelected;
-            impossibleEntry.Selected += impossibleEntrySelected;
+            easyEntry.Selected += EasyEntrySelected;
+            normalEntry.Selected += NormalEntrySelected;
+            hardEntry.Selected += HardEntrySelected;
+            impossibleEntry.Selected += ImpossibleEntrySelected;
             backMenuEntry.Selected += OnCancel;
 
             MenuEntries.Add(easyEntry);
@@ -38,7 +38,7 @@ namespace Switch.Menus
             MenuEntries.Add(backMenuEntry);
         }
 
-        void easyEntrySelected(object sender, PlayerIndexEventArgs e)
+        void EasyEntrySelected(object sender, PlayerIndexEventArgs e)
         {
             Easy easyDiff = new Easy();
 
@@ -49,7 +49,7 @@ namespace Switch.Menus
             LoadingScreen.Load(ScreenManager, true, e.PlayerIndex, screensToLoad);
         }
 
-        void normalEntrySelected(object sender, PlayerIndexEventArgs e)
+        void NormalEntrySelected(object sender, PlayerIndexEventArgs e)
         {
             Normal normalDiff = new Normal();
 
@@ -60,7 +60,7 @@ namespace Switch.Menus
             LoadingScreen.Load(ScreenManager, true, e.PlayerIndex, screensToLoad);
         }
 
-        void hardEntrySelected(object sender, PlayerIndexEventArgs e)
+        void HardEntrySelected(object sender, PlayerIndexEventArgs e)
         {
             Hard hardDiff = new Hard();
 
@@ -71,7 +71,7 @@ namespace Switch.Menus
             LoadingScreen.Load(ScreenManager, true, e.PlayerIndex, screensToLoad);
         }
 
-        void impossibleEntrySelected(object sender, PlayerIndexEventArgs e)
+        void ImpossibleEntrySelected(object sender, PlayerIndexEventArgs e)
         {
             Impossible impDiff = new Impossible();
 

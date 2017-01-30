@@ -7,42 +7,42 @@ namespace Switch.Utils.Difficulty.DifficultyObjects
 {
     class Impossible : Difficulty
     {
-        public string getName()
+        public string GetName()
         {
             return "Impossible";
         }
 
-        public string getDescription()
+        public string GetDescription()
         {
             return "Impossible";
         }
 
-        public int getNumberOfTilesToDropPerRound()
+        public int GetNumberOfTilesToDropPerRound()
         {
             return 5;
         }
 
-        public int getNumberOfTilesInTheGameboardWidth()
+        public int GetNumberOfTilesInTheGameboardWidth()
         {
             return 7;
         }
 
-        public int getNumberOfTilesInTheGameboardHeight()
+        public int GetNumberOfTilesInTheGameboardHeight()
         {
             return 13;
         }
 
-        public int getStartingSpeed()
+        public int GetStartingSpeed()
         {
             return 250;
         }
 
-        public int getMaxSpeed()
+        public int GetMaxSpeed()
         {
             return 50;
         }
 
-        public int getSizeOfTileSet()
+        public int GetSizeOfTileSet()
         {
             return 6;
         }

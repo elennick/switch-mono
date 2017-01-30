@@ -21,12 +21,12 @@ namespace Switch.Menus
             this.isCompleted = isCompleted;
         }
 
-        public void setImage(Texture2D image)
+        public void SetImage(Texture2D image)
         {
             this.image = image;
         }
 
-        public bool isChallengeCompleted()
+        public bool IsChallengeCompleted()
         {
             return this.isCompleted;
         }
@@ -50,7 +50,7 @@ namespace Switch.Menus
             Vector2 origin = new Vector2(0, font.LineSpacing / 2);
 
             Vector2 finalTextPosition = new Vector2(position.X - 20, position.Y);
-            Vector2 rightOrigin = Utils.Utils.Instance.getTextStringRightOrigin(text, font);
+            Vector2 rightOrigin = Utils.Utils.Instance.GetTextStringRightOrigin(text, font);
 
             spriteBatch.DrawString(font, text, finalTextPosition, color, 0,
                                    rightOrigin, scale, SpriteEffects.None, 0);

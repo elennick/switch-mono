@@ -67,7 +67,7 @@ namespace Switch
 
             //draw title
             String titleString = "Lifetime Game Stats";
-            Vector2 titleOrigin = Utils.Utils.Instance.getTextStringCenterOrigin(titleString, font);
+            Vector2 titleOrigin = Utils.Utils.Instance.GetTextStringCenterOrigin(titleString, font);
             Vector2 titleScale = new Vector2(1.4f, 1.4f);
             Vector2 titlePosition = new Vector2((viewport.Width / 2) + position.X, 120);
             spriteBatch.DrawString(font, titleString, titlePosition, yellowColor, 0, titleOrigin, titleScale, SpriteEffects.None, 0);
@@ -84,7 +84,7 @@ namespace Switch
                 String score = "" + statValue.value;
                 int heightOffset = (font.LineSpacing - 12) * i;
 
-                Vector2 scoreOrigin = Utils.Utils.Instance.getTextStringRightOrigin(score, font);
+                Vector2 scoreOrigin = Utils.Utils.Instance.GetTextStringRightOrigin(score, font);
                 Vector2 scorePosition = new Vector2(position.X + 980, 170 + heightOffset);
 
                 Vector2 initialsPosition = new Vector2(position.X + 300, 170 + heightOffset);

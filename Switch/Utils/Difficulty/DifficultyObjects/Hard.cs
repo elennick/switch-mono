@@ -7,42 +7,42 @@ namespace Switch.Utils.Difficulty.DifficultyObjects
 {
     class Hard : Difficulty
     {
-        public string getName()
+        public string GetName()
         {
             return "Hard";
         }
 
-        public string getDescription()
+        public string GetDescription()
         {
             return "Hard";
         }
 
-        public int getNumberOfTilesToDropPerRound()
+        public int GetNumberOfTilesToDropPerRound()
         {
             return 4;
         }
 
-        public int getNumberOfTilesInTheGameboardWidth()
+        public int GetNumberOfTilesInTheGameboardWidth()
         {
             return 6;
         }
 
-        public int getNumberOfTilesInTheGameboardHeight()
+        public int GetNumberOfTilesInTheGameboardHeight()
         {
             return 11;
         }
 
-        public int getStartingSpeed()
+        public int GetStartingSpeed()
         {
             return 450;
         }
 
-        public int getMaxSpeed()
+        public int GetMaxSpeed()
         {
             return 200;
         }
 
-        public int getSizeOfTileSet()
+        public int GetSizeOfTileSet()
         {
             return 6;
         }

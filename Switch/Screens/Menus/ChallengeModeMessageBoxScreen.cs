@@ -126,7 +126,7 @@ namespace Switch.Menus
             spriteBatch.Draw(background, backgroundPosition, null, whiteColor, 0, backgroundOrigin, Vector2.One, SpriteEffects.None, 0);
 
             // draw the title
-            Vector2 titleStringPosition = Utils.Utils.Instance.getScreenCenterForText(title, font, 185);
+            Vector2 titleStringPosition = Utils.Utils.Instance.GetScreenCenterForText(title, font, 185);
             titleStringPosition = new Vector2(titleStringPosition.X + position.X, titleStringPosition.Y);
 
             spriteBatch.DrawString(font,
@@ -153,7 +153,7 @@ namespace Switch.Menus
                 acceptText = "ACCEPT CHALLENGE!";
             }
 
-            Vector2 acceptTextPosition = Utils.Utils.Instance.getScreenCenterForText(acceptText,
+            Vector2 acceptTextPosition = Utils.Utils.Instance.GetScreenCenterForText(acceptText,
                                                                                font,
                                                                                500 + acceptButtonYOffset);
             acceptTextPosition.X += (position.X + 35);
@@ -173,7 +173,7 @@ namespace Switch.Menus
             if (!this.inGameInfoDisplay)
             {
                 String denyText = "NO THANKS...";
-                Vector2 denyTextPosition = Utils.Utils.Instance.getScreenCenterForText(denyText,
+                Vector2 denyTextPosition = Utils.Utils.Instance.GetScreenCenterForText(denyText,
                                                                                        font,
                                                                                        550);
                 denyTextPosition.X += (position.X + 35);

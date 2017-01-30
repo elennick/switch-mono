@@ -14,8 +14,8 @@ namespace Switch.Menus
             : base(menuTitleString)
         {
             IsPopup = true;
-            setAllowBack(false);
-            setShowBackgroundColor(false);
+            SetAllowBack(false);
+            SetShowBackgroundColor(false);
             
             MenuEntry quitGameMenuEntry = new MenuEntry("Back To Menu");
 
@@ -33,7 +33,7 @@ namespace Switch.Menus
                 content = new ContentManager(ScreenManager.Game.Services, "Content");
             }
 
-            this.setMenuTitleImage(content.Load<Texture2D>("Sprites\\Title\\challengecompleted"));
+            this.SetMenuTitleImage(content.Load<Texture2D>("Sprites\\Title\\challengecompleted"));
         }
 
         void QuitGameMenuEntrySelected(object sender, PlayerIndexEventArgs e)

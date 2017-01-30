@@ -14,7 +14,7 @@ namespace Switch.Menus
         public MainMenuScreen()
             : base("awesome switch logo goes here !")
         {
-            this.setShowBackgroundDecoration(false);
+            this.SetShowBackgroundDecoration(false);
 
             // Create our menu entries.
             MenuEntry scoreAttack = new MenuEntry("1-Player Score Attack");
@@ -25,12 +25,12 @@ namespace Switch.Menus
             MenuEntry exit = new ExitOrBackMenuEntry("Exit");
 
             // Hook up menu event handlers.
-            scoreAttack.Selected += scoreAttackSelected;
-            challengeMode.Selected += challengeModeSelected;
-            battleMode.Selected += battleModeSelected;
-            highScores.Selected += highScoresSelected;
-            options.Selected += optionsSelected;
-            exit.Selected += exitSelected;
+            scoreAttack.Selected += ScoreAttackSelected;
+            challengeMode.Selected += ChallengeModeSelected;
+            battleMode.Selected += BattleModeSelected;
+            highScores.Selected += HighScoresSelected;
+            options.Selected += OptionsSelected;
+            exit.Selected += ExitSelected;
 
             // Add entries to the menu.
             MenuEntries.Add(scoreAttack);
@@ -57,7 +57,7 @@ namespace Switch.Menus
                 content = new ContentManager(ScreenManager.Game.Services, "Content");
             }
 
-            this.setMenuTitleImage(content.Load<Texture2D>("Sprites\\Title\\switch_logo"));
+            this.SetMenuTitleImage(content.Load<Texture2D>("Sprites\\Title\\switch_logo"));
         }
 
         public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
@@ -65,32 +65,32 @@ namespace Switch.Menus
             base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
         }
 
-        void scoreAttackSelected(object sender, PlayerIndexEventArgs e)
+        void ScoreAttackSelected(object sender, PlayerIndexEventArgs e)
         {
             ScreenManager.AddScreen(new ScoreAttackSelectionScreen(), null);
         }
 
-        void battleModeSelected(object sender, PlayerIndexEventArgs e)
+        void BattleModeSelected(object sender, PlayerIndexEventArgs e)
         {
             //ScreenManager.AddScreen(new BattleModeControllerSelectScreen(), null);
         }
 
-        void challengeModeSelected(object sender, PlayerIndexEventArgs e)
+        void ChallengeModeSelected(object sender, PlayerIndexEventArgs e)
         {
             ScreenManager.AddScreen(new ChallengeModeDifficultySelectionScreen(), null);
         }
 
-        void highScoresSelected(object sender, PlayerIndexEventArgs e)
+        void HighScoresSelected(object sender, PlayerIndexEventArgs e)
         {
             //ScreenManager.AddScreen(new HighScoreScreen(), null);
         }
 
-        void optionsSelected(object sender, PlayerIndexEventArgs e)
+        void OptionsSelected(object sender, PlayerIndexEventArgs e)
         {
            ScreenManager.AddScreen(new OptionsMenuScreen(), null);
         }
 
-        void exitSelected(object sender, PlayerIndexEventArgs e)
+        void ExitSelected(object sender, PlayerIndexEventArgs e)
         {
             ScreenManager.Game.Exit();
         }

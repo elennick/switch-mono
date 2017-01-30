@@ -71,9 +71,9 @@ namespace Switch.GameObjects
             this.difficulty = difficulty;
             this.height = height;
             this.width = width;
-            this.numTilesHeight = difficulty.getNumberOfTilesInTheGameboardHeight();
-            this.numTilesWidth = difficulty.getNumberOfTilesInTheGameboardWidth();
-            this.startingSpeed = difficulty.getStartingSpeed(); //milliseconds
+            this.numTilesHeight = difficulty.GetNumberOfTilesInTheGameboardHeight();
+            this.numTilesWidth = difficulty.GetNumberOfTilesInTheGameboardWidth();
+            this.startingSpeed = difficulty.GetStartingSpeed(); //milliseconds
             this.currentSpeed = startingSpeed;
             this.playerIndex = playerIndex;
             this.tileSet = tileSet;
@@ -83,8 +83,8 @@ namespace Switch.GameObjects
             this.animatableSprites = new List<SpriteObject>();
             this.timeBeforeSpeedUp = 60000; //game speeds up every 60 seconds by default
             this.speedUpIncrement = 50; //tiles drop 1/20th of a second faster every time the game speeds up
-            this.minGameSpeed = difficulty.getMaxSpeed();
-            this.numTilesToDrop = difficulty.getNumberOfTilesToDropPerRound();
+            this.minGameSpeed = difficulty.GetMaxSpeed();
+            this.numTilesToDrop = difficulty.GetNumberOfTilesToDropPerRound();
             this.paused = true;
             this.scaleTiles = false;
             this.bulletTimeActive = false;

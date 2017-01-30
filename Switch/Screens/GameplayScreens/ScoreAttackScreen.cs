@@ -32,13 +32,13 @@ namespace Switch
         public ScoreAttackScreen(Difficulty difficulty, PlayerIndex playerIndex) : base(1)
         {
             this.difficulty = difficulty;
-            base.setPlayerOne(playerIndex);
+            base.SetPlayerOne(playerIndex);
 
             TransitionOnTime = TimeSpan.FromSeconds(1.5);
             TransitionOffTime = TimeSpan.FromSeconds(0.5);
         }
 
-        public override GameMode getGameMode()
+        public override GameMode GetGameMode()
         {
             return GameplayScreen.GameMode.SCORE_ATTACK;
         }

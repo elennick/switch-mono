@@ -57,7 +57,7 @@ namespace Switch
             else if (input.IsMenuSelect(null, out playerIndex))
             {
                 SoundManager.Instance.PlaySound("menu-select");
-                this.nextPage();
+                this.NextPage();
             }
         }
 
@@ -120,8 +120,8 @@ namespace Switch
                 String evansRolesText = "DESIGN / CODE";
                 String evansNameText = "Evan Lennick";
 
-                Vector2 evansRolesTextOrigin = Utils.Utils.Instance.getTextStringCenterOrigin(evansRolesText, font);
-                Vector2 evansNameTextOrigin = Utils.Utils.Instance.getTextStringCenterOrigin(evansNameText, font);
+                Vector2 evansRolesTextOrigin = Utils.Utils.Instance.GetTextStringCenterOrigin(evansRolesText, font);
+                Vector2 evansNameTextOrigin = Utils.Utils.Instance.GetTextStringCenterOrigin(evansNameText, font);
                 Vector2 evansCreditsTextPosition = new Vector2(position.X + xPixelOffset + 340, evansHeadPosition.Y - 25);
 
                 spriteBatch.DrawString(font, evansRolesText, evansCreditsTextPosition, titleColor, 0, evansRolesTextOrigin, 1, SpriteEffects.None, 0);
@@ -137,8 +137,8 @@ namespace Switch
                 String kristiansRolesText = "DESIGN / ART";
                 String kristiansNameText = "Kristian Correa";
 
-                Vector2 kristiansRolesTextOrigin = Utils.Utils.Instance.getTextStringCenterOrigin(kristiansRolesText, font);
-                Vector2 kristiansNameTextOrigin = Utils.Utils.Instance.getTextStringCenterOrigin(kristiansNameText, font);
+                Vector2 kristiansRolesTextOrigin = Utils.Utils.Instance.GetTextStringCenterOrigin(kristiansRolesText, font);
+                Vector2 kristiansNameTextOrigin = Utils.Utils.Instance.GetTextStringCenterOrigin(kristiansNameText, font);
                 Vector2 kristiansCreditsTextPosition = new Vector2(position.X + xPixelOffset + 340, kristiansHeadPosition.Y - 25);
 
                 spriteBatch.DrawString(font, kristiansRolesText, kristiansCreditsTextPosition, titleColor, 0, kristiansRolesTextOrigin, 1, SpriteEffects.None, 0);
@@ -151,11 +151,11 @@ namespace Switch
                 String musicCreditsText = "Christian Andersson (menus)\n" +
                                           "  Roald Strauss (gameplay)";
 
-                Vector2 musicTitleTextOrigin = Utils.Utils.Instance.getTextStringCenterOrigin(musicTitleText, font);
+                Vector2 musicTitleTextOrigin = Utils.Utils.Instance.GetTextStringCenterOrigin(musicTitleText, font);
                 Vector2 musicTitleTextPosition = new Vector2(position.X + 640, position.Y + 280);
                 spriteBatch.DrawString(font, musicTitleText, musicTitleTextPosition, titleColor, 0, musicTitleTextOrigin, Vector2.One, SpriteEffects.None, 0);
 
-                Vector2 musicCreditsTextOrigin = Utils.Utils.Instance.getTextStringCenterOrigin(musicCreditsText, font);
+                Vector2 musicCreditsTextOrigin = Utils.Utils.Instance.GetTextStringCenterOrigin(musicCreditsText, font);
                 Vector2 musicCreditsPosition = new Vector2(position.X + 640, position.Y + 410);
                 spriteBatch.DrawString(font, musicCreditsText, musicCreditsPosition, titleColor, 0, musicCreditsTextOrigin, Vector2.One, SpriteEffects.None, 0);
             }
@@ -168,11 +168,11 @@ namespace Switch
                                            "simon.rue, RunnerPack\n" +
                                            "       (via Freesound.org)";
 
-                Vector2 soundsTitleTextOrigin = Utils.Utils.Instance.getTextStringCenterOrigin(soundsTitleText, font);
+                Vector2 soundsTitleTextOrigin = Utils.Utils.Instance.GetTextStringCenterOrigin(soundsTitleText, font);
                 Vector2 soundsTitleTextPosition = new Vector2(position.X + 640, position.Y + 220);
                 spriteBatch.DrawString(font, soundsTitleText, soundsTitleTextPosition, titleColor, 0, soundsTitleTextOrigin, Vector2.One, SpriteEffects.None, 0);
 
-                Vector2 soundsCreditsTextOrigin = Utils.Utils.Instance.getTextStringCenterOrigin(soundsCreditsText, font);
+                Vector2 soundsCreditsTextOrigin = Utils.Utils.Instance.GetTextStringCenterOrigin(soundsCreditsText, font);
                 Vector2 soundsCreditsTextPosition = new Vector2(position.X + 640, position.Y + 405);
                 spriteBatch.DrawString(font, soundsCreditsText, soundsCreditsTextPosition, titleColor, 0, soundsCreditsTextOrigin, Vector2.One, SpriteEffects.None, 0);
             }
@@ -182,11 +182,11 @@ namespace Switch
                 String specialThanksCredits = "Natalie, Maureen, Brandon,\n" +
                                                "Tony, Molly and Dessi.";
 
-                Vector2 specialThanksTitleTextOrigin = Utils.Utils.Instance.getTextStringCenterOrigin(specialThanksTitle, font);
+                Vector2 specialThanksTitleTextOrigin = Utils.Utils.Instance.GetTextStringCenterOrigin(specialThanksTitle, font);
                 Vector2 specialThanksTitleTextPosition = new Vector2(position.X + 640, position.Y + 275);
                 spriteBatch.DrawString(font, specialThanksTitle, specialThanksTitleTextPosition, titleColor, 0, specialThanksTitleTextOrigin, Vector2.One, SpriteEffects.None, 0);
 
-                Vector2 specialThanksCreditsTextOrigin = Utils.Utils.Instance.getTextStringCenterOrigin(specialThanksCredits, font);
+                Vector2 specialThanksCreditsTextOrigin = Utils.Utils.Instance.GetTextStringCenterOrigin(specialThanksCredits, font);
                 Vector2 specialThanksCreditsTextPosition = new Vector2(position.X + 640, position.Y + 425);
                 spriteBatch.DrawString(font, specialThanksCredits, specialThanksCreditsTextPosition, titleColor, 0, specialThanksCreditsTextOrigin, Vector2.One, SpriteEffects.None, 0);
             }
@@ -195,11 +195,11 @@ namespace Switch
                 String copyrightWGGString = "(c) Wombat Gathering Games";
                 String websiteString = "www.WombatGathering.com";
 
-                Vector2 copyrightTextOrigin = Utils.Utils.Instance.getTextStringCenterOrigin(copyrightWGGString, font);
+                Vector2 copyrightTextOrigin = Utils.Utils.Instance.GetTextStringCenterOrigin(copyrightWGGString, font);
                 Vector2 copyrightTextPosition = new Vector2(position.X + 640, position.Y + 335);
                 spriteBatch.DrawString(font, copyrightWGGString, copyrightTextPosition, titleColor, 0, copyrightTextOrigin, Vector2.One, SpriteEffects.None, 0);
 
-                Vector2 websiteTextOrigin = Utils.Utils.Instance.getTextStringCenterOrigin(websiteString, font);
+                Vector2 websiteTextOrigin = Utils.Utils.Instance.GetTextStringCenterOrigin(websiteString, font);
                 Vector2 websiteTextPosition = new Vector2(position.X + 640, position.Y + 410);
                 spriteBatch.DrawString(font, websiteString, websiteTextPosition, titleColor, 0, websiteTextOrigin, Vector2.One, SpriteEffects.None, 0);
 
@@ -208,29 +208,13 @@ namespace Switch
             spriteBatch.End();
         }
 
-        public void nextPage()
+        public void NextPage()
         {
             currentPage++;
 
             if (currentPage >= MAX_PAGES)
             {
                 currentPage = 0;
-            }
-        }
-
-        private void drawCurrentPage(int currentPage, SpriteBatch spriteBatch)
-        {
-            if (currentPage == 0)
-            {
-                Vector2 evansHeadPosition = new Vector2();
-            }
-            else if (currentPage == 1)
-            {
-
-            }
-            else
-            {
-
             }
         }
     }

@@ -45,7 +45,7 @@ namespace Switch.HighScores
 
         public String GetDifficultyAsString()
         {
-            return difficulty.getName();
+            return difficulty.GetName();
         }
 
         public int CompareTo(object obj)

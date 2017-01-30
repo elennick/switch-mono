@@ -23,7 +23,7 @@ namespace Switch.Utils
             }
         }
 
-        public Vector2 getScreenCenterForText(String text, SpriteFont spriteFont, float yPosition) 
+        public Vector2 GetScreenCenterForText(String text, SpriteFont spriteFont, float yPosition) 
         {
             Vector2 textSize = spriteFont.MeasureString(text);
             float xPosition = ((1280 / 2) - (textSize.X / 2));
@@ -32,7 +32,7 @@ namespace Switch.Utils
             return textCenter;
         }
 
-        public Vector2 getScreenAlignRightForText(String text, SpriteFont spriteFont, float yPosition)
+        public Vector2 GetScreenAlignRightForText(String text, SpriteFont spriteFont, float yPosition)
         {
             Vector2 textSize = spriteFont.MeasureString(text);
             float xPosition = ((1280 / 2) - textSize.X);
@@ -41,7 +41,7 @@ namespace Switch.Utils
             return textAlignedRight;
         }
 
-        public Vector2 getTextStringCenterOrigin(String text, SpriteFont spriteFont)
+        public Vector2 GetTextStringCenterOrigin(String text, SpriteFont spriteFont)
         {
             Vector2 textSize = spriteFont.MeasureString(text);
 
@@ -51,7 +51,7 @@ namespace Switch.Utils
             return new Vector2(xOrigin, yOrigin);
         }
 
-        public Vector2 getTextStringRightOrigin(String text, SpriteFont spriteFont)
+        public Vector2 GetTextStringRightOrigin(String text, SpriteFont spriteFont)
         {
             Vector2 textSize = spriteFont.MeasureString(text);
 
@@ -61,7 +61,7 @@ namespace Switch.Utils
             return new Vector2(xOrigin, yOrigin);
         }
 
-        public Vector2 getTextStringLeftOrigin(String text, SpriteFont spriteFont)
+        public Vector2 GetTextStringLeftOrigin(String text, SpriteFont spriteFont)
         {
             Vector2 textSize = spriteFont.MeasureString(text);
 
@@ -71,7 +71,7 @@ namespace Switch.Utils
             return new Vector2(xOrigin, yOrigin);
         }
 
-        public Texture2D copyTexture2D(GraphicsDevice gd, Texture2D image, Rectangle source)
+        public Texture2D CopyTexture2D(GraphicsDevice gd, Texture2D image, Rectangle source)
         {
             Rectangle destination = new Rectangle(0, 0, source.Width, source.Height);
 

@@ -52,7 +52,7 @@ namespace Switch
             SoundManager.Instance.SetMusicPaused(true);
         }
 
-        abstract public GameMode getGameMode();
+        abstract public GameMode GetGameMode();
 
         public override void LoadContent()
         {
@@ -84,38 +84,38 @@ namespace Switch
             }
         }
 
-        public List<GameBoard> getGameBoards()
+        public List<GameBoard> GetGameBoards()
         {
             return gameBoards;
         }
 
-        public List<GameDisplay> getGameDisplays()
+        public List<GameDisplay> GetGameDisplays()
         {
             return gameDisplays;
         }
 
-        public List<DetailedSpriteObject> getSpriteObjects()
+        public List<DetailedSpriteObject> GetSpriteObjects()
         {
             return spriteObjects;
         }
 
-        public void startCountdown()
+        public void StartCountdown()
         {
             currentCountDownState = CountDownState.PAUSE;
             timeSinceLastCountDownChange = 0;
         }
 
-        public void setPlayerOne(PlayerIndex playerIndex)
+        public void SetPlayerOne(PlayerIndex playerIndex)
         {
             playerIndex1 = playerIndex;
         }
 
-        public void setPlayerTwo(PlayerIndex playerIndex)
+        public void SetPlayerTwo(PlayerIndex playerIndex)
         {
             playerIndex2 = playerIndex;
         }
 
-        public void startGameplay()
+        public void StartGameplay()
         {
             SoundManager.Instance.SetMusicPaused(false);
             SoundManager.Instance.PlaySong("gameplay-song");
@@ -163,7 +163,7 @@ namespace Switch
 
             if (currentCountDownState == CountDownState.NOT_STARTED)
             {
-                this.startCountdown();
+                this.StartCountdown();
                 return;
             }
 
@@ -191,11 +191,11 @@ namespace Switch
                 {
                     if (gameBoard.IsGameOver()
                         && !AnimationManager.Instance.AreAnyAnimationsActive()
-                        && !gameboardIsFiringNuke())
+                        && !GameboardIsFiringNuke())
                     {
                         VibrationManager.Instance.CancelAllVibrations();
 
-                        if (this.getGameMode() == GameMode.SCORE_ATTACK)
+                        if (this.GetGameMode() == GameMode.SCORE_ATTACK)
                         {
                             int score = gameBoard.GetScore();
                             Difficulty diff = gameBoard.GetDifficulty();
@@ -214,9 +214,9 @@ namespace Switch
                             HighScoreManager.Instance.AddHighScore(highScore);
                         }
 
-                        if (this.getGameMode() != GameMode.BATTLE_MODE)
+                        if (this.GetGameMode() != GameMode.BATTLE_MODE)
                         {
-                            saveStats();
+                            SaveStats();
                             //** RE-ENABLE ME
                             //GameOverBackToMenuScreen confirmGameOverMessageBox = new GameOverBackToMenuScreen(this.getGameMode());
                             //ScreenManager.AddScreen(confirmGameOverMessageBox, null);
@@ -237,7 +237,7 @@ namespace Switch
                             }
                             //TODO - THE WHOLE CHUNK OF CODE ABOVE THIS IS BROKEN - FIX IT
 
-                            saveStats();
+                            SaveStats();
                             //** RE-ENABLE ME
                             //BattleModeGameOverScreen battleModeGameOverScreen = new BattleModeGameOverScreen("Player " + playerIndex + " Wins!", (int)playerIndex1, (int)playerIndex2);
                             //ScreenManager.AddScreen(battleModeGameOverScreen, null);
@@ -247,7 +247,7 @@ namespace Switch
                     if (this.challenge != null 
                         && this.challenge.IsCompleted(gameBoard.GetStats())
                         && !AnimationManager.Instance.AreAnyAnimationsActive()
-                        && !gameboardIsFiringNuke()
+                        && !GameboardIsFiringNuke()
                         && !gameBoard.IsGameOver())
                     {
                         VibrationManager.Instance.CancelAllVibrations();
@@ -258,7 +258,7 @@ namespace Switch
                         {
                             challengeManager.SetChallengeCompleteStatus(this.challenge.GetName(), true);
                             StorageManager.Instance.SaveChallengeStatuses(challengeManager.GetChallengeSaveData());
-                            saveStats();
+                            SaveStats();
                         }
 
                         ChallengeCompleteScreen challengeCompleteScreen = new ChallengeCompleteScreen("Challenge Completed!");
@@ -327,7 +327,7 @@ namespace Switch
                 }
                 else if(currentCountDownState == CountDownState.DONE)
                 {
-                    this.startGameplay();
+                    this.StartGameplay();
                 }
             }
 
@@ -362,11 +362,11 @@ namespace Switch
 
             if (input.IsPauseGame(playerIndex1) || gamePadDisconnected1)
             {
-                pauseGame((PlayerIndex)playerIndex1);
+                PauseGame((PlayerIndex)playerIndex1);
             }
             else if (playerIndex2 != null && (input.IsPauseGame(playerIndex2) || gamePadDisconnected2))
             {
-                pauseGame((PlayerIndex)playerIndex2);
+                PauseGame((PlayerIndex)playerIndex2);
             }
             else if(this.currentCountDownState == CountDownState.DONE)
             {
@@ -378,7 +378,7 @@ namespace Switch
 
         }
 
-        private bool gameboardIsFiringNuke()
+        private bool GameboardIsFiringNuke()
         {
             foreach (GameBoard gameBoard in gameBoards)
             {
@@ -391,7 +391,7 @@ namespace Switch
             return false;
         }
 
-        private void saveStats()
+        private void SaveStats()
         {
             if (gameBoards.Count > 1)
             {
@@ -409,12 +409,12 @@ namespace Switch
             }
         }
 
-        private void pauseGame(PlayerIndex playerIndexThatPaused)
+        private void PauseGame(PlayerIndex playerIndexThatPaused)
         {
             if (this.currentCountDownState == CountDownState.DONE)
             {
                 VibrationManager.Instance.CancelAllVibrations();
-                if (this.getGameMode() == GameMode.CHALLENGE_MODE)
+                if (this.GetGameMode() == GameMode.CHALLENGE_MODE)
                 {
                     ScreenManager.AddScreen(new PauseMenuScreen(this.challenge), playerIndexThatPaused);
                 }

@@ -21,7 +21,7 @@ namespace Switch.Menus
         public ChallengeModeDifficultySelectionScreen()
             : base("Challenge Difficulty")
         {
-            this.setSubMenuTitleText("Challenges " + ChallengeManager.Instance.GetPercentOfChallengesCompleted() + "% Completed");
+            this.SetSubMenuTitleText("Challenges " + ChallengeManager.Instance.GetPercentOfChallengesCompleted() + "% Completed");
 
             easyEntry = new MenuEntry("Easy");
             mediumEntry = new MenuEntry("Medium");
@@ -30,11 +30,11 @@ namespace Switch.Menus
             impossibleEntry = new MenuEntry("Impossible");
             backMenuEntry = new ExitOrBackMenuEntry("Back To Main Menu...");
 
-            easyEntry.Selected += easyEntrySelected;
-            mediumEntry.Selected += mediumEntrySelected;
-            hardEntry.Selected += hardEntrySelected;
-            crazyEntry.Selected += crazyEntrySelected;
-            impossibleEntry.Selected += impossibleEntrySelected;
+            easyEntry.Selected += EasyEntrySelected;
+            mediumEntry.Selected += MediumEntrySelected;
+            hardEntry.Selected += HardEntrySelected;
+            crazyEntry.Selected += CrazyEntrySelected;
+            impossibleEntry.Selected += ImpossibleEntrySelected;
             backMenuEntry.Selected += OnCancel;
 
             MenuEntries.Add(easyEntry);
@@ -45,27 +45,27 @@ namespace Switch.Menus
             MenuEntries.Add(backMenuEntry);
         }
 
-        void easyEntrySelected(object sender, PlayerIndexEventArgs e)
+        void EasyEntrySelected(object sender, PlayerIndexEventArgs e)
         {
             ScreenManager.AddScreen(new ChallengeModeSelectionScreen(ChallengeManager.ChallengeLevel.Easy), null);
         }
 
-        void mediumEntrySelected(object sender, PlayerIndexEventArgs e)
+        void MediumEntrySelected(object sender, PlayerIndexEventArgs e)
         {
             ScreenManager.AddScreen(new ChallengeModeSelectionScreen(ChallengeManager.ChallengeLevel.Medium), null);
         }
 
-        void hardEntrySelected(object sender, PlayerIndexEventArgs e)
+        void HardEntrySelected(object sender, PlayerIndexEventArgs e)
         {
             ScreenManager.AddScreen(new ChallengeModeSelectionScreen(ChallengeManager.ChallengeLevel.Hard), null);
         }
 
-        void crazyEntrySelected(object sender, PlayerIndexEventArgs e)
+        void CrazyEntrySelected(object sender, PlayerIndexEventArgs e)
         {
             ScreenManager.AddScreen(new ChallengeModeSelectionScreen(ChallengeManager.ChallengeLevel.Crazy), null);
         }
 
-        void impossibleEntrySelected(object sender, PlayerIndexEventArgs e)
+        void ImpossibleEntrySelected(object sender, PlayerIndexEventArgs e)
         {
             ScreenManager.AddScreen(new ChallengeModeSelectionScreen(ChallengeManager.ChallengeLevel.Impossible), null);
         }

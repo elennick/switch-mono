@@ -60,7 +60,7 @@ namespace Switch
             else if (input.IsMenuSelect(null, out playerIndex))
             {
                 SoundManager.Instance.PlaySound("menu-select");
-                this.nextPage();
+                this.NextPage();
             }
         }
 
@@ -117,7 +117,7 @@ namespace Switch
             spriteBatch.End();
         }
 
-        public void nextPage()
+        public void NextPage()
         {
             currentPage++;
 
