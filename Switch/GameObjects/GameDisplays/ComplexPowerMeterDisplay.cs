@@ -152,7 +152,7 @@ namespace Switch.GameObjects.GameDisplays
             }
 
             //draw the bullet time power bar
-            float scaleY = (float)((MathHelper.Clamp(this.power, 0, 25) * 4) / 100);
+            float scaleY = (float)((MathHelper.Clamp(this.power, 0f, 25f) * 4f) / 100f);
             spriteBatch.Draw(bulletTimePowerBar, 
                              new Vector2(this.position.X + 2, this.position.Y + 626), 
                              null, 
@@ -165,7 +165,7 @@ namespace Switch.GameObjects.GameDisplays
 
             //draw the laser power bar
             int amountOfLaserPower = (int)(MathHelper.Clamp(this.power, 25, 50) - 25);
-            scaleY = (float)((MathHelper.Clamp(amountOfLaserPower, 0, 25) * 4) / 100);
+            scaleY = (float)((MathHelper.Clamp(amountOfLaserPower, 0f, 25f) * 4f) / 100f);
             spriteBatch.Draw(laserPowerBar,
                              new Vector2(this.position.X + 2, this.position.Y + 479),
                              null,
@@ -178,7 +178,7 @@ namespace Switch.GameObjects.GameDisplays
 
             //draw the nuke power bar
             int amountOfNukePower = (int)(MathHelper.Clamp(this.power, 50, 100) - 50);
-            scaleY = (float)((MathHelper.Clamp(amountOfNukePower, 0, 50) * 2) / 100);
+            scaleY = (float)((MathHelper.Clamp(amountOfNukePower, 0f, 50f) * 2f) / 100f);
             spriteBatch.Draw(nukePowerBar,
                              new Vector2(this.position.X + 2, this.position.Y + 332),
                              null,
