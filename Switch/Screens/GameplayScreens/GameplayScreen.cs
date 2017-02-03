@@ -217,9 +217,8 @@ namespace Switch
                         if (this.GetGameMode() != GameMode.BATTLE_MODE)
                         {
                             SaveStats();
-                            //** RE-ENABLE ME
-                            //GameOverBackToMenuScreen confirmGameOverMessageBox = new GameOverBackToMenuScreen(this.getGameMode());
-                            //ScreenManager.AddScreen(confirmGameOverMessageBox, null);
+                            GameOverBackToMenuScreen confirmGameOverMessageBox = new GameOverBackToMenuScreen(this.GetGameMode());
+                            ScreenManager.AddScreen(confirmGameOverMessageBox, null);
                         }
                         else
                         {

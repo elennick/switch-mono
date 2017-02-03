@@ -14,7 +14,7 @@ namespace Switch
         public static SwitchGame Instance { get; set; }
 
         //skips logo screen, disables music, defaults to windowed mode and gives unlimited power to use abilities during gameplay
-        public static bool DEBUG_MODE = false;
+        public static bool DEBUG_MODE = true;
 
         public SwitchGame()
         {

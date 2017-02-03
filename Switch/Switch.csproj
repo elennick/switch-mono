@@ -125,6 +125,7 @@
     <Compile Include="Screens\BackgroundScreen.cs" />
     <Compile Include="Screens\ChallengeCompleteScreen.cs" />
     <Compile Include="Screens\ExitToMainMenuScreen.cs" />
+    <Compile Include="Screens\GameOverBackToMenuScreen.cs" />
     <Compile Include="Screens\GameplayScreens\ChallengeModeScreen.cs" />
     <Compile Include="Screens\GameplayScreens\GameplayScreen.cs" />
     <Compile Include="Screens\GameplayScreens\ScoreAttackScreen.cs" />

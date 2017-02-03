@@ -19,9 +19,9 @@ namespace Switch.Menus
         {
             IsPopup = true;
             this.gameMode = gameMode;
-            this.setAllowBack(false);
-            this.setShowBackgroundColor(false);
-            this.setShowBackgroundDecoration(false);
+            this.SetAllowBack(false);
+            this.SetShowBackgroundColor(false);
+            this.SetShowBackgroundDecoration(false);
 
             TransitionOnTime = TimeSpan.FromSeconds(0.0);
             TransitionOffTime = TimeSpan.FromSeconds(0.0);
@@ -34,7 +34,7 @@ namespace Switch.Menus
 
             MenuEntries.Add(backToMenu);
 
-            SoundManager.Instance.playSound("game-over");
+            SoundManager.Instance.PlaySound("game-over");
         }
 
         public override void LoadContent()
@@ -46,7 +46,7 @@ namespace Switch.Menus
                 content = new ContentManager(ScreenManager.Game.Services, "Content");
             }
 
-            this.setMenuTitleImage(content.Load<Texture2D>("Sprites\\Title\\gameover"));
+            this.SetMenuTitleImage(content.Load<Texture2D>("Sprites\\Title\\gameover"));
         }
 
         void backToMenuSelected(object sender, PlayerIndexEventArgs e)
@@ -77,7 +77,7 @@ namespace Switch.Menus
 
         public override void Draw(GameTime gameTime)
         {
-            VibrationManager.Instance.cancelAllVibrations();
+            VibrationManager.Instance.CancelAllVibrations();
             ScreenManager.FadeBackBufferToBlack(TransitionAlpha * 2 / 3);
 
             base.Draw(gameTime);
